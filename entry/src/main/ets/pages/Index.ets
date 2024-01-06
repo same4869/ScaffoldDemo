@@ -1,6 +1,8 @@
 import { MLog, MPreferencesUtil, MToast } from '@app/commlib'
 import { MLoadingDialog, MCommDialog } from '@app/uilib'
 import { getHomeList, getHomeListAxios } from '../http/apiService'
+import emitter from '@ohos.events.emitter'
+import { loadingEvent } from '@app/commlib/src/main/ets/event/EventKey'
 
 @Entry
 @Component
@@ -37,10 +39,18 @@ struct Index {
       tag: "demo2"
     })
 
-    MLog.debug("2333333")
+    MLog.debug("aboutToAppear")
 
-    this.loadingShow = true
-    this.loadingDialogController.open()
+    emitter.on(loadingEvent, (event) => {
+      if (event.data.showLoading == true && !this.loadingShow) {
+        this.loadingShow = true
+        this.loadingTips = event.data.loadingTips
+        this.loadingDialogController.open()
+      } else if (event.data.showLoading == false) {
+        this.loadingDialogController.close()
+        this.loadingShow = false
+      }
+    })
   }
 
   build() {

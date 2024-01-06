@@ -1,5 +1,5 @@
 import promptAction from '@ohos.promptAction'
-import { MLog } from './log/MLog'
+import { MLog } from '../log/MLog'
 
 /**
  @author: XWANG

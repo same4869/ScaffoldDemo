@@ -1,5 +1,6 @@
 import { MLog, MPreferencesUtil, MToast } from '@app/commlib'
 import { MLoadingDialog, MCommDialog } from '@app/uilib'
+import { getHomeList, getHomeListAxios } from '../http/apiService'
 
 @Entry
 @Component
@@ -73,6 +74,34 @@ struct Index {
           })
           Button("showCusDia2").fontSize('16vp').onClick(() => {
             this.dialogController2.open()
+          })
+        }
+
+        Row() {
+          Button("http1").fontSize('16vp').onClick(() => {
+            getHomeList().then((res) => {
+              //这里比较奇怪
+              //res是个string，虽然编译器能直接点出后面的值，但实际取不到，要json.parse一下
+              //MLog内部应该支持object的序列号打印
+              MLog.debug("HomeTag->" + res)
+              MLog.debug("HomeTag->" + typeof (res))
+              // @ts-ignore
+              MLog.debug("HomeTag->" + JSON.stringify(JSON.parse(res)))
+              // @ts-ignore
+              MLog.debug("HomeTag->" + typeof (JSON.parse(res)))
+              // @ts-ignore
+              MLog.debug("HomeTag->" + JSON.parse(res).nextPageUrl)
+            }).catch((err) => {
+              MLog.error(err)
+            })
+          })
+          Button("http2").fontSize('16vp').onClick(() => {
+            getHomeListAxios().then((res) => {
+              MLog.debug("HomeTag->" + res)
+              MLog.debug("HomeTag->" + res.nextPageUrl)
+            }).catch((err) => {
+              MLog.error(err)
+            })
           })
         }
       }

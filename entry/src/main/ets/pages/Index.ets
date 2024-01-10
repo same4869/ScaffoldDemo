@@ -3,6 +3,7 @@ import { MLoadingDialog, MCommDialog } from '@app/uilib'
 import { getHomeList, getHomeListAxios } from '../http/apiService'
 import emitter from '@ohos.events.emitter'
 import { loadingEvent } from '@app/commlib/src/main/ets/event/EventKey'
+import router from '@ohos.router'
 
 @Entry
 @Component
@@ -57,7 +58,7 @@ struct Index {
     Row() {
       Column() {
         Text(this.message)
-          .fontSize(50)
+          .fontSize(30)
           .fontWeight(FontWeight.Bold)
         Button("click toast").fontSize('16vp').onClick(
           () => {
@@ -111,6 +112,28 @@ struct Index {
               MLog.debug("HomeTag->" + res.nextPageUrl)
             }).catch((err) => {
               MLog.error(err)
+            })
+          })
+        }
+
+        Row() {
+          Button("toOtherPage").fontSize('16vp').onClick(() => {
+            router.pushUrl({
+              url: 'pages/OtherPage'
+            }).catch((error: Error) => {
+              MLog.info('IndexPage push error' + JSON.stringify(error))
+            })
+          })
+
+          Button("toWebPage").fontSize('16vp').onClick(() => {
+            router.pushUrl({
+              url: 'pages/WebPage',
+              params:{
+                src: $rawfile('JSBridgeUnitTest.html')
+              }
+
+            }).catch((error: Error) => {
+              MLog.info('IndexPage push error' + JSON.stringify(error))
             })
           })
         }

@@ -137,6 +137,18 @@ struct Index {
             })
           })
         }
+
+        Button("toDemo").fontSize('16vp').onClick(() => {
+          router.pushUrl({
+            url: 'pages/demo/DemoPage',
+            params:{
+              src: "111111"
+            }
+
+          }).catch((error: Error) => {
+            MLog.info('IndexPage push error' + JSON.stringify(error))
+          })
+        })
       }
       .width('100%')
     }

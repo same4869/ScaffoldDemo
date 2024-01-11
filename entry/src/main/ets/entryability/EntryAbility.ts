@@ -1,3 +1,4 @@
+import { MLog } from '@app/commlib/src/main/ets/log/MLog';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
@@ -5,6 +6,15 @@ import window from '@ohos.window';
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    let funcAbilityWant = want;
+    let info = funcAbilityWant?.parameters.params
+    MLog.debug("info -> 1 " + info)
+  }
+
+  onNewWant(want){
+    let funcAbilityWant = want;
+    let info = funcAbilityWant?.parameters.params
+    MLog.debug("info -> 2 " + info)
   }
 
   onDestroy() {

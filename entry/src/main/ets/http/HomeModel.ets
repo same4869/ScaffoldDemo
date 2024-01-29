@@ -69,7 +69,6 @@ export interface CoverModel {
   feed: string;
   detail: string;
   blurred: string;
-  sharing?: any;
   homepage: string;
 }
 
@@ -81,7 +80,6 @@ export interface AuthorModel {
   link: string;
   latestReleaseTime: number;
   videoNum: number;
-  adTrack?: any;
   follow: RootObjectFollow;
   shield: RootObjectShield;
   approvedNotReadyVideoCount: number;

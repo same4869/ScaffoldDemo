@@ -3,12 +3,14 @@
  @date: 2024/1/11
  @description: 首页vm
  */
+import { TabItem } from '../model/TabItem';
 
 export class MainViewModel {
+
   /**
    * 首页底部Tab显示数据
    */
-  tabTitle = [
+  tabTitle: TabItem[] = [
     {
       index: 0,
       title: "探索",

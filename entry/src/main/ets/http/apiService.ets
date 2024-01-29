@@ -15,6 +15,10 @@ export function getHomeList(date: string = "") {
   })
 }
 
+class B {
+  date: string = ""
+}
+
 /**
  * 请求首页数据-axios客户端请求
  * @param date
@@ -24,7 +28,7 @@ export function getHomeListAxios(date: string = "") {
   return axiosClient.get<HomeModel>({
     url: baseUrl + "api/v2/feed",
     params: { "date": date },
-    showLoading: true
-    // headers: { "Accept": "application/json" } as AxiosRequestHeaders
+    showLoading: true,
+    headers: { "Accept": "application/json" } as AxiosRequestHeaders
   })
 }

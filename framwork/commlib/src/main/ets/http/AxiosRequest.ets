@@ -4,6 +4,8 @@ import { MLog } from '../log/MLog';
 import { hideLoadingDialog, showLoadingDialog } from '../utils/LoadingUtil';
 import { MToast } from '../utils/MToast';
 import AxiosHttpRequest from './AxiosHttp';
+import http from '@ohos.net.http';
+
 export const axiosClient = new AxiosHttpRequest({
   baseURL: "/api",
   timeout: 10 * 1000,
@@ -45,15 +47,14 @@ export const axiosClient = new AxiosHttpRequest({
       }
       return err;
     },
-    responseInterceptor: (response) => {
+    responseInterceptor: (response: ESObject) => {
       //优先执行自己的请求响应拦截器，在执行通用请求request的
       if (axiosClient.config.showLoading) {
         hideLoadingDialog()
       }
       MLog.debug('网络请求响应Response:', `\n${JSON.stringify(response.data)}`);
       if (response.status === 200) {
-        // @ts-ignore
-        const checkResultCode = response.config.checkResultCode
+        const checkResultCode: number = response.config.checkResultCode
         if (checkResultCode && response.data.errorCode != 0) {
           MToast.showToast(response.data.errorMsg)
           return Promise.reject(response)
@@ -74,7 +75,7 @@ export const axiosClient = new AxiosHttpRequest({
   }
 });
 
-export function errorHandler(error: any) {
+export function errorHandler(error: ESObject) {
   if (error instanceof AxiosError) {
     MToast.showToast(error.message)
   } else if (error != undefined && error.response != undefined && error.response.status) {

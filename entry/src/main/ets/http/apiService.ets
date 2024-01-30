@@ -15,10 +15,6 @@ export function getHomeList(date: string = "") {
   })
 }
 
-class B {
-  date: string = ""
-}
-
 /**
  * 请求首页数据-axios客户端请求
  * @param date

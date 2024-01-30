@@ -32,18 +32,15 @@ export interface HomeModelIssueListItemList {
 
 export class BannerData implements IDataSource {
   private list: HomeModelIssueListItemList[] = []
-  private listener: DataChangeListener
 
   constructor(list: HomeModelIssueListItemList[]) {
     this.list = list
   }
 
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-
+  registerDataChangeListener(listener: DataChangeListener): void {
   }
 
-  registerDataChangeListener(listener: DataChangeListener): void {
-    this.listener = listener
+  unregisterDataChangeListener(listener: DataChangeListener): void {
   }
 
   getData(index: number) {

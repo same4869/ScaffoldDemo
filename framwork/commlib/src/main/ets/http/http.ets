@@ -23,7 +23,7 @@ export interface ApiResponse<T = object> extends BaseResponse {
   //拓展xxx-API响应体
 }
 
-interface HttpRequestConfig extends http.HttpRequestOptions {
+export interface HttpRequestConfig extends http.HttpRequestOptions {
   showLoading?: boolean; //是否展示请求loading
   checkResultCode?: boolean; //是否检验响应结果码
   checkLoginState?: boolean //校验用户登陆状态

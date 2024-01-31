@@ -31,7 +31,6 @@ export function getHomeListAxios(date: string = "") {
   return axiosClient.get<HomeModel>({
     url: baseUrl + "api/v2/feed",
     params: { "date": date },
-    showLoading: true,
-    headers: { "Accept": "application/json" }
+    showLoading: true
   })
 }

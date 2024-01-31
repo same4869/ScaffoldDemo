@@ -53,7 +53,7 @@ export const axiosClient = new AxiosHttpRequest({
         hideLoadingDialog()
       }
       MLog.debug('网络请求响应Response:', `\n${JSON.stringify(response.data)}`);
-      if (response.status === 200) {
+      if (response?.status === 200) {
         const checkResultCode: number = response.config.checkResultCode
         if (checkResultCode && response.data.errorCode != 0) {
           MToast.showToast(response.data.errorMsg)

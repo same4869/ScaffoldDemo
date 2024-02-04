@@ -22,7 +22,7 @@ interface TabItem {
 @Component
 export struct MarketPlacePage {
   @State
-  sort: number | undefined = 30
+  sort: number | undefined = 10
 
   build() {
     Column() {

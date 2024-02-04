@@ -1,3 +1,9 @@
+/**
+ @author: XWANG
+ @date: 2024/2/3
+ @description: 市场-沪深京首页-顶部大盘指数
+ */
+
 @Component
 export struct TopIndexCardComp {
   build() {

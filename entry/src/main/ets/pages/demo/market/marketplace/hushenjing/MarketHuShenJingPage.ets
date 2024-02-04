@@ -3,6 +3,7 @@
  @date: 2024/1/11
  @description: 市场-沪深京首页
  */
+import { MarketChartComp } from './components/MarketChartComp'
 import { TopIndexCardComp } from './components/TopIndexCardComp'
 
 @Component
@@ -26,6 +27,8 @@ export struct MarketHuShenJingPage {
       .scrollBar(BarState.Off)
       .padding({ left: 16, right: 16, bottom: 12 })
       .edgeEffect(EdgeEffect.Spring)
+
+      MarketChartComp()
 
     }.height("100%").width("100%").backgroundColor("#f4f4f4")
   }

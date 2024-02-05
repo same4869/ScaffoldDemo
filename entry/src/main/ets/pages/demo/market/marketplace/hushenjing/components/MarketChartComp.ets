@@ -19,11 +19,14 @@ export struct MarketChartComp {
           .fontSize($r("app.color.color_777"))
           .margin({ left: 4 })
 
-        Text("沪深成交额：8057亿 >")
-          .fontSize(18)
-          .fontSize($r("app.color.color_555"))
+        Blank()
+
+        Row() {
+          Text("沪深成交额：8057亿 >")
+            .fontSize(18)
+            .fontSize($r("app.color.color_555"))
+        }
       }.width("100%")
-      .justifyContent(FlexAlign.SpaceBetween)
     }.width("100%")
     .backgroundColor($r("app.color.color_white"))
     .borderRadius(8)

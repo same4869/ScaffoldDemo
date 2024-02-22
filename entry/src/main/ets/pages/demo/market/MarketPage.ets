@@ -31,6 +31,7 @@ export struct MarketPage {
         .width('100%')
         .padding({ left: 16, right: 16 })
         .height(40)
+        .backgroundColor(0xF2F4F7)
       }.width("100%").alignItems(VerticalAlign.Top)
 
       Column() {

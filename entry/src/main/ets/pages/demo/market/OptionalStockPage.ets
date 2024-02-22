@@ -3,10 +3,28 @@
  @date: 2024/2/2
  @description: 自选股首页
  */
+import StockIndexInfo from './optionalstock/stocklist/StockIndexInfo'
+import StockIndexTop from './optionalstock/stocklist/StockIndexTop'
 
 @Component
 export struct OptionalStockPage {
+  @State indexExpanded: boolean = false
+
   build() {
-    Stack().height("100%").width("100%").backgroundColor("#ff0000")
+    Column() {
+
+      Column() {
+        StockIndexTop({indexExpanded: $indexExpanded})
+
+        if (this.indexExpanded) {
+          StockIndexInfo()
+        }
+      }
+      .width('100%')
+      .borderRadius(10)
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor(0xF2F4F7)
   }
 }

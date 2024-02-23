@@ -27,28 +27,41 @@ export default struct StockIndexTop {
   ]
 
   @Link indexExpanded: boolean
-  private selectIndex: number | undefined
+  @State selectIndex: number | undefined = undefined
+  @State showRightMore: boolean = true
+  private indexScroller: Scroller = new Scroller()
 
   build() {
     Row({space: 9}) {
-      List() {
-        ForEach(this.stockIndexArr, (stockIndex: StockIndexData, index: number) => {
-          ListItem() {
-            StockIndexItem({stockIndex: stockIndex})
-          }
-          .onClick(() => {
-            if (this.selectIndex === index) {
-              this.selectIndex = undefined
-            } else {
-              this.selectIndex = index
+      Stack({alignContent: Alignment.End}) {
+        List({scroller: this.indexScroller}) {
+          ForEach(this.stockIndexArr, (stockIndex: StockIndexData, index: number) => {
+            ListItem() {
+              StockIndexItem({stockIndex: stockIndex, itemSelected: this.selectIndex === index})
             }
+            .onClick(() => {
+              if (this.selectIndex === index) {
+                this.selectIndex = undefined
+              } else {
+                this.selectIndex = index
+              }
 
-            this.indexExpanded = this.selectIndex !== undefined && this.selectIndex >= 0
+              this.indexExpanded = this.selectIndex !== undefined && this.selectIndex >= 0
+            })
           })
+        }
+        .listDirection(Axis.Horizontal)
+        .scrollBar(BarState.Off)
+        .onScroll((scrollOffset: number, scrollState: ScrollState) => {
+          this.showRightMore = this.indexScroller.currentOffset().xOffset <= 0
         })
+
+        if (this.showRightMore) {
+          Image($r('app.media.hq_optional_right_more'))
+            .width(10)
+            .aspectRatio(1)
+        }
       }
-      .listDirection(Axis.Horizontal)
-      .scrollBar(BarState.Off)
       .height('100%')
       .layoutWeight(1)
 
@@ -59,7 +72,6 @@ export default struct StockIndexTop {
       .width(88)
       .height('100%')
     }
-    .backgroundColor(0xFFFFFF)
     .width('100%')
     .height(60)
   }
@@ -77,7 +89,6 @@ export default struct StockIndexTop {
       }
       .width('100%')
       .height('100%')
-
     }
     .width(40)
     .height('100%')

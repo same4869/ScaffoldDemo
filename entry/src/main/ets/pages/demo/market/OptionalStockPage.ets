@@ -20,7 +20,7 @@ export struct OptionalStockPage {
           StockIndexInfo()
         }
       }
-      .width('100%')
+      .backgroundColor(0xFFFFFF)
       .borderRadius(10)
     }
     .width('100%')

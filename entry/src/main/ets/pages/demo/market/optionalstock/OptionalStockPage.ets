@@ -3,8 +3,9 @@
  @date: 2024/2/2
  @description: 自选股首页
  */
-import StockIndexInfo from './optionalstock/stocklist/StockIndexInfo'
-import StockIndexTop from './optionalstock/stocklist/StockIndexTop'
+import StockListView from './components/StockListView'
+import StockIndexInfo from './stocklist/StockIndexInfo'
+import StockIndexTop from './stocklist/StockIndexTop'
 
 @Component
 export struct OptionalStockPage {
@@ -19,6 +20,8 @@ export struct OptionalStockPage {
         if (this.indexExpanded) {
           StockIndexInfo()
         }
+
+        StockListView()
       }
       .backgroundColor(0xFFFFFF)
       .borderRadius(10)

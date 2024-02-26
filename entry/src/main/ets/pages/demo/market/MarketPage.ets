@@ -4,7 +4,7 @@
  @description: 行情
  */
 import { MarketPlacePage } from './marketplace/MarketPlacePage'
-import { OptionalStockPage } from './OptionalStockPage'
+import { OptionalStockPage } from './optionalstock/OptionalStockPage'
 
 interface TabItem {
   name: string

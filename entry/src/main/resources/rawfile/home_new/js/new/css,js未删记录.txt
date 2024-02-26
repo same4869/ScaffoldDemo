@@ -1,0 +1,55 @@
+scroll-info-tz
+
+//#more-page删除节点 -start
+ <div class="more-page" style="position: relative; z-index: 22">
+                <!--bar-->
+                <!-- 悬浮导航栏 -->
+                <div class="nav-group-position">
+                    <!-- 模拟客户端标题栏 -->
+                    <div
+                        class="title-bar"
+                        style="
+                            display: none;
+                            padding-top: 25px;
+                            line-height: 48px;
+                            background: #f24d44;
+                            text-align: center;
+                            color: #ffffff;
+                            font-size: 0.16rem;
+                        "
+                    >
+                        探索
+                    </div>
+
+                    <div class="nav-group sticky-header">
+                        <div class="nav-slide slide-tj active" data-type="tuijian">
+                            <span>推荐</span>
+                            <i></i>
+                        </div>
+                        <div class="nav-slide slide-724" data-type="724">
+                            <span>7*24</span>
+                            <i></i>
+                        </div>
+                        <!--<div class="nav-slide slide-yw" data-type="yaowen">
+						<span>要闻</span>
+						<i></i>
+					</div>-->
+                        <div class="nav-slide slide-tg" data-type="tougu">
+                            <span>投顾</span>
+                            <i></i>
+                        </div>
+                        <div class="nav-slide slide-jp" data-type="jiepan">
+                            <span>解盘</span>
+                            <i></i>
+                        </div>
+                        <div class="nav-slide slide-st" data-type="shiting">
+                            <span>直播</span>
+                            <i></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 分页页面 -->
+                <div class="page-content"></div>
+            </div>
+        //#more-page删除节点-end

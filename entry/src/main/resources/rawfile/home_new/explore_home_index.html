@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>首页</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport"
+        content="viewport-fit=cover,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi = medium-dpi" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <link href="../c_modules/css/base-min.css" rel="stylesheet" media="all" />
+    <link rel="stylesheet" href="../c_modules/swiper/css/swiper.min.css" />
+    <!--<link rel="stylesheet" href="./skin01/home_new_index.css">
+	<link rel="stylesheet" href="./skin01/home_new_yh01.css">
+	<link rel="stylesheet" href="./css/home_new_common.css">-->
+    <link href="../c_modules/jz/mescroll.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/home_newCommon6.css" />
+
+    <!--推荐-->
+    <link rel="stylesheet" href="./skin01/home_new_yh01.css" />
+
+    <!--724-->
+    <link rel="stylesheet" href="/zx2/skin01/zx_tuijian.css" />
+    <link rel="stylesheet" href="/zx2/skin01/zx_kuaixun.css" />
+
+    <link rel="stylesheet" href="./css/home_new_index_reform6.css" />
+    <link rel="stylesheet" href="./css/new/home_new_index.css" />
+    <script src="./js/new/amfe-flexible.js"></script>
+    <script src="./js/vue.min.js"></script>
+    <style>
+        .mescroll-downwarp .downwarp-tip,
+        .mescroll-upwarp .upwarp-tip,
+        .mescroll-upwarp .upwarp-nodata {
+            font-size: 0.35rem !important;
+        }
+
+        .downwarp-tip .jiazai {
+            width: 0.5rem !important;
+            height: 0.5rem !important;
+        }
+
+        .downwarp-tip .jzz {
+            font-size: 0.35rem !important;
+        }
+
+        .downwarp-tip .sf {
+            font-size: 0.35rem !important;
+        }
+
+        .downwarp-tip .shifang {
+            width: 0.5rem !important;
+            height: 0.5rem !important;
+        }
+
+        .downwarp-tip .jiazai {
+            top: 4px !important;
+        }
+
+        .downwarp-tip .shifang {
+            top: 4px !important;
+        }
+
+        .nine-chequer-list {
+
+            margin-bottom: 0.213rem;
+
+        }
+
+        .swiper-slide {
+            width: 100% !important;
+        }
+
+        #capture {
+            width: 100%;
+            height: auto;
+            background: #fff;
+            z-index: -100;
+            position: fixed;
+            top: 100%;
+        }
+
+        .captitle {
+            width: 100%;
+            height: 2.9rem;
+            background: url('/zxxqkx/img/captitle1.png') no-repeat;
+            background-size: 100% 100%;
+            overflow: hidden;
+        }
+
+        .captitlecon {
+            position: relative;
+            width: 100%;
+            height: 0.91rem;
+            font-size: 0.65rem;
+            line-height: 0.91rem;
+            text-align: center;
+            color: #fff;
+            margin-top: 0.88rem;
+        }
+
+        .captitlecon>i {
+            width: 1.00rem;
+            height: 0.59rem;
+            position: absolute;
+            top: 0.12rem;
+            left: 1.76rem;
+            display: block;
+            /*background: url(img/cap724.png) no-repeat;
+            background-size: 100% 100%;*/
+        }
+
+        .captitlecon>i img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .captime {
+            width: 100%;
+            height: 0.59rem;
+            line-height: 0.59rem;
+            font-size: 0.41rem;
+            color: #fff;
+            text-align: center;
+        }
+
+        .capcenter {
+            width: 88%;
+            /*max-height: 60%;
+            _height: 60%;*/
+            background: #fff;
+            /* position: absolute;
+            top: 0;
+            left: 6%;*/
+            margin-left: 6%;
+            padding: 0.59rem 0.38rem 0.59rem;
+            font-size: 0.47rem;
+            color: #3C3759;
+            overflow: hidden;
+            border-radius: 0.15rem;
+            /*z-index: 100;*/
+            border: 0.06rem solid #f6f6f6;
+            border-top: none;
+        }
+
+        /*.capcenterbg{
+            width: 88.5%;
+            height: 60.2%;
+            background: rgba(39,52,125,0.10);
+            position: absolute;
+            top: 1rem;
+            left: 5.8%;
+            border-radius: .05rem;
+        }*/
+        .capfoot {
+            position: relative;
+            width: 100%;
+            height: 2.93rem;
+            padding: 0 6%;
+            margin-top: 1.61rem;
+            overflow: hidden;
+        }
+
+        .caphf {
+            width: 5.43rem;
+            height: 1.76rem;
+            float: left;
+            /*background: url(img/caphf.png) no-repeat;
+            background-size: 100% 100%;*/
+            margin-top: 0.15rem;
+            /*margin-right: 1.11rem;*/
+        }
+
+        .capewm {
+            float: right;
+            width: 1.91rem;
+            height: 1.91rem;
+            /*background: url(img/capewm.jpg) no-repeat;
+            background-size: 100% 100%;*/
+            position: relative;
+        }
+
+        .capewm>i {
+            position: absolute;
+            color: #3C3759;
+            top: 2.05rem;
+            width: 10.71rem;
+            left: -4.40rem;
+            /*font-size: .12em;*/
+            text-align: center;
+        }
+
+        .tw724 {
+            width: 100%;
+            height: 50%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            /*background: url(img/tw724.png) no-repeat;
+            background-size: 100% 100%;*/
+        }
+
+        .capfoot img {
+            width: 100%;
+            height: 100%;
+        }
+
+        #canvasImg {
+            width: 100%;
+        }
+
+        .capcentertop {
+            width: 100%;
+            height: 1.47rem;
+            background: url('/zxxqkx/img/captitle2.png') no-repeat;
+            background-size: 100% 100%;
+            position: absolute;
+            top: 2.43rem;
+        }
+
+        .capcon {
+            width: 100%;
+            position: relative;
+        }
+
+        .capcon .caphead {
+            padding-bottom: 0.29rem;
+        }
+
+        .capcon .caphead p span {
+            width: auto;
+            height: 0.88rem;
+            float: right;
+            text-align: center;
+            line-height: 0.88rem;
+            color: #408FFF;
+            padding: 0 0.15rem 0 0.15rem;
+            display: flex;
+        }
+
+        .capcon .caphead p {
+            float: right;
+        }
+
+        .capcon .caphead b {
+            font-size: 0.59rem;
+        }
+
+        .capcon b {
+            font-weight: bold;
+        }
+
+        .capcontent {
+            font-size: 0.43rem;
+            padding-top: 0.29rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper mescroll" id="mescroll-index" data-sticky-container
+        style="-webkit-overflow-scrolling: touch; overflow-x: hidden; height: 100%">
+        <div class="header header-version-new">
+            <div class="main-container">
+                <!-- 渐变背景 -->
+                <div class="gradient-bg"></div>
+
+                <!--九宫格-->
+                <div class="nine-chequer">
+                    <div class="nine-chequer-box nine-chequer-box-default">
+                        <!--九宫格-->
+                        <div class="swiper-container-nine">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="nine-chequer-group clear">
+                                        <div class="nine-chequer-list">
+                                            <i class="icon-img"><b class="icon-default"></b></i>
+                                            <em><b class="font-default"></b></em>
+                                        </div>
+                                        <div class="nine-chequer-list">
+                                            <i class="icon-img"><b class="icon-default"></b></i>
+                                            <em><b class="font-default"></b></em>
+                                        </div>
+                                        <div class="nine-chequer-list">
+                                            <i class="icon-img"><b class="icon-default"></b></i>
+                                            <em><b class="font-default"></b></em>
+                                        </div>
+                                        <div class="nine-chequer-list">
+                                            <i class="icon-img"><b class="icon-default"></b></i>
+                                            <em><b class="font-default"></b></em>
+                                        </div>
+                                        <div class="nine-chequer-list">
+                                            <i class="icon-img"><b class="icon-default"></b></i>
+                                            <em><b class="font-default"></b></em>
+                                        </div>
+
+                                        <div class="nine-chequer-list">
+                                            <i class="icon-img"><b class="icon-default"></b></i>
+                                            <em><b class="font-default"></b></em>
+                                        </div>
+                                        <div class="nine-chequer-list">
+                                            <i class="icon-img"><b class="icon-default"></b></i>
+                                            <em><b class="font-default"></b></em>
+                                        </div>
+                                        <div class="nine-chequer-list">
+                                            <i class="icon-img"><b class="icon-default"></b></i>
+                                            <em><b class="font-default"></b></em>
+                                        </div>
+                                        <div class="nine-chequer-list">
+                                            <i class="icon-img"><b class="icon-default"></b></i>
+                                            <em><b class="font-default"></b></em>
+                                        </div>
+                                        <div class="nine-chequer-list">
+                                            <i class="icon-img"><b class="icon-default"></b></i>
+                                            <em><b class="font-default"></b></em>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-pagination swiper-pagination-nine"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 快讯 和 投顾解盘 -->
+                <div class="kx-tgjp" id="kx-tgjp-app">
+                    <!-- 快讯 -->
+                    <div class="gradient-border">
+                        <img class="bg" src="./images/new/kx_bg.png" />
+
+                        <div class="kx">
+                            <div style="visibility: hidden" :style="{visibility:vueInit?'':'hidden'}"
+                                @click="openKxPage">
+                                <div>
+                                    <div class="kx-header">
+
+                                        <div class="name" style="font-weight: 700;z-index: 100;font-size: 0.373rem;">快讯
+                                        </div>
+                                        <div class="time" v-if="!kxLoading">
+                                            {{kx.isTradeDate?kx.time:kx.date}}
+                                            <img class="icon-right" src="./images/new/icon_right.png" />
+                                        </div>
+                                    </div>
+                                    <div v-if="!kxLoading" class="content ellipsis2l">{{kx.content}}</div>
+                                </div>
+
+
+                                <template v-if="!kxLoading  ">
+                                    <template v-if="typeVersion!=1">
+                                        <div class="stock-content" v-if="kx.stocks.length>0 ">
+                                            <div class="stock-tag stock-target" v-for="(item,index) in kx.stocks"
+                                                @click="openStockPage(item.stockCode,item.market,item.stockName,0)"
+                                                :key="index" :data-code="item.stockCode">
+                                                <div class="stock-name">{{item.stockName}}</div>
+                                                &nbsp;
+                                                <div :class="{rate:true,'is-up':item.isUp}">{{item.signValue}}</div>
+                                            </div>
+                                        </div>
+                                        <div v-else-if="kx.plates.length>0" class="plate-content">
+                                            <div class="plate-tag" v-for="(item,index) in kx.plates"
+                                                @click="openPlatePage(item.id,item.name,0)" :key="index">
+                                                #{{item.name}}
+                                            </div>
+                                        </div>
+                                        <div @click.stop="handleShare" v-else class="share-btn">
+                                            <img src="./images/new/icon_share.png" />
+                                            分享
+                                        </div>
+                                    </template>
+                                </template>
+                                <div v-else class="loading">
+                                    <img class="img" src="./images/new/loading.png" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 投顾解盘 -->
+                    <div class="tgjp" style="visibility: hidden" :style="{visibility:vueInit?'':'hidden'}">
+                        <div id="swiper-container-tgjp" v-if="!tgjpLoading">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide" style="width:100%" data-type="1" v-for="item in tgjpList">
+                                    <div class="slide-content zb-card">
+                                        <img class="bg" src="./images/new/tgjp-bg.png" />
+                                        <div class="tgjp-card slide-content">
+                                            <div>
+                                                <div class="tgjp-header">
+                                                    <div class="left">
+                                                        <img  v-if="item.zbUserImg" class="avatar" :src="item.zbUserImg"
+                                                            onerror="this.src='/home_new/images/wjz.png'" />
+                                                    
+                                                        <div style="font-weight: 700">投顾解盘</div>
+                                                        <img v-if="item.activityState=='3'" class="icon"
+                                                            src="./images/new/icon_line.png" />
+                                                    </div>
+                                                    <div class="hf-tag" v-if="item.activityState=='4'">回放</div>
+                                                    <div v-else-if="item.activityState!='3'" class="yy-tag">
+                                                        预约
+                                                    </div>
+                                                </div>
+                                                <div  class="content ellipsis2l">{{item.activityDesc}}</div>
+                                            </div>
+                                            <div class="people" v-if="typeVersion!=1">投顾：{{item.zbUserName}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <template v-if="zbList.length>0">
+                                    <div class="swiper-slide" data-type="2" v-for="item in zbList">
+                                        <div class="slide-content zb-card">
+                                            <img class="bg" :src="item.cover" />
+                                            <!-- 预约 -->
+                                            <div class="sub" v-if="item.status==='0'">
+                                                <img  v-if="typeVersion!=1" src="./images/new/sub_yy.png" />
+                                                <img  v-else src="./images/new/yy.png" alt="">
+                                                <div class="time">
+                                                    {{ parseTime(item.startTime.replace(".000",""),"{m}-{d} {h}:{i}") }}
+                                                </div>
+                                            </div>
+                                            <!--直播中  -->
+                                            <div class="sub living" v-else-if="item.status==='1'">
+                                                <img v-if="typeVersion!=1" src="./images/new/sub_zbz.png" />
+                                                <img  v-else src="./images/new/zbz.png" alt="">
+                                                <div class="count">
+                                                    {{(item.virtualVists+item.viewers).toFixed(0)}}人
+                                                </div>
+                                            </div>
+                                            <!-- 直播结束 -->
+                                            <div class="sub" v-else-if="item.status==='2'">
+                                                <img v-if="typeVersion!=1" src="./images/new/sub_hf.png" />
+                                                <img  v-else src="./images/new/hf.png" alt="">
+                                                <div class="count">
+                                                    {{(item.virtualVists+item.viewers).toFixed(0)}}人
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                                <div class="swiper-slide" data-type="3" v-if="rdzxList.length>0">
+                                    <div class="slide-content">
+                                        <img class="bg" src="./images/new/tgjp-bg.png" />
+                                        <div class="rdzx-card">
+                                            <div class="card-title">
+
+                                                <div style="font-weight: 700;padding-left: 0.08rem;">热点资讯</div>
+                                            </div>
+                                            <div class="title ellipsis">{{rdzxList[0].title}}</div>
+                                            <div  :class="typeVersion==1?'ellipsis':'ellipsis2l'" class="content ">{{rdzxList[0].summary}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pagination">
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                        <div v-else class="full-card tgjp-card">
+                            <img class="bg" src="./images/new/tgjp-bg.png" />
+                            <div class="tgjp-header">
+                                <div class="left">
+                                    <img class="avatar" src="./images/new/icon_avatar.png" />
+                                    <div>投顾解盘</div>
+                                </div>
+                            </div>
+                            <div class="loading">
+                                <img class="img" src="./images/new/loading.png" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 独家解读 -->
+                <div id="djjd-app" style="visibility: hidden" :style="{visibility:vueInit?'':'hidden'}">
+                    <!-- 未登录情况 -->
+                    <div class="no-login" @click="openAccountPage" v-if="noLogin">
+                        <div v-if="typeVersion!=1" class="tip">拥有专属客户号，获取更多信息</div>
+                     <div v-else class="tip">使用客户号，获取更多信息</div>
+                        <div class="open-btn">立即开户</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <img class="bg kg"  src="./images/djjd.png" />
+                            <div @click="openDjjdPage()">
+                                专业解读 市场讯息
+                                <img class="icon-right" src="./images/new/icon_right.png" />
+                            </div>
+                        </div>
+                        <template v-if="!loading">
+                            <div class="tabs">
+                                <div class="tabs-item" @click="handleTabChange(-1)" :class="checked===-1?'is-check':''">
+                                    市场解读
+                                </div>
+                                <div v-for="item in tabsList" :key="item.crtitCode" class="tabs-item"
+                                    @click="handleTabChange(item.crtitCode)"
+                                    :class="checked===item.crtitCode?'is-check':''"
+                                    v-if="other[item.crtitCode].list.length>0">
+                                    {{ item.crtitName }}
+                                </div>
+                            </div>
+                            <div>
+                                <div v-show="scjdList.length>0&&checked===-1" class="notice-content">
+                                    <div class="scroll-content">
+                                        <div class="notice-card" v-for="item in scjdList" :key="item.id"
+                                            @click.stop="openTcwjDetailPage(item.articleId,item)">
+                                            <div class="card-title">
+                                                <img :src="'./images/new/'+item.icon+'.png'" onerror="errorimg(this)" />
+                                                {{item.cardTitle}}
+                                            </div>
+                                            <template v-if="item.categoryId===1||item.categoryId===8">
+
+                                                <div :class="item.content? 'ellipsis content':'content ellipsis2l3'">
+                                                    {{item.title}}</div>
+                                                <div class="content-tag ellipsis2l">{{item.content}}</div>
+                                            </template>
+                                            <div v-else class="content ellipsis2l">{{item.content}}</div>
+                                            <div v-if="item.categoryId===1555" style="display: flex">
+                                                <div @click.stop="openStockPage_gp(item.stocks.stockCode,item.stocks.market,item.stocks.stockName)"
+                                                    :class="item.stocks.stockName?'stock-tag stock-target':''"
+                                                    :data-code="item.stocks.stockCode">
+                                                    <div  :class="item.stocks.stockName?'stock-name ':'author'">
+                                                        {{item.stocks.stockName?item.stocks.stockName
+                                                            :'财联社资讯'}}
+                                                    </div>
+                                                    &nbsp;
+                                                    <div :class="{rate:true,'is-up':item.stocks.isUp}">
+                                                        {{item.stocks.signValue}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div v-else-if="(item.categoryId===81155||item.categoryId===81152||item.categoryId===81158||item.categoryId===81225)"
+                                                class="author">
+                                                {{item.author ?item.author 
+                                                    :'财联社资讯' }}
+                                            </div>
+                                            <div v-else-if="item.categoryId===81207" class="audio-tag">
+                                                <div class="audio-content">
+                                                    <div class="progress-btn">
+                                                        <div class="play-btn">
+                                                            <img v-if="!audioData[item.articleId].isPlay"
+                                                                @click.stop="handlePlay(item.articleId)"
+                                                                src="/home_new/images/new/icon_play.png" />
+                                                            <img v-else @click.stop="handlePause(item.articleId)"
+                                                                src="/home_new/images/new/icon_pause.png" />
+                                                        </div>
+
+                                                        <div class="progress-bar">
+                                                            <div class="bg"></div>
+                                                            <div class="reality-bar"
+                                                                :style="{width:audioData[item.articleId].rate+'%'}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="audio-time">{{audioData[item.articleId].now}}</div>
+                                                </div>
+                                                <audio :id="'audio-'+item.articleId" class="audio-ref">
+                                                    <source :src="item.audioUrl" />
+                                                </audio>
+                                            </div>
+                                            <div class="time">{{item.time}}</div>
+                                        </div>
+                                        <div @click="openDjjdPage(-1,2)" class="more-btn">
+                                            查<br />看<br />更<br />多
+                                        </div>
+                                        <div class="line"></div>
+                                    </div>
+                                </div>
+                                <div class="other-content" v-if="other[checked]">
+                                    <div class="info-item" @click="openOtherPage(item)"
+                                        v-for="(item,index) in other[checked].list" :key="index">
+                                        <div class="title-line">
+                                            <div class="title-index">{{index+1}}.</div>
+                                            <div class="title ellipsis">{{item.title}}</div>
+                                        </div>
+                                        <div class="summary ellipsis">{{item.summary}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                        <div v-else class="loading">
+                            <div>
+                                <img class="img" src="./images/new/loading.png" />
+                                <div class="text">内容加载中...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 轮播图 -->
+            <div id="banner-block" class="banner">
+                <div class="swiper-container-banner">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="./images/home_new_banner.png" alt="" />
+                            <!--<img src="/mall/img/gdlc_banner.png" alt="">-->
+                        </div>
+                        <div class="swiper-slide swiper-slide-next">
+                            <img src="./images/home_new_banner.png" alt="" />
+                        </div>
+                    </div>
+                    <!--<div class="swiper-pagination swiper-pagination-banner"></div>-->
+                </div>
+            </div>
+            <!-- 今日热点 -->
+            <div id="jrrd-app">
+                <div class="card">
+                    <div class="card-header">
+                        <div>今日热点</div>
+                        <div>实时更新 市场热点</div>
+                    </div>
+                    <div class="fkbk-content" v-if="hotspot.length>0">
+                        <div class="fkbk-header" @click.stop="openJrgzPage">
+                            <div class="fkbk-tag"><img src="./images/new/fkbk.png" />风口板块</div>
+                            <img class="icon-right" src="./images/new/icon_right.png" />
+                        </div>
+                        <div class="hot-content">
+                            <div class="gradient-border" v-for="(hot,index) in hotspot"
+                                @click.stop="openPlatePage(hot.plateId,hot.subjectName,1)" :key="index">
+                                <div class="hot-card">
+                                    <div class="hot-card-header">
+                                        <div class="hot-name" >
+                                            <img v-if="typeVersion!=1" :src="'./images/new/fkbk_'+(index+1)+'.png'"
+                                                onerror="errorimg(this)" />
+
+                                                <img v-else :src="'./images/new/fkbkns_'+(index+1)+'.png'"
+                                                onerror="errorimg(this)" />
+                                    
+                                            {{hot.subjectName}}
+
+                                        </div>
+                                        
+                                        <div class="hot-rate">
+                                            <div>热度</div>
+                                            <div class="hot-process">
+                                                <span :class="{active:item}" v-for="(item,index) in hot.hotRate"
+                                                    :key="index">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="hot-card-content ellipsis2l">{{hot.interpret}}</div>
+                                    <div class="hot-card-stocks">
+                                        <div class="stock-tag stock-target" v-for="stock in hot.faucet"
+                                            :key="stock.stockCode"
+                                            @click.stop="openStockPage(stock.stockCode,stock.market,stock.stockName,'2')"
+                                            :data-code="stock.stockCode">
+                                            <div class="stock-name">{{stock.stockName}}</div>
+                                            &nbsp;
+                                            <div :class="{rate:true,'is-up':stock.isUp}">{{stock.signValue}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dzjd-content" v-if="riseList.length>0">
+                        <div class="dzjd-header" @click.stop="openJrfkPage">
+                            <div class="dzjd-tag"><img src="./images/new/dzjd.png" />大涨解读</div>
+                            <img class="icon-right" src="./images/new/icon_right.png" />
+                        </div>
+                        <div class="four-card">
+                            <div class="list-content">
+                                <div @click.stop="openStockPage(stock.stockCode,stock.market,stock.stockName,'3')"
+                                    class="stock-item stock-target" :class="index===checked?'actived':''"
+                                    v-for="(stock,index) in riseList" :key="index" :data-code="stock.stockCode">
+                                    <div class="stock-name ellipsis">{{stock.stockName}}</div>
+                                    <div :class="{rate:true,'up-rate':stock.isUp}">{{stock.signValue}}</div>
+                                </div>
+                                <div class="mark" :style="{left:checked*leftCountPx+'px'}">
+                                    <img v-if="typeVersion!='1'" src="./images/new/union.png" />
+                                    <img v-else src="./images/new/union3.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="up-reason">
+                            <div class="ellipsis2l" @click="dzjd(riseList[checked])">{{riseList[checked].upReason}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 洞察机会 -->
+            <div id="dcjh-app">
+                <div class="card">
+                    <div class="card-header">
+                        <div>洞察机会</div>
+                        <div>洞察市场 把握机会</div>
+                    </div>
+
+                    <div class="tcwj-content" v-if="list.length>0">
+                        <div class="tcwj-header" @click.stop="openTcwjPage">
+                            <div class="tcwj-tag"><img src="./images/new/tcwj.png" />题材挖掘</div>
+                            <img class="icon-right" src="./images/new/icon_right.png" />
+                        </div>
+                        <div id="swiper-container-tcwj">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide article-item" :data-id="item.articleId" v-for="item in list"
+                                    :key="item.articleId">
+                                    <div class="content ellipsis2l">
+                                        <span>{{item.typeName}}</span>{{item.title}}
+                                    </div>
+                                    <div class="stock-content">
+                                        <div class="stock-tag" v-for="(stock,index) in item.stocks" :key="index"
+                                            :data-code="stock.stockCode" :data-market="stock.market"
+                                            :data-name="stock.stockName">
+                                            <div class="stock-name">{{stock.stockName}}</div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pagination">
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qfrl-content" v-if="qfrlList.length>0">
+                        
+                        <div class="qfrl-title">
+                  
+                            <img v-if="typeVersion!='1'" src="./images/new/qfrl.png" />
+                            <img v-else src="./images/new/big_qfrl.png">
+                         </div>
+                        <div id="swiper-container-qfrl">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide" v-for="item in qfrlList" :key="item.articleId"
+                                    :data-id="item.articleId">
+                                    <div class="ellipsis">
+                                        <span>{{item.time}}</span>
+                                        {{item.description}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="yw-list-app">
+                <div class="card">
+                    <template v-for="(ywGroup,index) in ywList">
+                        <div @click="openYwDetailPage(item,index)" class="yw-item" v-for="item in ywGroup"
+                            :key="item.id">
+                            <div class="yw-title ellipsis2l">{{item.title}}</div>
+                            <div class="yw-source-time">
+                                <div>{{item.source}}</div>
+                                <div>{{dateStr(formatDate(item.time))}}</div>
+                            </div>
+                        </div>
+                        <template v-if="tgList[index]&&tgList[index].length>0">
+                            <div class="tggd-card" v-if="index===0">
+                                <div class="card-content">
+                                    <div class="tggd-header">
+                                        <div>投顾观点</div>
+                                        <img @click.stop="openTggdPage" class="icon-right"
+                                            src="./images/new/icon_right.png" />
+                                    </div>
+                                    <div class="tggd-list-content">
+                                        <div class="tggd-card-item" v-for="(item,index) in tgList[index]"
+                                            :key="item.viewId" @click="openGdDetailPage(item,index)">
+                                            <div class="tggd-card-item-header">
+                                                <img v-if="typeVersion!='1'" :src="item.faceImageSmall"
+                                                    onerror="this.src='/home_new/images/wjz.png'" />
+                                                    <img v-else :src="item.faceImageSmall"
+                                                    onerror="this.src='/home_new/images/tggd.png'" />
+                                                <div class="ellipsis">{{item.title}}</div>
+                                            </div>
+                                            <div class="content ellipsis2l">{{item.introdution}}</div>
+                                            <div class="extra">
+                                                <div class="extra-tag">观点包：{{item.viewpageName}}</div>
+                                                <div class="read-num">{{item.readNum}}人阅读</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-else class="tjtg-card">
+                                <div class="card-content">
+                                    <div class="tjtg-header">
+                                        <div>推荐投顾</div>
+                                        <img @click.stop="openTgPage" class="icon-right"
+                                            src="./images/new/icon_right.png" />
+                                    </div>
+                                    <div class="tjtg-list-content">
+                                        <div class="tjtg-card-item" v-for="(item,index) in tgList[index]"
+                                            :key="item.investId" @click="openTgDetailPage(item,index)">
+                                            <div class="tjtg-card-item-info">
+                                                <div class="avatar">
+                                                    <img v-if="typeVersion!='1'" :src="item.faceImageSmall"
+                                                        onerror="this.src='/home_new/images/wjz.png'" />
+                                                
+                                                        <img v-else :src="item.faceImageSmall"
+                                                        onerror="this.src='/home_new/images/tjtg.png'" />
+                                                </div>
+                                                <div class="user-name-tag">
+                                                    <div class="user-name">{{item.userName}}</div>
+                                                    <div v-if="item.investLabel==='1'" class="tag">金牌投顾</div>
+                                                    <div v-else-if="item.investLabel==='2'" class="tag">
+                                                        明星投顾
+                                                    </div>
+                                                    <div v-else-if="item.investLabel==='3'" class="tag">
+                                                        投资顾问
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tjtg-card-item-data">
+                                                <div class="data-item" v-show="typeVersion!='1'">
+                                                    <div class="value">{{item.viewNum}}</div>
+                                                    <div class="label">观点数</div>
+                                                </div>
+                                                <div class="data-item">
+                                                    <div class="value red">
+                                                        {{showRateText(item.recentYearYield)}}
+                                                    </div>
+                                                    <div class="label">近1年收益率</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </template>
+                </div>
+                <div id="more-page"></div>
+            </div>
+        </div>
+
+        <div class="header header-version-old" style="display: none">
+            <!--旧版本客户端自带的顶部高度,刘海屏88，非刘海64-->
+            <div class="app-header" style="display: none"></div>
+            <!-- 轮播图 -->
+            <div class="swiper-container-banner-old banner" id="wapperTop">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" style="height: 1.64rem">
+                        <img class="image" src="" />
+                    </div>
+                </div>
+                <!--<div class="swiper-pagination swiper-pagination-banner-old"></div>-->
+                <div class="lineP" style="
+                            bottom: -0.01rem !important;
+                            text-align: center;
+                            -webkit-transition: 0.3s;
+                            -moz-transition: 0.3s;
+                            -o-transition: 0.3s;
+                            transition: 0.3s;
+                            -webkit-transform: translate3d(0, 0, 0);
+                            -ms-transform: translate3d(0, 0, 0);
+                            -o-transform: translate3d(0, 0, 0);
+                            transform: translate3d(0, 0, 0);
+                        "></div>
+                <!--ios13定位问题，要加上一系列过度-->
+            </div>
+            <!--消息中心滚动-->
+            <div class="scroll-info scroll-info-tz" style="display: none">
+                <div class="scroll-title scroll-title-tz">
+                    <i class="icon-tongzhi"></i>
+                    <em>通知</em>
+                </div>
+                <div class="scroll-content-group">
+                    <div class="swiper-container-tz">
+                        <div class="swiper-wrapper">
+                            <!--<div class="swiper-slide">
+                                <span class="list">抓住牛股共性基因,解码形态擒牛策略</span>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--九宫格-->
+            <div class="nine-chequer">
+                <div class="nine-chequer-box nine-chequer-box-default">
+                    <!--九宫格-->
+                    <div class="swiper-container-nine">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="nine-chequer-group clear">
+                                    <div class="nine-chequer-list">
+                                        <i class="icon-img"><b class="icon-default"></b></i>
+                                        <em><b class="font-default"></b></em>
+                                    </div>
+                                    <div class="nine-chequer-list">
+                                        <i class="icon-img"><b class="icon-default"></b></i>
+                                        <em><b class="font-default"></b></em>
+                                    </div>
+                                    <div class="nine-chequer-list">
+                                        <i class="icon-img"><b class="icon-default"></b></i>
+                                        <em><b class="font-default"></b></em>
+                                    </div>
+                                    <div class="nine-chequer-list">
+                                        <i class="icon-img"><b class="icon-default"></b></i>
+                                        <em><b class="font-default"></b></em>
+                                    </div>
+                                    <div class="nine-chequer-list">
+                                        <i class="icon-img"><b class="icon-default"></b></i>
+                                        <em><b class="font-default"></b></em>
+                                    </div>
+
+                                    <div class="nine-chequer-list">
+                                        <i class="icon-img"><b class="icon-default"></b></i>
+                                        <em><b class="font-default"></b></em>
+                                    </div>
+                                    <div class="nine-chequer-list">
+                                        <i class="icon-img"><b class="icon-default"></b></i>
+                                        <em><b class="font-default"></b></em>
+                                    </div>
+                                    <div class="nine-chequer-list">
+                                        <i class="icon-img"><b class="icon-default"></b></i>
+                                        <em><b class="font-default"></b></em>
+                                    </div>
+                                    <div class="nine-chequer-list">
+                                        <i class="icon-img"><b class="icon-default"></b></i>
+                                        <em><b class="font-default"></b></em>
+                                    </div>
+                                    <div class="nine-chequer-list">
+                                        <i class="icon-img"><b class="icon-default"></b></i>
+                                        <em><b class="font-default"></b></em>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination swiper-pagination-nine"></div>
+                    </div>
+                </div>
+            </div>
+            <!--直播滚动-->
+            <div class="scroll-info scroll-info-zb" style="display: none">
+                <div class="scroll-info-group">
+                    <div class="scroll-title scroll-title-zb">
+                        <i class="icon-live"></i>
+                        <em>直播中</em>
+                    </div>
+                    <div class="scroll-content-group">
+                        <div class="swiper-container-zb">
+                            <div class="swiper-wrapper">
+                                <!-- <div class="swiper-slide">
+                                    <span class="list">中秋后新能源松动，新能源旺季来临？</span>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 删除 #more-page-->
+
+        <!-- 悬浮窗 -->
+        <div class="suspension-window">
+            <i class="icon-close"></i>
+            <div>
+                <img src="" alt="" />
+            </div>
+        </div>
+    </div>
+
+    <div id="capture">
+        <div class="captitle">
+            <div class="captitlecon">
+                <p>小福牛快讯</p>
+                <i><img src="/zxxqkx/img/cap724.png" alt="/" /></i>
+            </div>
+            <p class="captime"></p>
+        </div>
+        <div class="capcentertop"></div>
+        <div class="capcon">
+            <div class="capcenter">
+                <div class="caphead clear" style="display: none">
+                    <b>盘中异动</b>
+                    <p>
+                        <span>#园林</span>
+                        <span>#环保</span>
+                    </p>
+                </div>
+                <b class="capcentertitle"></b>
+                <div class="capcontent"></div>
+            </div>
+        </div>
+
+        <!-- <div class="capcenterbg"></div> -->
+        <div class="capfoot">
+            <div class="caphf"><img src="/zx2/img/caphf.png" alt="" /></div>
+            <div class="capewm"><img src="/zx2/img/capewm.jpg" alt="" /></div>
+            <div class="tw724"><img src="/zx2/img/tw724.png" alt="" /></div>
+        </div>
+    </div>
+    <script src="../c_modules/jz/mescroll.min.js" charset="utf-8"></script>
+    <script src="../c_modules/jquery-1.7.1.min.js"></script>
+    <script src="../c/TZT.js"></script>
+    <script src="../c_modules/swiper/js/swiper.min.js"></script>
+    <!-- <script src="../common/js/ip-config.js"></script> -->
+    <script type="text/javascript" src="js/md5.js"></script>
+    <script src="js/crypto-js.js"></script>
+    <script type="text/javascript" src="js/jsencrypt.js"></script>
+    <script src="../common/js/commonFunction.js"></script>
+    <script src="../common/js/sticky.min.js"></script>
+    <!-- <script src="/common/tracking/index.js"></script>
+        <script src="/common/tracking/tracking-plugin.js"></script> -->
+    <script src="/common/js/sensorsdataConfig.js"></script>
+    <!-- <script src="/common/tracking/tracking-config.js"></script> -->
+
+    <!-- <script src="../common/tracking/index.js"></script>
+        <script src="../common/tracking/tracking-plugin.js"></script>
+        <script src="../common/tracking/tracking-config.js"></script> -->
+    <script src="./popup/popup.js"></script>
+    <script src="/home/js/crypto-js.js"></script>
+	<script src="/home/js/algorithm_bus_jump.js"></script>
+    <script src="./js/info.js"></script>
+    <script src="./js/new/utils.js"></script>
+    <script src="./js/new/html2canvas.min.js"></script>
+    <script src="./js/home_new_manage_reform6.js"></script>
+    <!-- <script src="../common/js/vconsole.min.js"></script> -->
+    <script src="./js/new/explore_home_new_index.js"></script>
+
+    <!-- <script>
+            var vConsole = new VConsole();
+        </script>  -->
+
+    <script>
+
+
+
+    </script>
+</body>
+
+</html>

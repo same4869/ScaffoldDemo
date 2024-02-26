@@ -4,7 +4,7 @@ import { MLog } from '@app/commlib'
  @date: 2024/2/26
  @description: 自选股首页，联动滑动的列表
  */
-import { OptionalStockViewModel } from '../viewmodel/OptionalStockViewModel'
+import { OpListDataBean, OptionalStockViewModel } from '../viewmodel/OptionalStockViewModel'
 
 let vm: OptionalStockViewModel = new OptionalStockViewModel()
 
@@ -23,21 +23,25 @@ export default struct StockListView {
   build() {
     Column() {
       List() {
-        ForEach(vm.opTestDataList, (item: number, index) => {
+        ForEach(vm.opTestDataList, (item: OpListDataBean, index) => {
           ListItem() {
             Row() {
-              Text(`股票${item}`).width(100).textAlign(TextAlign.Center)
+              Column() {
+                Text(item.stockName).width(80).textAlign(TextAlign.Center)
+                Text(item.stockCode).width(80).textAlign(TextAlign.Center).fontColor(Color.Gray)
+              }
+
               Scroll(this.scrollList[index]) {
                 Row() {
-                  Text(`第一列${item}`).width(100).textAlign(TextAlign.Center)
-                  Text(`第二列${item}`).width(100).textAlign(TextAlign.Center)
-                  Text(`第三列${item}`).width(100).textAlign(TextAlign.Center)
-                  Text(`第四列${item}`).width(100).textAlign(TextAlign.Center)
-                  Text(`第五列${item}`).width(100).textAlign(TextAlign.Center)
-                  Text(`第六列${item}`).width(100).textAlign(TextAlign.Center)
-                  Text(`第七列${item}`).width(100).textAlign(TextAlign.Center)
+                  Text(item.newPrice).width(75).textAlign(TextAlign.Center).fontColor(Color.Red)
+                  Text(item.priceRange).width(75).textAlign(TextAlign.Center).fontColor(Color.Red)
+                  Text(`第三列`).width(75).textAlign(TextAlign.Center).fontColor(Color.Green)
+                  Text(`第四列`).width(75).textAlign(TextAlign.Center)
+                  Text(`第五列`).width(75).textAlign(TextAlign.Center).fontColor(Color.Green)
+                  Text(`第六列`).width(75).textAlign(TextAlign.Center)
+                  Text(`第七列`).width(75).textAlign(TextAlign.Center)
                 }
-                .height(100)
+                .height(60)
               }
               .scrollBar(BarState.Off)
               .flexShrink(1)
@@ -70,10 +74,11 @@ export default struct StockListView {
               })
             }
             .width("100%")
-            .height(100)
+            .height(60)
           }
         })
       }
+      .scrollBar(BarState.Off)
       .width('100%')
       .height("100%")
       .cachedCount(100)

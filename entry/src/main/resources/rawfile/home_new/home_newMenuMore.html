@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>更多</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta
+            name="viewport"
+            content="viewport-fit=cover,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi = medium-dpi"
+        />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="apple-touch-fullscreen" content="YES" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <link href="../c_modules/css/base-min.css" rel="stylesheet" media="all" />
+        <link rel="stylesheet" href="./css/home_newMenuMore.css" />
+        <style>
+            .no-drag {
+user-select: none;
+-webkit-overflow-scrolling: touch;
+overflow: hidden;
+}
+.pass-tc .pass-tc-bg{
+    background-color: #000000 !important;
+    opacity: .6 !important;
+}
+.pass-tc .pass-tc-box{
+width: 2.72rem !important;
+}
+.pass-tc-confirm{
+    padding:0 0.145rem  0.145rem  0.145rem !important;
+}
+.pass-tc-no{
+    color:#222222 !important;
+    border-right: 0.5px solid #F5F6F7 !important;
+    transform: rotateZ(360deg);
+}
+.pass-tc-yes, .pass-tc-no{
+    font-size: 0.145rem !important; 
+    border-top: 0.5px solid #F5F6F7 !important;
+    transform: rotateZ(360deg);
+  
+
+  
+}
+.pass-tc .pass-tc-box{
+    left: 54% !important;
+}
+/* body{
+    -webkit-user-drag: none !important;
+} */
+.pass-tc-yes{
+   font-weight: 700;
+    color:#EC3529 !important;
+  
+}
+        </style>
+    </head>
+
+    <body class="clear">
+        <div class="nav-header">
+            <div class="nav-left nav-back">
+                <img src="/home_new/images/new/icon_back.png" />
+            </div>
+            <div class="headTitle">全部</div>
+            <div class="nav-right application-edit">编辑</div>
+            <!-- <div class="nav-right">编辑</div> -->
+        </div>
+        <div class="more-page">
+            <div class="bar no-drag" id="no-drag" data-sticky-container >
+                <!-- 我的应用 -->
+                <div class="application-group my-group">
+                    <div class="application-group-title">
+                        <div>
+                            <em>我的应用</em>
+                            <!-- <em class="my-group-tips">(按住拖动调整顺序)</em> -->
+                        </div>
+                        <div class="application-group-title-list"></div>
+                    </div>
+                    <div class="application-group-lists">
+                        <!--<div class="application-group-list clear">
+                <i class="icon-img">
+                    &lt;!&ndash;<img src="/home_new/images/gd.png" alt="">&ndash;&gt;
+                </i>
+                <i class="icon-img"></i><i class="icon-img"></i>
+                <i class="icon-img"></i>
+                <i class="icon-img"></i>
+                <i class="icon-img"></i>
+
+            </div>-->
+
+                        <!--<div class="application-group-list clear" id="bar">
+                <div class="group-list-item able">
+                    <i class="icon-img">
+                        <i class="icon-minus"></i>
+                    </i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item able">
+                    <i class="icon-img">
+                        <i class="icon-minus"></i>
+                    </i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item able">
+                    <i class="icon-img">
+                        <i class="icon-minus"></i>
+                    </i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item able">
+                    <i class="icon-img">
+                        <i class="icon-minus"></i>
+                    </i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item able">
+                    <i class="icon-img">
+                        <i class="icon-minus"></i>
+                    </i>
+                    <em>我是应用</em>
+                </div>
+            </div>-->
+                    </div>
+                </div>
+                <!-- 热门 -->
+                <div class="application-group hot-group">
+                    <!--<div class="application-group-title">
+            热门
+        </div>
+        <div class="application-group-list clear">
+            <div class="group-list-item">
+                <i class="icon-img">
+                    <img src="" alt="">
+                    <i class="icon-minus"></i>
+                </i>
+                <em>我是应用</em>
+            </div>
+            <div class="group-list-item">
+                <i class="icon-img"></i>
+                <em>我是应用</em>
+            </div>
+            <div class="group-list-item">
+                <i class="icon-img"></i>
+                <em>我是应用</em>
+            </div>
+            <div class="group-list-item">
+                <i class="icon-img"></i>
+                <em>我是应用</em>
+            </div>
+        </div>-->
+                </div>
+                <!-- 悬浮导航栏 -->
+                <div class="nav-group-position">
+                    <div class="nav-group sticky-header" data-margin-top="70">
+                        <!--<div class="nav-slide slide-hqfx active" data-name="hqfx">
+                行情分析
+            </div>
+            <div class="nav-slide slide-zhyw" data-name="zhyw">
+                综合业务
+            </div>
+            <div class="nav-slide slide-sjzx" data-name="sjzx">
+                数据中心
+            </div>
+            <div class="nav-slide slide-tssj" data-name="tssj">
+                特色数据
+            </div>
+            <div class="nav-slide slide-jcgj" data-name="jcgj">
+                决策工具
+            </div>-->
+                    </div>
+                </div>
+
+                <!-- 全部应用 -->
+                <div class="all-application-group">
+                    <!--<div class="application-group scroll-group">
+            <div data-name="hqfx" class="application-group-list clear">
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+            </div>
+        </div>
+
+        <div class="application-group scroll-group">
+            <div class="application-group-title">
+                综合业务
+            </div>
+            <div data-name="zhyw" class="application-group-list clear">
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+            </div>
+        </div>
+
+        <div class="application-group scroll-group">
+            <div class="application-group-title">
+                数据中心
+            </div>
+            <div data-name="sjzx" class="application-group-list clear">
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+            </div>
+        </div>
+
+        <div class="application-group scroll-group">
+            <div class="application-group-title">
+                特色数据
+            </div>
+            <div data-name="tssj"  class="application-group-list clear">
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+            </div>
+        </div>
+
+        <div class="application-group scroll-group">
+            <div class="application-group-title">
+                决策工具
+            </div>
+            <div data-name="jcgj" class="application-group-list clear">
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+                <div class="group-list-item">
+                    <i class="icon-img"></i>
+                    <em>我是应用</em>
+                </div>
+            </div>
+        </div>-->
+                </div>
+            </div>
+        </div>
+        <!--短消息提示-->
+        <div class="little-info-tips"><span></span></div>
+    </body>
+
+    <script src="../c_modules/jquery-1.7.1.min.js"></script>
+    <script src="../c/TZT.js"></script>
+    <script src="/dist/static/Sortable/Sortable.js"></script>
+    <script src="../common/js/sticky.min.js"></script>
+    <script src="/common/js/commonFunction.js"></script>
+    <script type="text/javascript" src="./js/md5.js"></script>
+    <script type="text/javascript" src="./js/jsencrypt.js"></script>
+    <script type="text/javascript" src="../c_modules/zspopup/popup.js"></script>
+ 
+    <script src="/common/js/sensorsdataConfig.js"></script>
+
+    <script src="/home/js/crypto-js.js"></script>
+	<script src="/home/js/algorithm_bus_jump.js"></script>
+    <script src="./js/home_newMenuMore.js"></script>
+</html>

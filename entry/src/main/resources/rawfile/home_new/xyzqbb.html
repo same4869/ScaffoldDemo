@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>迎中秋 博好运</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi = medium-dpi">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-touch-fullscreen" content="YES">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+</head>
+<body>
+    <script src="../c_modules/jquery-1.7.1.min.js"></script>
+	<script src="../c/TZT.js"></script>
+    <script src="js/crypto-js.js"></script>
+	<script src="js/jsencrypt.js"></script>
+    <script>
+        $(function(){
+            T.readLocalMesg(['MOBILECODE'],function(oLocal){
+                var MOBILECODE = oLocal.MOBILECODE;
+                if(MOBILECODE == '' || !MOBILECODE || MOBILECODE == 'null'){
+                    T.fn.action10061('http://action:58130/?url='+encodeURIComponent('home_new/xyzqbb.html'));
+                }else{
+                    var oSend = {
+                        action:46201,
+                        ReqLinkType:2
+                    }
+                    T.readLocalMesg(['TZTZTLOGINUSERNAME','MOBILECODE'],function(oLocal){
+                        var objData = {
+                            'mobile': oLocal.MOBILECODE,
+                            'realName': oLocal.TZTZTLOGINUSERNAME
+                        };
+                        var content = JSON.stringify(objData);
+                        $.getData({oSendData:oSend,fnSuccess:function(data){
+                            var ActivePrivateKey = data.ACTIVEPRIVATEKEY;
+                            //key不足24位自动以0(最小位数是0)补齐,如果多余24位,则截取前24位,后面多余则舍弃掉
+                            var base64 = CryptoJS.enc.Utf8.parse(ActivePrivateKey);
+                            var encrypt = CryptoJS.TripleDES.encrypt(content, base64, {
+                                    mode: CryptoJS.mode.ECB,  //ECB模式
+                                    padding: CryptoJS.pad.Pkcs7//padding处理
+                                }
+                            );
+                            T.readMapMesg(['xyActivityUrl'],function(oData) {
+                                if (T.appversion.andriod()) {
+                                    var encryptData = encodeURIComponent(encodeURIComponent(encrypt.toString()));//加密完成后，转换成字符串
+                                    var activityUrl = oData.XYACTIVITYURL;
+                                    var url = activityUrl + '&content=' + encryptData;
+                                    T.fn.changeurl('http://action:1964/?url=' + encodeURIComponent(url));
+                                } else {
+                                    var encryptData = encodeURIComponent(encrypt.toString());//加密完成后，转换成字符串
+                                    var activityUrl = oData.XYACTIVITYURL;
+                                    var url = activityUrl + '&content=' + encryptData;
+                                    T.fn.changeurl(url);
+                                }
+                            })    
+                        }})
+                    })
+                }
+            })
+        })
+        window.GoBackOnLoad = function(){
+
+        }
+    </script>
+</body>
+</html>

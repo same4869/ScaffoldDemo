@@ -1,0 +1,60 @@
+/*创业板签署弹窗提示*/
+.cybSign-mask{
+    background: rgba(0,0,0,0.50);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 22221;
+    width: 100%;
+    height: 100%;
+}
+.cybSign-box{
+    width: 90%;
+    position: fixed;
+    z-index: 22222;
+    top: 22%;
+    left: 5%;
+    background: white;
+    border-radius: 10px;
+    padding: 0.6rem 0.2rem 0.2rem 0.2rem;
+}
+.cybSign-title{
+    font-size: 0.148rem;
+    color: #D0021B;
+    height: 0.33rem;
+    line-height: 0.33rem;
+    border-bottom: 1px solid  #F24D44;
+    white-space: nowrap;
+}
+.cybSign-content{
+    padding: 0.1rem 0;
+    font-size: 0.138rem;
+    color: #3C3759;
+}
+.cybSign-content span{
+    /*color: #001900;*/
+    font-weight: bold;
+}
+.cybSign-box img.cybSign-tips{
+    width: 1.2rem;
+    position: absolute;
+    top: 0;
+    margin-top: -0.6rem;
+    left: 30%;
+}
+.cybSign-box img.cybSign-close{
+    width: 0.22rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: -0.5rem;
+}
+.cybSign-footer{
+    font-size: 0.168rem;
+    color: #FFFFFF;
+    text-align: center;
+    background: #F24D44;
+    border-radius: 2px;
+    height: 0.4rem;
+    line-height: 0.4rem;
+}

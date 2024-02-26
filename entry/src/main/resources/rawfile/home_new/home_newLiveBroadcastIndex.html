@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>直播</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta
+            name="viewport"
+            content="viewport-fit=cover,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi = medium-dpi"
+        />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="apple-touch-fullscreen" content="YES" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <link href="../c_modules/css/base-min.css" rel="stylesheet" media="all" />
+        <link rel="stylesheet" href="../c_modules/swiper/css/swiper.min.css" />
+        <link href="../c_modules/jz/mescroll.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="./css/home_newCommon6.css" />
+
+        <!--推荐-->
+        <link rel="stylesheet" href="./skin01/home_new_yh01.css" />
+
+        <!--724-->
+        <link rel="stylesheet" href="/zx2/skin01/zx_tuijian.css" />
+        <link rel="stylesheet" href="/zx2/skin01/zx_kuaixun.css" />
+
+        <link rel="stylesheet" href="./css/home_new_index_reform6.css" />
+        <link rel="stylesheet" href="./css/home_new_st.css" />
+    </head>
+
+    <body>
+        <div class="tuijian main">
+            <!--直播专区-->
+            <div class="home_new-list zbzq">
+                <div class="tztui-list-title jr-title pad15">
+                    <div class="btm-line">
+                        <span class="title">直播专区</span>
+                        <span class="more">
+                            <i class="right-arrow"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="live-broadcast-group">
+                    <div class="skeleton skeleton-animated" style="height: 2.22rem; width: 48%"></div>
+                    <div style="height: 2.22rem; width: 48%">
+                        <div class="skeleton skeleton-animated" style="height: 1.055rem; width: 100%"></div>
+                        <div
+                            class="skeleton skeleton-animated"
+                            style="height: 1.055rem; width: 100%; margin-top: 0.05rem"
+                        ></div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <!--短视频-->
+            <div class="home_new-list dsp">
+                <div class="tztui-list-title jr-title pad15">
+                    <div class="btm-line">
+                        <span class="title">短视频</span>
+                        <span class="more">
+                            <i class="right-arrow"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="all-video-group clear">
+                    <div>
+                        <div class="skeleton skeleton-animated" style="height: 1.14rem; width: 48.5%"></div>
+                        <div
+                            class="skeleton skeleton-animated"
+                            style="height: 1.14rem; width: 48.5%; margin-left: 0.05rem"
+                        ></div>
+                    </div>
+                    <div>
+                        <div class="skeleton skeleton-animated" style="height: 1.14rem; width: 48.5%"></div>
+                        <div
+                            class="skeleton skeleton-animated"
+                            style="height: 1.14rem; width: 48.5%; margin-left: 0.05rem"
+                        ></div>
+                    </div>
+                </div>
+            </div>
+
+            <!--视频课程-->
+            <div class="home_new-list spkc">
+                <div class="tztui-list-title jr-title pad15">
+                    <div class="btm-line">
+                        <span class="title">视频课程</span>
+                        <span class="more">
+                            <i class="right-arrow"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="video-group"></div>
+            </div>
+        </div>
+        <script src="../c_modules/jz/mescroll.min.js" charset="utf-8"></script>
+        <script src="../c_modules/jquery-1.7.1.min.js"></script>
+        <script src="../c/TZT.js"></script>
+        <script src="../c_modules/swiper/js/swiper.min.js"></script>
+        <script type="text/javascript" src="js/md5.js"></script>
+        <script src="js/crypto-js.js"></script>
+        <script type="text/javascript" src="js/jsencrypt.js"></script>
+        <script src="../common/js/commonFunction.js"></script>
+        <script src="../common/js/sticky.min.js"></script>
+
+        <script src="../common/tracking/index.js"></script>
+        <script src="../common/tracking/tracking-plugin.js"></script>
+        <script src="../common/tracking/tracking-config.js"></script>
+        <script src="./js/getSvgIcon.js"></script>
+        <script src="./js//setHeight.js"></script>
+        <script>
+            var oVal = {};
+            var pageSensors = new track.Tracker();
+            pageSensors.registerPageModule('SY');
+            // 页面浏览 page
+            pageSensors.reportPageView('pageView');
+            //获取46200配置文件信息
+            getConfigInfo(function () {
+                //投顾图片前缀id
+                oVal.tgJumpId = oVal.configData.TGPICLINK;
+                getzbzqInfo();
+            });
+            //直播专区
+            var statusName = {
+                0: '预约',
+                1: '直播中',
+                2: '回放',
+            };
+
+            function getzbzqInfo() {
+                $('.swiper-container-zbzq .swiper-wrapper').html('');
+                $.getData({
+                    oSendData: {
+                        action: 48012,
+                        method: 'post',
+                        path: '/redirect',
+                        targetPath: '/utilServer/innerApi/HJLive/getLiveListTop3',
+                        pageNumber: 1,
+                        // pageSize: 1,
+                        ReqlinkType: 2, //资讯通道
+                    },
+                    isload: false,
+                    fnSuccess: function (data) {
+                        if (data && data.DATA) {
+                            var oData = $.parseJSON(data.DATA).content;
+                            console.log(oData);
+                            if (oData.length > 0) {
+                                var itemHtml = '';
+                                var innerItemHtml = '';
+                                for (var i = 0; i < oData.length; i++) {
+                                    var cover = oData[i].cover, //直播封面图
+                                        sharePoster = oData[i].sharePoster, //分享链接图片4:3
+                                        status = oData[i].status, //直播间状态 0未开始 1直播中 2已结束
+                                        viewers = oData[i].viewers, //观看人数
+                                        virtualVists = oData[i].virtualVists, //虚拟观看人数
+                                        h5Url = oData[i].h5Url,
+                                        title = oData[i].title,
+                                        hostname = oData[i].hostname,
+                                        liveLink = oData[i].liveLink, //直播链接 status为0、1时取该字段
+                                        videoLink = oData[i].videoLink || ''; //回放视频链接 status为2时取该字段且只有结束才有
+                                    var viewersNum = virtualVists + viewers;
+                                    if (status == '0') {
+                                        var viewersInfo = '<span style="display:none"></span>';
+                                        var statusClassName = 'status-blue';
+                                        var viewButton = '';
+                                    } else if (status == '1') {
+                                        var viewersInfo = '<span>' + viewersNum + '观看</span>';
+                                        var statusClassName = 'status-red';
+                                        var viewButton =
+                                            '<div class="to-view-box status-red"><span class="view">去观看</span>' +
+                                            getZBPlaySvgIcon() +
+                                            '</div>';
+                                    } else {
+                                        var viewersInfo = '<span>' + viewersNum + '观看</span>';
+                                        var statusClassName = 'status-yellow';
+                                        var viewButton = '';
+                                    }
+                                    if (i === 0) {
+                                        itemHtml +=
+                                            '<div class="live-broadcast-wrapper live-broadcast-wrapper-left"><div class="live-broadcast-item" data-status="' +
+                                            status +
+                                            '" data-liveLink="' +
+                                            liveLink +
+                                            '" data-videoLink="' +
+                                            videoLink +
+                                            '" data-h5Url="' +
+                                            h5Url +
+                                            '">' +
+                                            '<div class="live-broadcast-info">' +
+                                            '<span class="' +
+                                            statusClassName +
+                                            '">' +
+                                            getZBStatusSvgIcon(status) +
+                                            '<em class="status">' +
+                                            statusName[status] +
+                                            '</em></span>' +
+                                            viewersInfo +
+                                            '</div>' +
+                                            '<img src="' +
+                                            sharePoster +
+                                            '" alt="">' +
+                                            '<div class="live-broadcast-desc">' +
+                                            '<div class="title"><p>' +
+                                            title +
+                                            '</p></div>' +
+                                            '<span class="hostname">' +
+                                            hostname +
+                                            '</span>' +
+                                            '</div>' +
+                                            viewButton +
+                                            '</div></div>';
+                                    } else {
+                                        innerItemHtml +=
+                                            '<div class="live-broadcast-item" data-status="' +
+                                            status +
+                                            '" data-liveLink="' +
+                                            liveLink +
+                                            '" data-videoLink="' +
+                                            videoLink +
+                                            '" data-h5Url="' +
+                                            h5Url +
+                                            '">' +
+                                            '<div class="live-broadcast-info">' +
+                                            '<span class="' +
+                                            statusClassName +
+                                            '">' +
+                                            getZBStatusSvgIcon(status) +
+                                            '<em class="status">' +
+                                            statusName[status] +
+                                            '</em></span>' +
+                                            viewersInfo +
+                                            '</div>' +
+                                            '<img src="' +
+                                            cover +
+                                            '" alt="">' +
+                                            '<div class="live-broadcast-desc">' +
+                                            '<div class="title">' +
+                                            title +
+                                            '</div>' +
+                                            '<span class="hostname">' +
+                                            hostname +
+                                            '</span>' +
+                                            '</div>' +
+                                            '</div>';
+                                    }
+                                }
+                                $('.live-broadcast-group').html(
+                                    itemHtml +
+                                        '<div class="live-broadcast-wrapper live-broadcast-wrapper-right">' +
+                                        innerItemHtml +
+                                        '</div>'
+                                );
+                                zbzqEvent();
+                               
+                            } else {
+                                $('.zbzq').hide();
+                            }
+                        } else {
+                            $('.zbzq').hide();
+                        }
+                        getDSPInfo();
+                        setHeight();
+                    },
+                    oConfig: function (error) {
+                        $('.zbzq').hide();
+                        getDSPInfo();
+                    },
+                });
+            }
+            function zbzqEvent() {
+                $('.zbzq .more')
+                    .off()
+                    .on('click', function () {
+                        if (oVal.configData) {
+                            //直播更多字段ZBZQMORE
+                            if (oVal.configData.ZBZQMORE) {
+                                // 首页栏位点击-股票组合
+                                pageSensors.reportClick('mainPageColumnClick', {
+                                    column_type: '直播专区',
+                                    column_name: '直播专区-更多',
+                                    column_no: '',
+                                });
+
+                                T.fn.action10061({ url: oVal.configData.ZBZQMORE });
+                            }
+                        }
+                    });
+                $('.live-broadcast-group .live-broadcast-item')
+                    .off()
+                    .on('click', function () {
+                        var status = $(this).attr('data-status');
+                        var h5Url = $(this).attr('data-h5Url');
+                        var videoLink = $(this).attr('data-videoLink');
+                        pageSensors.reportClick('mainPageColumnClick', {
+                            column_type: '直播专区',
+                            column_name: '直播专区点击',
+                            column_no: $(this).index(),
+                        });
+                        // if(status == 0 || status == 1){
+                        T.fn.action10061(h5Url);
+                        // }
+                        // if(status == 2) {
+                        //     T.fn.action10061(videoLink);
+                        // }
+                    });
+            }
+
+            // 短视频
+
+            function getDSPInfo() {
+                $.getData({
+                    oSendData: {
+                        action: '41500',
+                        type: 'DSP',
+                        ReqlinkType: '2',
+                    },
+                    isload: false,
+                    fnSuccess: function (oData) {
+                        if (oData.GRID0 && oData.GRID0.length > 1) {
+                            var data_grid = oData.GRID0;
+                            data_grid.shift();
+
+                            var itemHtml = '';
+                            var dataLn = data_grid.length > 4 ? 4 : data_grid.length;
+                            for (var i = 0; i < dataLn; i++) {
+                                var data = data_grid[i].split('|');
+                                var img_url = data[oData.IMAGE_URL_INDEX],
+                                    click_url = data[oData.IMAGE_CLICK_INDEX],
+                                    img_title = data[oData.IMAGE_TITLE_INDEX];
+                                itemHtml +=
+                                    '<div class="all-video-list"  data-url="' +
+                                    click_url +
+                                    '">\n' +
+                                    '             <div class="list-img">\n' +
+                                    '                <img src="' +
+                                    img_url +
+                                    '" alt="">\n' +
+                                    '            </div>\n' +
+                                    '            <div class="list-title">' +
+                                    img_title +
+                                    '</div>\n' +
+                                    '        </div>';
+                            }
+                            $('.dsp .all-video-group').html(itemHtml);
+
+                            DSPEvent();
+                        } else {
+                            $('.dsp').hide();
+                        }
+                        setHeight();
+                        getSPKC();
+                    },
+                    oConfig: function (error) {
+                        $('.dsp').hide();
+                        getSPKC();
+                    },
+                });
+            }
+            function DSPEvent() {
+                $('.swiper-container-dsp .swiper-slide img')
+                    .off()
+                    .on('click', function () {
+                        var url = $(this).attr('data-url');
+                        if (url) {
+                            T.fn.action10061({ url: url, tzthiddentitle: '0', tztadjustnever: '0' });
+                        }
+                    });
+
+                $('.dsp .more')
+                    .off()
+                    .on('click', function () {
+                        if (oVal.configData) {
+                            //课程更多字段DSPMORE
+                            if (oVal.configData.DSPMORE) {
+                                T.fn.action10061({
+                                    url: oVal.configData.DSPMORE,
+                                    tzthiddentitle: '0',
+                                    tztadjustnever: '0',
+                                });
+                            }
+                        }
+                    });
+
+                $('.dsp .all-video-list')
+                    .off()
+                    .on('click', function () {
+                        if (oVal.configData) {
+                            //全部视频详情字段TGVIDEADETAILLINK
+                            if (oVal.configData.TGVIDEADETAILLINK) {
+                                pageSensors.reportClick('mainPageColumnClick', {
+                                    column_type: '短视频',
+                                    column_name: '短视频点击',
+                                    column_no: $(this).index(),
+                                });
+                                var url = $(this).attr('data-url');
+                                if (url) {
+                                    T.fn.action10061({ url: url, tzthiddentitle: '0', tztadjustnever: '0' });
+                                }
+                            }
+                        }
+                    });
+            }
+
+            /*视频课程*/
+
+            function getSPKC() {
+                $.getData({
+                    oSendData: {
+                        action: '49245',
+                        ReqlinkType: 2,
+                        funcNo: '1106391',
+                        dataType: 'json',
+                        curPage: '1',
+                        numPerPage: '3',
+                        method: 'post',
+                        order_type: 1,
+                        sort: 'desc',
+                    },
+                    isload: false,
+                    fnSuccess: function (data) {
+                        if (data) {
+                            if (data.DATA) {
+                                $('.spkc').show();
+                                var testIp = data.ERRORMESSAGE;
+                                var oData = $.parseJSON($.parseJSON(data.DATA));
+                                oData = oData[0].data;
+                                // console.log("视频课程：",oData);
+                                var itemHtml = '';
+                                for (var i = 0; i < oData.length; i++) {
+                                    var curriculum_image = oVal.tgJumpId + oData[i].curriculum_image,
+                                        curriculum_id = oData[i].curriculum_id;
+                                    itemHtml +=
+                                        '<div class="video-lists" data-id="' +
+                                        curriculum_id +
+                                        '"><img src="' +
+                                        curriculum_image +
+                                        '" alt=""></div>';
+                                }
+
+                                $('.video-group').html(itemHtml);
+                                SPKCEvent();
+                                
+                            } else {
+                                $('.spkc').hide();
+                            }
+                        } else {
+                            $('.spkc').hide();
+                        }
+                        setTimeout(function() {
+                            setHeight();
+                        },3000)
+                    },
+                    oConfig: function (error) {
+                        $('.spkc').hide();
+                    },
+                });
+            }
+            function SPKCEvent() {
+                // 视频课程详情
+                $('.spkc .video-lists')
+                    .off()
+                    .on('click', function () {
+                        var id = $(this).attr('data-id');
+                        if (oVal.configData) {
+                            if (oVal.configData.TGLINK) {
+                                testIp = oVal.configData.TGLINK;
+                            }
+                        }
+                        var url = testIp + '/m/app/#/classDetail?curriculum_id=' + id + '&source_id=hzzz&&fullscreen=1';
+                        pageSensors.reportClick('mainPageColumnClick', {
+                            column_type: '视频课程',
+                            column_name: '视频课程点击',
+                            column_no: $(this).index(),
+                        });
+                        tgFunc(url);
+                    });
+                // 视频课程更多
+                $('.spkc .more')
+                    .off()
+                    .on('click', function () {
+                        if (oVal.configData) {
+                            if (oVal.configData.TGVIDEALINK) {
+                                testIp = oVal.configData.TGVIDEALINK;
+                            }
+                        }
+                        var url = testIp + '/m/app/#/videoIndex?source_id=hzzz&&fullscreen=1';
+                        pageSensors.reportClick('mainPageColumnClick', {
+                            column_type: '视频课程',
+                            column_name: '视频课程-更多',
+                            column_no: '',
+                        });
+                        tgFunc(url);
+                    });
+            }
+
+            function tgFunc(url) {
+                T.readLocalMesg(['jyloginflag', 'logintype=1', 'MOBILECODE', 'usercode'], function (oLocal) {
+                    var MOBILECODE = oLocal.MOBILECODE;
+                    var USERCODE = oLocal.USERCODE;
+                    if (MOBILECODE == '' || !MOBILECODE || MOBILECODE == 'null') {
+                        //console.log(url);
+                        T.fn.action10061({ url: url, tzthiddentitle: '1', tztadjustnever: '1' });
+                    } else {
+                        if (oLocal.JYLOGINFLAG <= 1) {
+                            //未登录
+                            var oSend = {
+                                action: '5',
+                                needToken: '0',
+                            };
+                            $.getData({
+                                oSendData: oSend,
+                                isToken: false,
+                                fnSuccess: function (oTime) {
+                                    var serverTime = oTime.TIME;
+                                    var oSend = {
+                                        action: '46200',
+                                        ReqlinkType: 2,
+                                    };
+                                    $.getData({
+                                        oSendData: oSend,
+                                        fnSuccess: function (oData) {
+                                            var PUBLICK_KEY = oData.TG,
+                                                MD5_KEY = oData.HSSTRING;
+                                            var str = JSON.stringify({
+                                                mobile: MOBILECODE,
+                                                from: 'sidi',
+                                                time: serverTime,
+                                            });
+                                            //处理rsa和md5key
+                                            var senddata = encryptRsaTg(PUBLICK_KEY, MD5_KEY, str);
+                                            var oUrl = url + '&data=' + encodeURIComponent(senddata.data);
+                                            //console.log(oUrl);
+                                            //console.log(senddata.data);
+                                            if (T.appversion.andriod()) {
+                                                T.fn.action10061({
+                                                    url:
+                                                        url +
+                                                        '&data=' +
+                                                        encodeURIComponent(encodeURIComponent(senddata.data)),
+                                                    tzthiddentitle: '1',
+                                                    tztadjustnever: '1',
+                                                });
+                                            } else {
+                                                T.fn.action10061({
+                                                    url: oUrl,
+                                                    tzthiddentitle: '1',
+                                                    tztadjustnever: '1',
+                                                });
+                                            }
+                                        },
+                                    });
+                                },
+                            });
+                        } else {
+                            var oSend = {
+                                action: '5',
+                                needToken: '0',
+                            };
+                            $.getData({
+                                oSendData: oSend,
+                                isToken: false,
+                                fnSuccess: function (oTime) {
+                                    var serverTime = oTime.TIME;
+                                    /*if(oLocal.JYLOGINFLAG <=1){ //未登录
+                                T.fn.action10061({url:url,'tzthiddentitle':'1','tztadjustnever':'1'});
+                            }else{*/
+                                    var oSendData = {
+                                        action: 6771,
+                                        ReqlinkType: '1',
+                                    };
+                                    $.getData({
+                                        oSendData: oSendData,
+                                        fnSuccess: function (reg) {
+                                            var SERVTICKET_ID = reg.SERVTICKET_ID;
+                                            var oSend = {
+                                                action: '46200',
+                                                ReqlinkType: 2,
+                                            };
+                                            $.getData({
+                                                oSendData: oSend,
+                                                fnSuccess: function (oData) {
+                                                    var PUBLICK_KEY = oData.TG,
+                                                        MD5_KEY = oData.HSSTRING;
+                                                    var str = JSON.stringify({
+                                                        token: SERVTICKET_ID,
+                                                        mobile: MOBILECODE,
+                                                        client_id: USERCODE,
+                                                        from: 'sidi',
+                                                        time: serverTime,
+                                                    });
+                                                    //处理rsa和md5key
+                                                    var senddata = encryptRsaTg(PUBLICK_KEY, MD5_KEY, str);
+                                                    var oUrl = url + '&data=' + senddata.data;
+                                                    if (T.appversion.andriod()) {
+                                                        T.fn.action10061({
+                                                            url:
+                                                                url +
+                                                                '&data=' +
+                                                                encodeURIComponent(encodeURIComponent(senddata.data)),
+                                                            tzthiddentitle: '1',
+                                                            tztadjustnever: '1',
+                                                        });
+                                                    } else {
+                                                        T.fn.action10061({
+                                                            url: oUrl,
+                                                            tzthiddentitle: '1',
+                                                            tztadjustnever: '1',
+                                                        });
+                                                    }
+                                                },
+                                            });
+                                        },
+                                    });
+                                    /*}*/
+                                },
+                            });
+                        }
+                    }
+                });
+            }
+
+            function encryptRsaTg(publickkey,md5key,str){
+                var encrypt = new JSEncrypt();
+                encrypt.setPublicKey(publickkey);
+                var encrypted = encrypt.encryptLong(str);//rsa加密
+                return {
+                    data:encrypted
+                };
+            }
+
+            /**
+             * 获取配置文件信息
+             * */
+            function getConfigInfo(callback) {
+                $.getData({
+                    oSendData: {
+                        action: '46200',
+                        ReqlinkType: 2,
+                    },
+                    isload: false,
+                    fnSuccess: function (oData) {
+                        oVal.configData = oData;
+                        callback();
+                    },
+                    oConfig: function (error) {
+                        console.log(error);
+                        callback();
+                    },
+                });
+            }
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,294 @@
+.more-page{
+    padding-top: 70px;
+    overflow: hidden;
+}
+.icon-img{
+    width: 0.3rem;
+    height: 0.3rem;
+    /*background: url("/home_new/images/gd.png") no-repeat;
+    background-size: 100%;*/
+    display: block;
+}
+.icon-img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 14px;
+}
+.application-group-title-list .icon-img img{
+    width: 0.235rem;
+    height: 0.235rem;
+    border-radius: 14px;
+}
+
+.application-group{
+    margin-bottom: 0.1rem;
+    background: white;
+}
+/*.all-application-group>.application-group:first-child>.application-group-title{
+    display: none;
+}*/
+.application-group-title{
+    font-size: 0.16rem;
+    color: #3C3759;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    padding: 0 0.15rem;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+}
+.my-group-tips{
+    font-family: PingFangSC-Regular;
+    font-size: 0.12rem;
+    color: #787684;
+    white-space: nowrap;
+    display: none;
+}
+.application-group-title-list{
+    white-space: nowrap;
+    overflow: hidden;
+    width: 2rem;
+}
+.application-group-title-list>i{
+    float: left;
+}
+.application-group-list{
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    padding: 0 0 0.15rem ;
+    text-align: center;
+}
+
+
+.application-group-list>div{
+    width: 20%;
+    float: left;
+    padding: 0.15rem 0;
+}
+.group-list-item{
+    /*padding: 0 0.15rem;*/
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    -webkit-align-items: center;
+    /*justify-content: center;
+    -webkit-justify-content: center;*/
+    flex-direction: column;
+    -webkit-flex-direction: column;
+}
+.group-list-item > em{
+    font-size: 0.12rem;
+    margin-top: 0.08rem;
+    color: #3C3759;
+}
+.group-list-item > i{
+    position: relative;
+}
+.group-list-item .icon-minus{
+    display: block;
+    width: 0.14rem;
+    height: 0.14rem;
+    background-image: url("/home_new/images/jian.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position: absolute;
+    top: -0.1rem;
+    right: -0.15rem;
+}
+.group-list-item .icon-minus::after{
+    content: '';
+    display: block;
+    width: 240%;
+    height: 240%;
+    position: absolute;
+    left: -60%;
+    top: -60%;
+}
+.group-list-item .icon-add{
+    display: block;
+    width: 0.14rem;
+    height: 0.14rem;
+    background-image: url("/home_new/images/jia.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position: absolute;
+    top: -0.1rem;
+    right: -0.15rem;
+}
+.group-list-item .icon-add::after{
+    content: '';
+    display: block;
+    width: 240%;
+    height: 240%;
+    position: absolute;
+    left: -60%;
+    top: -60%;
+}
+
+.application-group-list-small{
+    padding: 0 0.15rem 0.06rem;
+}
+.application-group-title-list .application-group-list-small{
+    padding: 0;
+}
+.application-group-list-small>i{
+    width: 0.24rem;
+    height: 0.24rem;
+    display: block;
+    margin-right: 0.1rem;
+    margin-bottom: 0.1rem;
+    /*background: url("/home_new/images/gd.png") no-repeat;
+    background-size: 100%;*/
+    float: left;
+}
+.application-group-title-list .application-group-list-small>i{
+    width: 20%;
+    height: 0.24rem;
+    margin-right: 0;
+    margin-bottom: 0.1rem;
+    margin-top: 0.06rem;
+}
+
+.nav-group-position{
+    height: 0.5rem;
+}
+.nav-group{
+    height: 0.5rem;
+    line-height: 0.5rem;
+    padding: 0 0 0 0.15rem;
+    font-size: 0.16rem;
+    color: #3C3759;
+    overflow: scroll;
+    background: white;
+    white-space: nowrap;
+    z-index: 222;
+    width: 100%!important;
+    top: 70px!important;
+}
+.nav-group div{
+    display: inline-block;
+    margin-right: 0.15rem;
+    min-width: 0.4rem;
+    text-align: center;
+}
+.nav-group .active{
+    color: #F24D44;
+    position: relative;
+}
+.nav-group .active::after{
+    content: '';
+    position: absolute;
+    bottom: 15%;
+    left: 35%;
+    width: 0.14rem;
+    height: 2px;
+    background: #F24D44;
+}
+
+.nav-header{
+    height: 70px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: #F24D44;
+    width: 100%;
+    z-index: 99999999;
+    padding: 25px 15px 0 15px;
+    text-align: center;
+}
+.nav-left{
+    position: absolute;
+    left: 15px;
+    bottom: 0;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    font-size: 15px;
+    text-align: center;
+    color: white;
+}
+.nav-right{
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    float: right;
+    font-size: 15px;
+    text-align: center;
+    color: white;
+}
+.nav-back:after{
+    content: '';
+    width: 10.5px;
+    height: 18.5px;
+    background-image: url(/mall/img/back@2x.png);
+    background-size: 100% 100%;
+    position: absolute;
+    left: 5px;
+    top: 13px;
+}
+.headTitle{
+    line-height: 45px;
+    height: 45px;
+    color: white;
+    font-size: 18px;
+    display: inline-block;
+}
+
+.little-info-tips{
+    width: 100%;
+    position: fixed;
+    top: 45%;
+    left: 0;
+    text-align: center;
+    display: none;
+}
+.little-info-tips>span{
+    font-size: 0.14rem;
+    display: inline-block;
+    color: white;
+    padding: 0.1rem 0.15rem;
+    background-color: rgba(0,0,0,.4);
+    border-radius: 4px;
+}
+
+.application-edit{
+    font-family: PingFangSC-Medium;
+    font-size: 0.14rem;
+    color: #408FFF;
+    position: relative;
+    padding-right: 0.1rem;
+    white-space: nowrap;
+}
+.application-edit::after{
+    content: '';
+    width: 130%;
+    height: 0.24rem;
+    border: 1px solid #408FFF;
+    position: absolute;
+    left: -30%;
+    top: 24%;
+}
+
+
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3){
+    .nav-header{
+        padding-top:50px;
+        height:95px;
+    }
+    .more-page{
+        padding-top: 95px;
+    }
+    .nav-group{
+        top: 95px!important;
+    }
+}
+@supports ((height: constant(safe-area-inset-top)) or (height: env(safe-area-inset-top))) and (-webkit-overflow-scrolling: touch) {
+    .nav-header{height:calc(50px + constant(safe-area-inset-top));padding-top:constant(safe-area-inset-top);}
+    .nav-header{height:calc(50px + env(safe-area-inset-top));padding-top:env(safe-area-inset-top);}
+    .more-page{padding-top: calc(50px + constant(safe-area-inset-top));}
+    .more-page{padding-top: calc(50px + env(safe-area-inset-top));}
+    .nav-group{top: calc(50px + constant(safe-area-inset-top))!important;}
+    .nav-group{top: calc(50px + env(safe-area-inset-top))!important;}
+}

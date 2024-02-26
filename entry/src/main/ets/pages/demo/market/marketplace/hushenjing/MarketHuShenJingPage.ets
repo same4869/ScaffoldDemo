@@ -25,7 +25,7 @@ export struct MarketHuShenJingPage {
       }
       .scrollable(ScrollDirection.Horizontal)
       .scrollBar(BarState.Off)
-      .padding({ left: 16, right: 16, bottom: 12 })
+      .padding({ left: 16, right: 16, bottom: 4 })
       .edgeEffect(EdgeEffect.Spring)
 
       MarketChartComp()

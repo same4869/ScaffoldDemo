@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>首页</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi = medium-dpi">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-touch-fullscreen" content="YES">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link href="../c_modules/css/base-min.css" rel="stylesheet" media="all" />
+	<link rel="stylesheet" href="../c_modules/swiper/css/swiper.min.css">
+	<link rel="stylesheet" href="./skin01/home_new_index.css">
+	<link rel="stylesheet" href="./skin01/home_new_yh01.css">
+	<link rel="stylesheet" href="./css/home_new_common.css">
+	<link href="../c_modules/jz/mescroll.min.css" rel="stylesheet" />
+	<script src="../common/js/sensorsdataConfig.js"></script>
+	<script type="text/javascript">
+		/*var _LoadingHtml = '<div id="loading"></div>';
+					        //呈现loading效果
+					        document.write(_LoadingHtml);
+					        document.ready = function(){
+					            console.log((new Date()).getTime());
+					            document.getElementById('mescroll').style.display = 'block';
+					            document.getElementById('loading').style.display = 'none';  
+					        }*/
+		/*//在页面未加载完毕之前显示的loading Html自定义内容
+		var _LoadingHtml = '<div id="loading"></div>';
+		//呈现loading效果
+		document.write(_LoadingHtml);
+		//监听加载状态改变
+		document.onreadystatechange = completeLoading;
+		//加载状态为complete时移除loading效果
+		function completeLoading() {
+		    if (document.readyState == "complete") {
+		    	var loadingMask = document.getElementById('loading');
+			    loadingMask.remove();
+			    $('.wapper').fadeIn(1000);	
+		    }
+		}*/
+	</script>
+</head>
+
+<body>
+
+	<div class="wapper mescroll" id="mescroll" style="-webkit-overflow-scrolling:touch;overflow-x: hidden;">
+		<!-- banner -->
+		<div class="zIndex" style="background: #f6f8f9;position: relative;z-index: 100">
+		<div class="swiper-container banner" id="wapperTop">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide" style="height: 1.64rem">
+					<img class="image" src="">
+				</div>
+			</div>
+			<div class="swiper-pagination"></div>
+			<div class="lineP" style="bottom: -0.01rem!important;text-align: center;
+			-webkit-transition: .3s;
+			-moz-transition: .3s;
+			-o-transition: .3s;
+			transition: .3s;
+			-webkit-transform: translate3d(0,0,0);
+			-ms-transform: translate3d(0,0,0);
+			-o-transform: translate3d(0,0,0);
+			transform: translate3d(0,0,0);"></div><!--ios13定位问题，要加上一系列过度-->
+		</div>
+		<!-- swiper-buttons -->
+		<div class="swiper-containers">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<ul class="tztui-grids home_new">
+						<li class="tztui-grid">
+							<i class="grid__icon f6f8"></i>
+							<p class="grid__label">
+								<i class="f6f8 kjcdZW"></i>
+							</p>
+						</li>
+						<li class="tztui-grid">
+							<i class="grid__icon f6f8"></i>
+							<p class="grid__label">
+								<i class="f6f8 kjcdZW"></i>
+							</p>
+						</li>
+						<li class="tztui-grid">
+							<i class="grid__icon f6f8"></i>
+							<p class="grid__label">
+								<i class="f6f8 kjcdZW"></i>
+							</p>
+						</li>
+						<li class="tztui-grid">
+							<i class="grid__icon f6f8"></i>
+							<p class="grid__label">
+								<i class="f6f8 kjcdZW"></i>
+							</p>
+						</li>
+						<li class="tztui-grid">
+							<i class="grid__icon f6f8"></i>
+							<p class="grid__label">
+								<i class="f6f8 kjcdZW"></i>
+							</p>
+						</li>
+						<!--<li class="tztui-grid">
+							<i class="grid__icon f6f8"></i>
+							<p class="grid__label">
+								<i class="f6f8 kjcdZW"></i>
+							</p>
+						</li>
+						<li class="tztui-grid">
+							<i class="grid__icon f6f8"></i>
+							<p class="grid__label">
+								<i class="f6f8 kjcdZW"></i>
+							</p>
+						</li>
+						<li class="tztui-grid">
+							<i class="grid__icon f6f8"></i>
+							<p class="grid__label">
+								<i class="f6f8 kjcdZW"></i>
+							</p>
+						</li>-->
+					</ul>
+				</div>
+			</div>
+			<!--<div class="swiper-button-next"></div>-->
+			<div class="swiper-pagination" id="funcBar"></div>
+			<div style="z-index:9999;width: 100%;height: .03rem;background: #fff;position: absolute;bottom: 0rem;left: 0;"></div> 
+		</div>
+		<div class="bannerdom" style="display: none;"></div>
+		<div class="kjcddom" style="display: none;"></div>
+		<!-- 小白乐园 -->
+
+		<div class="tztui-list xbly" style="display: none;">
+			<div class="tztui-list-title">新手乐园</div>
+			<div class="xbly-box">
+				<div class="box-item box-item1">&nbsp;</div>
+				<div class="box-item box-item2">&nbsp;</div>
+				<div class="box-item box-item3">&nbsp;</div>
+			</div>
+		</div>
+		<div class="xblydom" style="display: none;"></div>
+		<!-- 新闻列表 -->
+		<div class="xwlb" style="display: none;">
+			<div class="_info_img left-image">
+				<img src="images/tzgg.png" width="35px">
+			</div>
+			<div id="box">
+				<ul class="mingdan" id="holder">
+				</ul>
+			</div>
+			<div class="nextpage_xx"></div>
+			<!-- <div id="box" class="bar" name="giftactive">
+				  <div id="demo" style="overflow:hidden;height:50px;line-height:22px;">
+					<ul class="mingdan" id="holder">
+					</ul>
+				  </div>
+				</div> -->
+		</div>
+
+		<div class="home_new-line"></div>
+		<!--7*24快讯-->
+		<div class="home_new-list kx724">
+			<div class="home_new-list-title tiaozhuan" ><!--data-url="http://action:11004?type=724"-->
+				<div class="home_new-list-title-left">
+					<img src="./images/kuaixun7_24.png" alt="">
+				</div>
+				<div class="home_new-line1"></div>
+				<div class="home_new-list-title-right">
+					<div class="swiper-container-724kx">
+						<div class="swiper-wrapper" style="height: 0.48rem;">
+							<div class="swiper-slide">
+								<span class="title-top f6f8"><!--11:00--></span>
+								<span class="title-bottom f6f8"><!--整点回顾；午后指数总体小福回暖，创业版指强翻红，人民币贬值，稀土板块活跃，但持续性…--></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--福牛解盘-->
+			<div class="home_new-list-content kx724-box fnjp">
+				<div class="swiper-container-fnjp">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide" style="width: 1.523rem; margin-right: 0.11rem;">
+							<div class="box-item">
+								<p class="box-title">
+									<span class="title-left f6f8"><!--小福早报--></span>
+									<span class="title-right f6f8"><!--08:04--></span>
+								</p>
+								<p class="box-content f6f8"><!--上交所预计于3月下旬开始科科板技术系统…--></p>
+							</div>
+						</div>
+						<div class="swiper-slide" style="width: 1.523rem; margin-right: 0.11rem;">
+							<div class="box-item">
+								<p class="box-title">
+									<span class="title-left f6f8"><!--小福复盘--></span>
+									<span class="title-right f6f8"><!--15:12--></span>
+								</p>
+								<p class="box-content f6f8"><!--上交所预计于3月下旬开始科科板技术系统…--></p>
+							</div>
+						</div>
+						<div class="swiper-slide" style="width: 1.523rem; margin-right: 0.11rem;">
+							<div class="box-item">
+								<p class="box-title">
+									<span class="title-left f6f8"><!--小福收评--></span>
+									<span class="title-right f6f8"><!--15:12--></span>
+								</p>
+								<p class="box-content f6f8"><!--上交所预计于3月下旬开始科科板技术系统…--></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="home_new-line"></div>
+		<!--今日风口-->
+		<div class="home_new-list jrfk">
+			<div class="tztui-list-title jr-title  pad15">
+				<div class="btm-line">今日风口
+					<span class="title-font1">
+						实时大涨解读
+					</span>
+					<span class="more">
+						更多<i class="right-arrow"></i>
+					</span>
+				</div>
+			</div>
+			<div class="home_new-list-content jrfk-box">
+				<div class="swiper-container-jrfk">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide" style="width: 1.523rem; margin-right: 0.11rem;">
+							<div class="box-item box-item1">
+								<div class="box-title">
+									<p class="title f6f8"><!--ST中南--></p>
+									<p class="value f6f8"><!--+23.18%--></p>
+								</div >
+								<div class="box-content">
+									<p class="content-top f6f8"><!--低价,此前连续6日跌停,主营影视文化和金属制造业务--></p>
+									<p class="content-bottom f6f8">
+										<span class="left"><!--新晨科技--></span>
+										<span class="right"><!--+10.12%--></span>
+									</p>
+								</div >
+							</div>
+						</div>
+						<div class="swiper-slide" style="width: 1.523rem; margin-right: 0.11rem;">
+							<div class="box-item box-item2">
+								<div class="box-title">
+									<p class="title f6f8"><!--区块链--></p>
+									<p class="value f6f8"><!--+48.78%--></p>
+								</div >
+								<div class="box-content">
+									<p class="content-top f6f8"><!--低价,此前连续6日跌停,主营影视文化和金属制造业务--></p>
+									<p class="content-bottom f6f8">
+										<span class="left"><!--新晨科技--></span>
+										<span class="right"><!--+10.12%--></span>
+									</p>
+								</div >
+							</div>
+						</div>
+						<div class="swiper-slide" style="width: 1.523rem; margin-right: 0.11rem;">
+							<div class="box-item  box-item2">
+								<div class="box-title">
+									<p class="title f6f8"><!--ST中南--></p>
+									<p class="value f6f8"><!--+23.18%--></p>
+								</div >
+								<div class="box-content">
+									<p class="content-top f6f8"><!--低价,此前连续6日跌停,主营影视文化和金属制造业务--></p>
+									<p class="content-bottom f6f8">
+										<span class="left"><!--新晨科技--></span>
+										<span class="right"><!--+10.12%--></span>
+									</p>
+								</div >
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="home_new-line"></div>
+		<!--今日关注-->
+		<div class="home_new-list jrgz">
+			<div class="tztui-list-title jr-title  pad15">
+				<div class="btm-line">今日关注
+					<span class="title-font1">
+						今日机会提醒
+					</span>
+					<span class="more">
+						更多<i class="right-arrow"></i>
+					</span>
+				</div>
+			</div>
+			<div class="home_new-list-content jrgz-box">
+				<div class="swiper-container-jrgz">
+					<div class="swiper-wrapper">
+						<!--<div class="swiper-slide" style="width: 2.864rem; margin-right: 0.11rem;">
+							<div class="box-item">
+								<div class="box-title">
+									<span class="title-left">01 <img src="./images/jrgz.png" alt="jrgz"></span>
+									<span class="title-mid">磷化工</span>
+									<span class="title-right">10:10</span>
+								</div>
+								<div class="box-content1">
+									<p class="content-top">关注理由 太阳能制造黑磷成为核心催化剂</p>
+									<p class="content-bottom clear">
+										<span class="left">兴发集团 +4.89%</span>
+										<span class="right">澄星股份 -0.89%</span>
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="swiper-slide" style="width: 2.864rem; margin-right: 0.11rem;">
+							<div class="box-item">
+								<div class="box-title">
+									<span class="title-left">02 <img src="./images/jrgz.png" alt="jrgz"></span>
+									<span class="title-mid">磷化工</span>
+									<span class="title-right">10:10</span>
+								</div>
+								<div class="box-content1">
+									<p class="content-top">关注理由 太阳能制造黑磷成为核心催化剂</p>
+									<p class="content-bottom clear">
+										<span class="left">兴发集团 +4.89%</span>
+										<span class="right">澄星股份 -0.89%</span>
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="swiper-slide" style="width: 2.864rem; margin-right: 0.11rem;">
+							<div class="box-item">
+								<div class="box-title">
+									<span class="title-left">03 <img src="./images/jrgz.png" alt="jrgz"></span>
+									<span class="title-mid">磷化工</span>
+									<span class="title-right">10:10</span>
+								</div>
+								<div class="box-content1">
+									<p class="content-top">关注理由 太阳能制造黑磷成为核心催化剂</p>
+									<p class="content-bottom clear">
+										<span class="left">兴发集团 +4.89%</span>
+										<span class="right">澄星股份 -0.89%</span>
+									</p>
+								</div>
+							</div>
+						</div>-->
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!--新版上线-->
+		<!--<div class="home_new-xbsx">
+			<img src="./images/banner1.png" alt="">
+		</div>-->
+		<!--跟TA去赚钱-->
+		<!--<div class="home_new-list gtqzq">
+			<div class="tztui-list-title jr-title  pad15">
+				<div class="btm-line">跟TA去赚钱
+					<span class="other">
+						换一批
+					</span>
+				</div>
+			</div>
+			<div class="gtqzq-box">
+				<div class="gtqzq-content">
+					<div class="gtqzq-content-top">
+						<span class="headImg">
+							<img src="./images/user.png" alt="TA">
+						</span>
+						<span class="name">
+							炒股大神
+							<img src="./images/duanxian.png" alt="dx">
+						</span>
+						<span class="more">
+							更多<i class="right-arrow"></i>
+						</span>
+					</div>
+					<div class="gtqzq-content-bottom">
+						一句话推荐简介，成就描述一句话推荐简介，成就描述
+					</div>
+				</div>
+				<div class="gtqzq-content">
+					<div class="gtqzq-content-top gtqzq-content-top1">
+						<span class="headImg">
+							<img src="./images/user.png" alt="TA">
+						</span>
+						<span class="name">
+							王嘉嘉
+							<img src="./images/zsynr.png" alt="zsynr">
+						</span>
+						<span class="more">
+							更多<i class="right-arrow"></i>
+						</span>
+					</div>
+					<div class="gtqzq-content-mid">创建</div>
+					<div class="gtqzq-content-bottom gtqzq-content-bottom1">
+						一句话推荐简介
+						<div class="right">
+							<div class="font-top">48.78%</div>
+							<div class="font-bottom">近7日收益率(%)</div>
+						</div>
+					</div>
+				</div>
+				<div class="gtqzq-content">
+					<div class="gtqzq-content-top gtqzq-content-top1">
+						<span class="headImg">
+							<img src="./images/user.png" alt="TA">
+						</span>
+						<span class="name">
+							炒股大神
+						</span>
+					</div>
+					<div class="gtqzq-content-mid">创建</div>
+					<div class="gtqzq-content-bottom gtqzq-content-bottom2">
+						一句话推荐简介，成就描述
+						<div class="right">
+							<img src="./images/product_i.jpg" alt="ms">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>-->
+		<!--新版上线-->
+		<!--<div class="home_new-xbsx">
+			<img src="./images/banner1.png" alt="">
+		</div>-->
+		<!--大家都在买-->
+		<!--<div class="home_new-list djdzm">
+			<div class="tztui-list-title jr-title  pad15">
+				<div class="btm-line">大家都在买
+					<span class="title-font1">
+						截至4月1日数据
+					</span>
+					<span class="more">
+						更多<i class="right-arrow"></i>
+					</span>
+				</div>
+			</div>
+			<div class="djdzm-box">
+				<div class="djdzm-content">
+					<div class="left">
+						<div class="top">
+							<img src="./images/djdzm.png" alt="djdzm">
+							<span>近一周购买人数最多</span>
+						</div>
+						<div class="bottom">
+							天虹创业指数基金
+						</div>
+					</div>
+					<div class="right">
+						<div class="font-top">48.78%</div>
+						<div class="font-bottom">近7日收益率(%)</div>
+					</div>
+				</div>
+				<div class="djdzm-content">
+					<div class="left">
+						<div class="top">
+							<img src="./images/djdzm.png" alt="djdzm">
+							<span>近一周购买人数最多</span>
+						</div>
+						<div class="bottom">
+							天虹创业指数基金
+						</div>
+					</div>
+					<div class="right">
+						<div class="font-top">48.78%</div>
+						<div class="font-bottom">近7日收益率(%)</div>
+					</div>
+				</div>
+			</div>
+		</div>-->
+		<!--精选好基金-->
+		<!--<div class="home_new-list jxhjj">
+			<div class="tztui-list-title jr-title  pad15">
+				<div class="btm-line">精选好基金
+					<span class="more">
+						查看更多<i class="right-arrow"></i>
+					</span>
+				</div>
+			</div>
+			<div class="jxhjj-box">
+				<div class="jxhjj-content">广发新发行证券投资基金</div>
+			</div>
+		</div>-->
+		<!--精选好内容-->
+		<!--<div class="home_new-list jxhnr">
+			<div class="tztui-list-title jr-title  pad15">
+				<div class="btm-line">精选好内容
+					<div class="title-right">
+						<span class="title-right-active">两融</span>
+						<span>期权</span>
+						<span>基金</span>
+					</div>
+				</div>
+			</div>
+			<div class="jxhnr-box">
+				<div class="jxhnr-content">广发新发行证券投资基金</div>
+				<div class="jxhnr-list">
+					<div class="top">
+						国企成交量创三月新高,板块存绝对收益
+					</div>
+					<div class="bottom">
+						<span class="left"><img src="./images/lrsc.png" alt="lrsc"></span>
+						<span class="right">刚刚</span>
+					</div>
+				</div>
+				<div class="jxhnr-list">
+					<div class="top">
+						中金2019年十大预测：A股高位震荡未来将持续
+					</div>
+					<div class="bottom">
+						<span class="left"><img src="./images/lrsc.png" alt="lrsc"></span>
+						<span class="right">22分钟前</span>
+					</div>
+				</div>
+				<div class="jxhnr-list">
+					<div class="top">
+						[餐饮旅游] 当买点再次来临
+					</div>
+					<div class="bottom">
+						<span class="left"><img src="./images/lrsc.png" alt="lrsc"></span>
+						<span class="right">7小时前</span>
+					</div>
+				</div>
+			</div>
+		</div>-->
+
+		<!-- 资讯-->
+		<!--<div class="tztui-list zixun" style="display: none">
+			<ul class="zx_title">
+				<li data-type="tuijian" class="chosetj active">推荐<span class="tp_line"></span></li>
+				<li data-type="zixuan" class="mychoose">自选<span></span></li>
+				<li data-type="ssgd">快讯<span></span></li>
+				<li data-type="huafu">华福<span></span></li>
+			</ul>
+			<div class="zx_content">
+				<div class="cont tuijian">
+					<div class="list-container">
+						<ul></ul>
+						<div class="more" data-url="http://action:11004?type=tj">点击查看更多</div>
+					</div>
+				</div>
+				<div class="cont zixuan none">
+					<div class="list-container">
+						<ul></ul>
+						<div class="noZX" style="display: none;">
+							<span class="nodata"></span>
+							<p>暂无自选</p>
+						</div>
+						<div class="more" data-url="http://action:11004?type=zx">点击查看更多</div>
+					</div>
+				</div>
+
+				<div class="cont ssgd none">
+					<div class="list-container">
+						<ul></ul>
+						<div class="more" data-url="http://action:11004?type=724">点击查看更多</div>
+					</div>
+				</div>
+				<div class="cont huafu none">
+					<div class="list-container">
+						<ul></ul>
+						<div class="more" data-url="http://action:11004?type=hf">点击查看更多</div>
+					</div>
+				</div>
+			</div>
+		</div>-->
+		<!-- 活动专区 -->
+		<!-- <div class="tztui-list hdzq">
+					<div class="tztui-list-title">活动专区<i class="rightArrow"></i></div>
+					<div class="hdzq-box">
+						<div class="scroll-box">
+							<div class="swiper-container1">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide" style="width: 2rem; margin-right: 10px;">
+										<div class="box-item">
+										</div>
+									</div>
+									<div class="swiper-slide" style="width: 2rem; margin-right: 10px;">
+										<div class="box-item">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> -->
+
+		<!-- 牛人观点 -->
+		<div style="width: 100%;overflow: hidden;" class="nrgd">
+			<div class="tztui-list-title nrgd-title">
+				<div class="btm-line">牛人观点
+					<i class="rightArrow"></i>
+				</div>
+			</div>
+			<div class="nrgd-box">
+				<!-- <div class="scroll-box"> -->
+					<div class="swiper-container-nrgd">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide" style="width: 2rem; margin-right: 10px;">
+								<div class="box-item box-item1">
+									<p class="box-title">
+										<span class="title-img f6f8"></span>
+										<span class="title-name f6f8 nrgdZW"></span>
+									</p>
+									<p class="box-content f6f8"></p>
+								</div>
+							</div>
+							<div class="swiper-slide" style="width: 2rem; margin-right: 10px;">
+								<div class="box-item box-item1">
+									<p class="box-title">
+										<span class="title-img f6f8"></span>
+										<span class="title-name f6f8 nrgdZW"></span>
+									</p>
+									<p class="box-content f6f8"></p>
+								</div>
+							</div>
+							<div class="swiper-slide" style="width: 2rem; margin-right: 10px;">
+								<div class="box-item box-item1">
+									<p class="box-title">
+										<span class="title-img f6f8"></span>
+										<span class="title-name f6f8 nrgdZW"></span>
+									</p>
+									<p class="box-content f6f8"></p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				<!-- </div> -->
+			</div>
+		</div>
+		<div id="line1" ></div>
+		<!-- 股票组合 -->
+		<div class="scrollNone moreScroll" >
+			<!-- 股票组合 -->
+			<div class="tztui-list gpzh" style="margin-top: 0;">
+				<div class="tztui-list-title gpzh-title">股票组合
+					<i class="rightArrow"></i>
+				</div>
+				<div class="gpzh-box">
+					<!-- <div class="box-item">
+						<div class="box-content">
+							<div class="box-list box-list1">
+								<p style="width: 50% !important;" class="f6f8"></p>
+								<span style="background: #f6f8f9"></span>
+							</div>
+							<div class="box-list box-list2">
+								<p style="width: 100%;height: .25rem" class="f6f8"></p>
+								<span style="width:.5rem;height: 0.12rem;display: inline-block;" class="f6f8"></span>
+							</div>
+						</div>
+						<p class="box-bottom">
+							<span class="box-name f6f8" style="width: .5rem;height: .15rem;display: inline-block;"></span>
+							<span class="box-time f6f8" style="width: .5rem;height: .15rem;display: inline-block;"></span>
+						</p>
+					</div>
+					<div class="box-item">
+						<div class="box-content">
+							<div class="box-list box-list1">
+								<p style="width: 50% !important;" class="f6f8"></p>
+								<span style="background: #f6f8f9"></span>
+							</div>
+							<div class="box-list box-list2">
+								<p style="width: 100%;height: .25rem" class="f6f8"></p>
+								<span style="width:.5rem;height: 0.12rem;display: inline-block;" class="f6f8"></span>
+							</div>
+						</div>
+						<p class="box-bottom">
+							<span class="box-name f6f8" style="width: .5rem;height: .15rem;display: inline-block;"></span>
+							<span class="box-time f6f8" style="width: .5rem;height: .15rem;display: inline-block;"></span>
+						</p>
+					</div>
+					<div class="box-item">
+						<div class="box-content">
+							<div class="box-list box-list1">
+								<p style="width: 50% !important;" class="f6f8"></p>
+								<span style="background: #f6f8f9"></span>
+							</div>
+							<div class="box-list box-list2">
+								<p style="width: 100%;height: .25rem" class="f6f8"></p>
+								<span style="width:.5rem;height: 0.12rem;display: inline-block;" class="f6f8"></span>
+							</div>
+						</div>
+						<p class="box-bottom">
+							<span class="box-name f6f8" style="width: .5rem;height: .15rem;display: inline-block;"></span>
+							<span class="box-time f6f8" style="width: .5rem;height: .15rem;display: inline-block;"></span>
+						</p>
+					</div> -->
+					<div class="box-item">
+						<div class="box-left">
+							<p class="f6f8" style="width: .5rem;height: .15rem;display: inline-block;"></p><span class="f6f8" style="width: .5rem;height: .15rem;display: inline-block;"></span>
+						</div>
+						<div class="box-right">
+							<p class="right-title f6f8" style="width: .5rem;height: .15rem;display: inline-block;"></p>
+							<p class="right-label f6f8" style="width: .5rem;height: .15rem;display: inline-block;"><i></i></p>
+							<p class="right-create f6f8" style="width: .5rem;height: .15rem;display: inline-block;"><span><em></em></span></p>
+							<p class="right-time f6f8" style="width: 1.5rem;height: .15rem;display: inline-block;"></p>
+						</div>
+					</div>
+					<div class="box-item">
+						<div class="box-left"> 
+							<p class="f6f8" style="width: .5rem;height: .15rem;display: inline-block;"></p><span class="f6f8" style="width: .5rem;height: .15rem;display: inline-block;"></span>
+						</div>
+						<div class="box-right">
+							<p class="right-title f6f8" style="width: .5rem;height: .15rem;display: inline-block;"></p>
+							<p class="right-label f6f8" style="width: .5rem;height: .15rem;display: inline-block;"><i></i></p>
+							<p class="right-create f6f8" style="width: .5rem;height: .15rem;display: inline-block;"><span><em></em></span></p>
+							<p class="right-time f6f8" style="width: 1.5rem;height: .15rem;display: inline-block;"></p>
+						</div>
+					</div>
+					<div class="box-item">
+						<div class="box-left">
+							<p class="f6f8" style="width: .5rem;height: .15rem;display: inline-block;"></p><span class="f6f8" style="width: .5rem;height: .15rem;display: inline-block;"></span>
+						</div>
+						<div class="box-right">
+							<p class="right-title f6f8" style="width: .5rem;height: .15rem;display: inline-block;"></p>
+							<p class="right-label f6f8" style="width: .5rem;height: .15rem;display: inline-block;"><i></i></p>
+							<p class="right-create f6f8" style="width: .5rem;height: .15rem;display: inline-block;"><span><em></em></span></p>
+							<p class="right-time f6f8" style="width: 1.5rem;height: .15rem;display: inline-block;"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="zhuanqu">
+				<div class="lczq img1 tztui-grid">&nbsp;</div>
+				<div class="jjzq img2 tztui-grid">&nbsp;</div>
+			</div>
+		</div>
+
+			<!--创业板签署提示弹窗-->
+			<div class="cybSign" style="display: none">
+				<div class="cybSign-mask"></div>
+				<div class="cybSign-box">
+					<img class="cybSign-tips" src="./images/Group4.png" alt="img">
+					<img class="cybSign-close" src="/c_modules/popup/lineright.png" alt="">
+					<div class="cybSign-title">
+						倒计时，在线重签创业板风险揭示书！
+					</div>
+					<div class="cybSign-content">
+						<p>创业板注册制改革即将启动，涨跌幅放宽至<span style="font-size: 0.168rem;">20%，首发上市前5个交易日不设</span>涨跌幅限制。为保证您能正常参与注册制下创业板申购及交易，请尽快补签创业板风险揭示书。</p>
+						<p style="margin-top: 0.15rem;">存量投资者<span>必须重新签署</span>创业板投资风险揭示书<span>才能</span>进行创业板注册制股票<span>打新及交易</span>!</p>
+						<p style="text-align: center;margin-top: 0.1rem;font-size: 0.118rem;color: #808098;height: 0.45rem;line-height: 0.45rem;">若已补签，请忽略该提示</p>
+					</div>
+					<div class="cybSign-footer">
+						立即重签
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<script src="../c_modules/jz/mescroll.min.js" charset="utf-8"></script>
+	<script src="../c_modules/jquery-1.7.1.min.js"></script>
+	<script src="../c/TZT.js"></script>
+	<script src="../c_modules/swiper/js/swiper.min.js"></script>
+	<!-- <script src="../common/js/ip-config.js"></script> -->
+	<script type="text/javascript" src="js/md5.js"></script>
+	<script src="js/crypto-js.js"></script>
+	<script type="text/javascript" src="js/jsencrypt.js"></script>
+	<script src="../common/js/commonFunction.js"></script>
+	<script src="/mall/function/popup.js"></script>
+	<script src="./js/explore_home_new_index.js"></script>
+	<script src="./js/home_new_manage.js"></script>
+	<script type="text/javascript">
+		/*setNewsList();
+		function setNewsList(){
+			$.fn.extend({
+				Scroll: function(opt, callback) {
+					if (!opt) var opt = {};//参数初始化
+					var _this = this.eq(0).find("ul:first");
+					var lineH = _this.find("li:first").height(), //获取行高
+							line = opt.line ? parseInt(opt.line, 10) : parseInt(this.height() / lineH, 10), //每次滚动的行数，默认为一屏，即父容器高度
+							speed = opt.speed ? parseInt(opt.speed, 10) : 500, //卷动速度，数值越大，速度越慢（毫秒）
+							timer = opt.timer ? parseInt(opt.timer, 10) : 3000; //滚动的时间间隔（毫秒）
+
+					if (line == 0) line = 1;
+					var upHeight = 0 - line * lineH;
+					//滚动函数
+					scrollUp = function() {
+						_this.animate({
+							marginTop: upHeight
+						}, speed, function() {
+							for (i = 1; i <= line; i++) {
+								_this.find("li:first").appendTo(_this);
+							}
+							_this.css({
+								marginTop: 0
+							});
+						});
+					}
+					//鼠标事件绑定
+					_this.hover(function() {
+						clearInterval(timerID);
+					}, function() {
+						timerID = setInterval("scrollUp()", timer);
+					}).mouseout();
+				}
+			})
+			$(function() {
+				$('#donate_carousel').Scroll({
+					line: 1,
+					speed: 800,
+					timer: 8000
+				});
+			});
+		}*/
+	</script>
+	<!--<script src="../common/js/vconsole.min.js"></script>
+	<script>
+		 var vConsole = new VConsole();
+		 window.GoBackOnLoad=function(){
+			 console.log("html&#45;&#45;页面返回加载？？？")
+		 }
+	</script>-->
+</body>
+
+</html>

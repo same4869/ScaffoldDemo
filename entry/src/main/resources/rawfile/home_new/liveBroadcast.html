@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>视频直播</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi = medium-dpi">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-touch-fullscreen" content="YES">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+        body,html{
+            margin: 0;
+			height:100%;
+        }
+		
+        .bg-img{
+            width: 100%;
+            background: white;
+            position: relative;
+			height:100%;
+
+        }
+        .bg-img img{
+            width: 100%;
+			display:none;
+        }
+        .bg-img img.img2{
+            width: 100%;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+        .bg-img img.img3{
+            width: 4rem;
+            position: absolute;
+            right: 10%;
+            bottom: 7%;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-img">
+        <img class="img1"  alt="">
+	
+    </div>
+
+    <script src="/c_modules/jquery.min.js"></script>
+    <script src="/c/TZT.js"></script>
+    <script src="/common/js/commonFunction.js"></script>
+    <script>
+        var url =''
+        var index = T.getUrlParameter('index');
+
+		getPicAndUrl();
+		//$('.img1').css('display','block');
+        $(function(){
+           
+            /*******************************/
+            versionsProcess('3.19.0', function (flag) { // flag false低于
+                var jumpFlag = flag;
+                $(".bg-img").off().on("click",function () {
+                    if(jumpFlag) {
+                        /*周一*/
+                        T.fn.changeURL(url);
+                        /*T.fn.changeURL('http://action:10369/?userName=gh_d96baf39c878&&path=pages/common/page/createPreview/createPreview?roomID=live_20210803134421_JlRL');*/
+                    }else {
+                        alert('当前客户端版本过低，请至“我的-系统设置-版本”点击更新客户端版本')
+                    }
+                });
+            })
+
+
+        });
+        function getPicAndUrl() {
+            var oSendData = {
+                'action': '41500',
+                'type': 'ZBT',
+                'ReqlinkType': '2'
+            };
+            $.getData({
+                oSendData: oSendData, isload: false, fnSuccess: function (oData) {
+                    var scrollTop = document.scrollingElement.clientHeight;
+					
+                    var  sHtml = '';
+                    //console.log("快捷菜单数据：",oData);
+                    if (oData.ERRORNO >= 0) {
+                        var ln = oData.GRID0.length;
+
+					   
+                        if (ln > 1) {
+                            for(var i=1; i<ln; i++) {
+
+                                var oItem = oData.GRID0[i].split('|');
+                                var IMG_ORD_INDEX = oItem[oData.IMG_ORD_INDEX]
+                                if(index === IMG_ORD_INDEX){
+									 
+									
+                                   
+
+                                      $('.img1').attr('src',oItem[oData.IMAGE_URL_INDEX]);
+                                      $('.img1').css('height',scrollTop+'px');
+									 
+									  url = oItem[oData.IMAGE_CLICK_INDEX];
+									  /*
+									sHtml = ' <img class="img1" ';
+                                    sHtml += ' style="height:'+scrollTop+'px" ';
+                                    sHtml +=  'src="'+oItem[oData.IMAGE_URL_INDEX]+'" alt="">'
+                                    url = oItem[oData.IMAGE_CLICK_INDEX];
+                                    document.title= oItem[oData.IMAGE_TITLE_INDEX];
+									*/
+                                }
+
+                            }
+
+                        }
+
+                        //$('.bg-img').html(sHtml)
+                    }
+					$('.img1').attr('display','block');
+                }
+					
+            })
+			$('.img1').each(function() {
+				$(this).load(function(){
+					$(this).fadeIn();
+				});
+			})
+
+        }
+
+
+     
+	 
+    </script>
+</body>
+</html>

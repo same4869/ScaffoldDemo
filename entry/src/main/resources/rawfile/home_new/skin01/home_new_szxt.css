@@ -1,0 +1,240 @@
+*{padding: 0;margin:0;}
+body,html{width: 100%;background: #f6f8f9;color: #3C3759;}
+/*banner*/
+.swiper-wrapper .image {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    vertical-align: top;
+}
+.swiper-pagination-bullet {
+    width: 0.09rem;
+    height: 0.015rem;
+    border-radius: 0.005rem;
+    border-radius: 0;
+}
+.swiper-container-horizontal>.swiper-pagination-bullets {
+    bottom: 0.15rem!important;
+}
+.swiper-container .swiper-slide{height: 2rem;}
+
+/*buttons-nav*/
+.lineP{width: 100%;height: 0.11rem;background: #fff;border-top-left-radius:0.1rem;border-top-right-radius:0.1rem;z-index: 999;position: absolute;bottom: -0.015rem;left: 0;}
+
+/*共有样式*/
+.tztui-list {
+    width: 100%;
+    line-height: .54rem;
+    background-color: #fff;
+    margin-top: 0.1rem;
+}
+.tztui-list-title {
+    width: 100%;
+    font-size: .16rem;
+    color: #3C3759;
+    font-weight: bold;
+    position: relative;
+    padding:0 0.15rem;
+}
+.tztui-list-title .rightArrow{
+	display: inline-block;
+	width: 0.2rem;
+	height: 0.2rem;
+	position: absolute;
+	right: 0.15rem;
+	top: 0.18rem;
+	background:url(../images/nextpage.png) no-repeat center / 0.2rem 0.2rem;
+}
+
+/*华福课堂*/
+.hfkt-box{
+    /* overflow-x: scroll; */
+    padding: 0 0.15rem 0;
+}
+/* .scroll-box{
+    overflow-x: scroll;
+    height: auto;
+    width: 5.3rem;
+} */
+.hfkt-box{margin: 0.1rem 0;}
+.hfkt-box .swiper-container1 .swiper-slide {
+	width: 1.28rem;margin-right: .1rem; background: #fff;
+}
+.hfkt-box .swiper-container1 .swiper-slide:last-child {
+	margin-right: 0;
+}
+.hfkt-box .box-item{
+    position: relative;
+    display: inline-block;
+    margin-right: .1rem;
+    width:100%;
+    height: .55rem;
+    /* background: #F6F8F9; */
+}
+.hfkt-box .item-title{
+    height: .32rem; text-align: center;line-height: .32rem; background: #fff; font-size: .15rem; color: #3C3759;
+    margin-top: -0.24rem;
+}
+.hfkt-box .box-item p {
+    text-align: center;line-height:0.325rem;height:0.325rem;background: #fff;width: 100%;
+    border-bottom-right-radius: 0.02rem;
+    border-bottom-left-radius: 0.02rem;
+    font-size: 0.15rem;
+    color: #3C3759;
+}
+.hfkt-box .box-item .img-box{
+    height: 0.5rem;
+    width: 100%;
+    border-top-right-radius: 0.02rem;
+    border-top-left-radius: 0.02rem;
+}
+.hfkt-box .box-item .img-box1{
+    background: url(../images/hfxt1.png) no-repeat center / cover;
+}
+.hfkt-box .box-item .img-box2{
+    background: url(../images/hfxt2.png) no-repeat center / cover;
+}
+.hfkt-box .box-item .img-box3{
+    background: url(../images/hfxt3.png) no-repeat center / cover;
+}
+
+.hfkt-box .box-item .img-box4{
+    background: url(../images/hfxt4.png) no-repeat center / cover;
+}
+
+/*投教特色*/
+.tjts-box{padding:0 0.15rem 0.15rem;}
+.tjts .box-item{
+    position: relative;
+    padding-left: 1rem;
+    height: 0.55rem;
+    margin-bottom: .15rem;
+}
+.tjts .box-item:last-child{
+    margin-bottom: 0;
+}
+.tjts img{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0.85rem;
+    height: 0.55rem;
+    z-index: 1;
+    border-radius: 0.02rem;
+}
+.tjts .box-item .title{
+    font-size: 0.15rem;
+    color: #3C3759;
+    line-height: 0.25rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.tjts .box-item .subtitle{
+    font-size: 0.13rem;
+    color: #A5A1B1;
+    line-height: 0.25rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.tjts .box-item .default_img {
+    width: 0.85rem;
+    height: 0.55rem;
+    display: block;
+}
+.tjts .box-item .default_tit {
+    width: 1rem;
+    height: .15rem;
+    padding: .05rem;
+    display: block;
+}
+.tjts .box-item .default_sub {
+   display: block;
+   height: .2rem;
+   margin-top: .1rem;
+}
+
+.f6f8{
+    background: #f6f8f9 !important;
+}
+
+
+
+/*权益*/
+.qy-box{
+	width: 100%;
+	background: #fff;
+	padding:0 0.15rem 0.15rem;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient:horizontal;
+	-webkit-box-direction:normal;
+	-ms-flex-flow:row nowrap;
+	flex-flow:row nowrap;
+}
+.qy-box .box-item {
+	display: inline-block;
+	width: 33%;
+	margin-right: 2%;
+	border-radius: 0.02rem;
+	font-size: 0.13rem;
+	padding-left: 0.1rem;
+	color: #fff;
+}
+.qy-box .box-item:last-child{margin-right: 0;}
+.qy-box .box-item1{background: #F6F8F9; /*background: url(../images/qy1.png) no-repeat center / cover;*/}
+.qy-box .box-item2{background: #F6F8F9; /*background: url(../images/qy2.png) no-repeat center / cover;*/}
+
+/*专题*/
+.zt-box{
+    width: 100%;
+    background: #fff;
+    padding:0 0.15rem 0.15rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient:horizontal;
+    -webkit-box-direction:normal;
+    -ms-flex-flow:row nowrap;
+    flex-flow:row nowrap;
+}
+.zt-box .box-item {
+    display: inline-block;
+    width: 33%;
+    margin-right: 2%;
+    border-radius: 0.02rem;
+    font-size: 0.13rem;
+    padding-left: 0.1rem;
+    color: #fff;
+}
+.zt-box .box-item:last-child{margin-right: 0;}
+.zt-box .box-item1{background: #F6F8F9; /*background: url(../images/zt1.png) no-repeat center / cover;*/}
+.zt-box .box-item2{background: #F6F8F9; /*background: url(../images/zt2.png) no-repeat center / cover;*/}
+.zt-box .box-item3{background: #F6F8F9; /*background: url(../images/zt3.png) no-repeat center / cover;*/}
+
+
+
+/*基地*/
+/*.jd{margin-bottom: 0.1rem;}*/
+.jd_box{padding: 0 0.15rem 0.15rem;}
+.jd_box .box-item{
+    width: 48.4%;display: inline-block;border-radius: 0.02rem;height: 0.65rem;line-height: 0.65rem;font-size: 0.14rem;color: #3C3759;padding-left: 0.15rem;background: #F6F8F9;position: relative;
+}
+.jd_box .box-item:first-child{margin-right: 2%;}
+.jd_box .box-item i{
+    display: inline-block;
+    width: 0.6rem;
+    height: 0.5rem;
+    position: absolute;
+    right: 0.1rem;
+    bottom: 0;
+}
+.jd_box .box-item i.gjj_img{
+    background: url(../images/jd1.png) no-repeat center / contain;
+}
+.jd_box .box-item i.sj_img{
+    background: url(../images/jd2.png) no-repeat center / contain;
+}

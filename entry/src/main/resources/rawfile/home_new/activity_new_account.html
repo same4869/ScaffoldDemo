@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>新客专享</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta
+            name="viewport"
+            content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi = medium-dpi"
+        />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="apple-touch-fullscreen" content="YES" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <link href="../c_modules/css/base-min.css" rel="stylesheet" media="all" />
+        <style>
+            .activity-button-wrap {
+                height: 0.375rem;
+                display: none;
+            }
+            .background-img {
+                width: 100%;
+                display: block;
+            }
+            .activity-button {
+                display: none;
+                position: relative;
+                width: 100%;
+                height: 0.375rem;
+                font-size: 15px;
+                color: white;
+                line-height: 0.375rem;
+                text-align: center;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+            }
+            .activity-button.active {
+                background: linear-gradient(#ffb390, #ff5924);
+            }
+            .activity-button.active:active:before {
+                content: ' ';
+                background-color: rgba(0, 0, 0, 0.1);
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+            }
+            .activity-button.disabled {
+                background-color: #656565;
+            }
+            .activity-toast {
+                position: fixed;
+                left: 50%;
+                top: 40%;
+                transform: translate3d(-50%, -50%, 0);
+                width: 2.7273rem;
+                padding: 0.1364rem;
+                color: white;
+                background-color: rgba(0, 0, 0, 0.7);
+                border-radius: 0.0727rem;
+            }
+            .activity-toast .activity-toast-title {
+                font-size: 0.2rem;
+                text-align: center;
+                margin-bottom: 0.1818rem;
+            }
+            .activity-toast .activity-toast-content {
+                font-size: 0.1636rem;
+            }
+            .loading {
+                position: fixed;
+                display: flex;
+                left: 50%;
+                top: 45%;
+                transform: translate3d(-50%, -50%, 0);
+                width: 65px;
+                height: 65px;
+                padding: 0.1364rem;
+                color: white;
+                background-color: rgba(0, 0, 0, 0.7);
+                border-radius: 0.0727rem;
+                justify-content: center;
+                align-items: center;
+            }
+            .loading img {
+                width: 30px;
+                height: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container" style="display: none;">
+            <img class="background-img" src="https://tg-twzb.oss-cn-shanghai.aliyuncs.com/NC/xfnnc.png" />
+            <div class="activity-button-wrap">
+                <div class="activity-button login active">登录查看奖励</div>
+                <div class="activity-button disabled">不符合领奖条件</div>
+                <div class="activity-button open-account active">开户领取奖励</div>
+            </div>
+        </div>
+        <div class="activity-toast" style="display: none">
+            <h5 class="activity-toast-title">不符合领取条件</h5>
+            <div class="activity-toast-content">
+                抱歉，您目前不符合奖励领取条件，详情请查看活动规则，欢迎关注其他活动~
+            </div>
+        </div>
+        <div class="loading">
+            <img src="data:image/gif;base64,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"/>
+        </div>
+    </body>
+    <script src="../c_modules/jquery-1.7.1.min.js"></script>
+    <script src="../c/TZT.js"></script>
+    <script src="/home_new/js/md5.js"></script>
+    <script src="/home_new/js/jsencrypt.js"></script>
+    <script type="text/javascript" src="/common/tracking/index.js"></script>
+    <script type="text/javascript" src="/common/tracking/tracking-plugin.js"></script>
+    <script type="text/javascript" src="/common/tracking/tracking-config.js"></script>
+    <script>
+        track.sensors.track('LUBAN_pageview', {
+            page_name: '新客专享',
+        });
+
+        init();
+
+        window.GoBackOnLoad = init;
+
+        // 点击跳转登录
+        $('.activity-button.login')
+            .off()
+            .on('click', function () {
+                track.sensors.track('LUBAN_pageclick', {
+                    page_name: '新客专享',
+                    button_name: '登录查看奖励',
+                });
+                login();
+            });
+
+        // 点击跳转开户
+        $('.activity-button.open-account')
+            .off()
+            .on('click', function () {
+                track.sensors.track('LUBAN_pageclick', {
+                    page_name: '新客专享',
+                    button_name: '开户领取奖励',
+                });
+                openAccount();
+            });
+
+        function init() {
+            $('.loading').show();
+            $('.activity-button-wrap').hide();
+            getLoginMobile()
+                .then(function (mobileCode) {
+                    // 已使用手机号登录，检查是否有领取权限
+                    if (mobileCode) {
+                        return checkActivityPermission(mobileCode);
+                    }
+                    // 未登录，展示登录查看奖励按钮
+                    $('.activity-button-wrap').show();
+                    $('.activity-button.login').show();
+                    return Promise.reject();
+                })
+                .then(function (res) {
+                    // 跳转领取页面
+                    if (res.hasPermission) {
+                        T.fn.action1964({
+                            url: res.link,
+                        });
+                        return Promise.reject();
+                    }
+                    // 检查是否开户
+                    return checkAccountStatus(res.mobile);
+                })
+                .then(function (hasOpenAccount) {
+                    $('.container').show();
+                    // 已经开户 页面提示不符合领取条件
+                    if (hasOpenAccount) {
+                        $('.activity-button-wrap').show();
+                        $('.activity-button.disabled').show();
+                        showActivityPermissionRejectModal();
+                        return Promise.reject();
+                    }
+                    // 未开户，展示开户领取奖励按钮
+                    $('.activity-button-wrap').show();
+                    $('.activity-button.open-account').show();
+                    $('.loading').hide();
+                })
+                .catch(function () {
+                    $('.container').show();
+                    $('.loading').hide();
+                });
+        }
+
+        // 获取登录的手机号
+        // 获取成功表示已通过手机号登录
+        function getLoginMobile() {
+            return new Promise(function (resolve) {
+                T.readLocalMesg(['MobileCode'], function (data) {
+                    var mobileCode = data.MOBILECODE;
+                    if (mobileCode == '' || !mobileCode || mobileCode == 'null') {
+                        resolve();
+                    } else {
+                        resolve(mobileCode);
+                    }
+                });
+            });
+        }
+
+        // 检查手机号开户状态
+        function checkAccountStatus(mobile) {
+            return new Promise(function (resolve, reject) {
+                $.getData({
+                    oSendData: {
+                        action: 48012,
+                        method: 'post',
+                        path: '/redirect',
+                        targetPath: '/userServer/innerApi/clientCenter/checkClientIsOpenByTel',
+                        ReqlinkType: 2,
+                        telphone: mobile,
+                    },
+                    isload: false,
+                    fnSuccess: function (data) {
+                        resolve(data.DATA === 'true');
+                    },
+                    oConfig: function () {
+                        reject();
+                    },
+                });
+            });
+        }
+
+        // 判断是否可以领奖
+        function checkActivityPermission(mobile) {
+            return getActivityData().then(function (couponData) {
+                return new Promise(function (resolve, reject) {
+                    var oSend = {
+                        action: '46200',
+                        ReqlinkType: 2,
+                    };
+                    $.getData({
+                        oSendData: oSend,
+                        isload: false,
+                        fnSuccess: function (data) {
+                            $.ajax({
+                                url: data.DECISIONFUNC,
+                                method: 'get',
+                                data: {
+                                    mobile: mobile,
+                                    couponFloderId: couponData['xkhd.activitypackID'] || undefined,
+                                    couponId: couponData['xkhd.activityID'] || undefined,
+                                    auth: 'ac10dda1-6b6e-4448-a510-5aa57051995d',
+                                },
+                                success: function (res) {
+                                    resolve({
+                                        mobile: mobile,
+                                        hasPermission: res.result,
+                                        link: couponData['xkhd.url'],
+                                    });
+                                },
+                                error: function (error) {
+                                    reject();
+                                },
+                            });
+                        },
+                        oConfig: function () {
+                            reject();
+                        },
+                    });
+                });
+            });
+        }
+
+        // 弹出不符合领取条件弹窗
+        function showActivityPermissionRejectModal() {
+            $('.activity-toast').show();
+            setTimeout(function () {
+                $('.activity-toast').hide();
+            }, 3000);
+        }
+
+        // 登录
+        function login() {
+            T.fn.changeurl('http://action:58130/?url=' + encodeURIComponent('http://action:10002/?'));
+        }
+
+        // 获取活动信息
+        function getActivityData() {
+            return new Promise(function (resolve, reject) {
+                const time = new Date().getTime();
+                $.ajax({
+                    url: 'https://tg-twzb.oss-cn-shanghai.aliyuncs.com/NC/xkhdconfig.txt?time='+ time,
+                    method: 'get',
+                    success: function (res) {
+                        resolve(parseNewAccountConfig(res));
+                    },
+                    error: function (error) {
+                        reject();
+                    },
+                });
+            });
+        }
+
+        // 解析xkhdconfig
+        function parseNewAccountConfig(content) {
+            var result = {};
+            if (!content) {
+                return {};
+            }
+            var arr = content.split(/\r?\n/);
+            arr.forEach(function (val) {
+                var trimVal = val.trim();
+                if (!trimVal) {
+                    return;
+                }
+                var valArr = trimVal.split('=');
+                result[valArr[0].trim()] = valArr.slice(1).join('=');
+            });
+            return result;
+        }
+
+        // 跳转网厅进行开户
+        function openAccount() {
+            T.fn.changeurl('http://action:10048/?');
+        }
+    </script>
+</html>

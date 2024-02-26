@@ -67,7 +67,7 @@ export struct MarketPlacePage {
           MarketHuShenJingPage()
         }
       }
-    }.height("100%").width("100%").backgroundColor("#ffffff")
+    }.height("100%").width("100%").backgroundColor("#f2f2f2")
   }
 
   @Builder

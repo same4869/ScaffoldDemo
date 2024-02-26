@@ -15,16 +15,19 @@ export struct OptionalStockPage {
     Column() {
 
       Column() {
-        StockIndexTop({indexExpanded: $indexExpanded})
+        StockIndexTop({ indexExpanded: $indexExpanded })
 
         if (this.indexExpanded) {
           StockIndexInfo()
         }
-
-        StockListView()
       }
       .backgroundColor(0xFFFFFF)
       .borderRadius(10)
+
+      StockListView()
+        .margin({ top: 10 })
+        .backgroundColor(0xFFFFFF)
+        .borderRadius(10)
     }
     .width('100%')
     .height('100%')

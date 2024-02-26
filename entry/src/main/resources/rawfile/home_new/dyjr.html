@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>服务授权</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi = medium-dpi">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-touch-fullscreen" content="YES">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link href="../c_modules/css/base-min.css" rel="stylesheet" media="all" />
+    <!-- <link rel="stylesheet" href="../c_modules/swiper/css/swiper.min.css"> -->
+    <style>
+        .change{background: #ccc;cursor: auto}  
+        #page{padding: 0.15rem;font-size: 0.15rem;}
+        #page p {padding: 0.15rem 0;}
+        #agree{
+            -webkit-appearance: checkbox;margin-right: 0.1rem;
+        }
+        #btn {
+            display: block;
+            font-size: .17rem;
+            text-decoration: none;
+            color: #fff;
+            border-radius: 4px;
+            line-height: .43rem;
+            height: 0.43rem;
+            -webkit-tap-highlight-color: transparent;
+            overflow: hidden;
+            background-color: #f24d44;
+            width: 100%;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="page" style="display: block;">
+        <p><input type="checkbox" name="agree" id="agree" class="checkbox">我同意协议使用身份信息（姓名、证件号码等）办理业务</p>
+        <p>我已认真阅读并同意<span class="sqxy">《用户授权协议》</span>各项条款。</p>
+        <input type="submit" value="同意并注册" id="btn" class="change" disabled>    
+    </div>
+    <script src="../c_modules/jquery-1.7.1.min.js"></script>
+    <script src="../c/TZT.js"></script>
+    <script type="text/javascript" src="js/md5.js"></script>
+    <script type="text/javascript" src="js/jsencrypt.js"></script>
+    <script> 
+        $(function(){
+            init();
+        })
+        function init(){
+            // 判断是否授权
+            T.readMapMesg(['authorizeFlag'],function(oData){
+                if(oData.AUTHORIZEFLAG == ""){
+                    $("#page").show();
+                    pageEvent();
+                }else{
+                    sendData();
+                }
+            });
+        }
+        function pageEvent(){
+            $('.sqxy').unbind().on('click',function(){
+                T.fn.action10061({url:"https://cptestfun1.hfzq.com.cn:6690/hfzqcall/arguement.html"});
+            })
+            $(":checkbox").change(function () {
+                if($(this).is(':checked')){
+                    $('#btn').removeClass('change');  
+                    $('#btn').removeAttr('disabled','disabled');  
+                }else{
+                    $('#btn').addClass('change');  
+                    $('#btn').attr('disabled','disabled');  
+                }
+            });
+            $('#btn').click(function(){  
+                if($(":checkbox").is(':checked')){  
+                    authorizeFunc();
+                    sendData(); 
+                }
+            }); 
+        } 
+
+        function authorizeFunc(){   //授权
+            T.saveMapMesg({'authorizeFlag':1});
+        }
+
+        function sendData(){    //传递客户身份3要素（姓名、证件类型和证件号码）给门户
+            var oSend = {
+                action:'5',
+                needToken:'0'
+            }
+            $.getData({oSendData:oSend,isToken:false,fnSuccess:function(oTime){
+                var serverTime = oTime.TIME;
+                serverTime = new Date(serverTime).getTime();
+                var oSend = {
+                    action:'46200',
+                    ReqlinkType:2
+                };
+                $.getData({oSendData:oSend, fnSuccess:function(oData){
+                    T.readLocalMesg(['jyloginflag','logintype=1','UserName', 'IDType','IDNO'],function(oLocal){
+                        var oCache = {};
+                        oCache.UserName = oLocal.USERNAME;
+                        oCache.IDType = oLocal.IDTYPE;
+                        oCache.IDNO = oLocal.IDNO;
+                        var PUBLICK_KEY = oData.DYJR,MD5_KEY = oData.MD5KEY;
+                        if(oLocal.JYLOGINFLAG <=1){ //未登录
+                            var str = JSON.stringify({sn:'A02',from:'12',time:serverTime});
+                            var senddata = encryptRsa(PUBLICK_KEY,MD5_KEY,str);
+                            var url = 'https://xybk.rytong.com:38021/mobile?from=12&data=' + senddata.data + '&mac=' + senddata.mac;
+                            // console.log(url)
+                            T.fn.action10061({url:url});
+                        }else{  //已登录
+                            var str = JSON.stringify({sn:'A01',from:'12',certType:oCache.IDType,certNo:oCache.IDNO,custName: oCache.UserName,time:serverTime});
+                            var senddata = encryptRsa(PUBLICK_KEY,MD5_KEY,str);//处理rsa和md5key
+                            var url = 'https://xybk.rytong.com:38021/mobile?from=12&data=' + senddata.data + '&mac=' + senddata.mac;//打印测试环境地址
+                            // console.log(url)
+                            T.fn.action10061({url:url});
+                        }
+                    });
+                }});
+            }});  
+        }
+
+        function encryptRsa(publickkey,md5key,str){
+            // Encrypt with the public key...
+            var encrypt = new JSEncrypt();
+            encrypt.setPublicKey(publickkey);
+            var encrypted = encrypt.encrypt(str);//rsa加密
+            var data = encrypt.debase64(encrypted);//把base64转成16进制
+            var mac = md5('from12data' + data + md5key);
+            return {
+                data:data,
+                mac:mac
+            };
+        }
+    </script>
+</body>
+
+</html>

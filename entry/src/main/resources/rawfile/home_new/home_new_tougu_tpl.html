@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="./skin01/home_new_yh01.css">
+    <link rel="stylesheet" href="./css/home_new_tg.css">
+</head>
+
+<body>
+    <div class="tougu">
+        <div class="home_new-list">
+            <!-- 精彩直播 -->
+            <div class="jczb-wrapper">
+                <div class="tztui-list-title jr-title pad15">
+                    <div class="btm-line">
+                        <span class="title">精彩直播</span>
+                        <span class="more"><i class="right-arrow"></i></span>
+                    </div>
+                </div>
+                <div class="tougu-group jczb">
+                    <div class="skeleton skeleton-animated" style="height: 1.85rem;width: 1.55rem;"> </div>
+                    <div class="tougu-card-right" style="margin-left: .1rem;">
+                        <div class="skeleton skeleton-animated" style="height: .88rem;width: 1.5rem;"></div>
+                        <div class="skeleton skeleton-animated" style="height: .88rem;width: 1.5rem;margin-top: .02rem;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 精彩组合 -->
+            <div class="jczh-wrapper">
+                <div class="tztui-list-title jr-title pad15">
+                    <div class="btm-line">
+                        <span class="title">精彩组合</span>
+                        <span class="more"><i class="right-arrow"></i></span>
+                    </div>
+                </div>
+                <div class="swiper-container-jczh tougu-group jczh">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="skeleton skeleton-animated" style="height: 1.16rem;width: 1.55rem;"></div>
+                            <div class="skeleton skeleton-animated" style="height: 1.16rem;width: 1.45rem;margin-left: .1rem;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 金牌投顾 -->
+            <div class="jptg-wrapper">
+                <div class="tztui-list-title jr-title pad15">
+                    <div class="btm-line">
+                        <span class="title">金牌投顾</span>
+                        <span class="more"><i class="right-arrow"></i></span>
+                    </div>
+                </div>
+                <div class="swiper-container-jptg tougu-group jptg">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="skeleton skeleton-animated" style="height: 2.3rem;width: 1.5rem;"></div>
+                            <div class="skeleton skeleton-animated" style="height: 2.3rem;width: 1.5rem;margin-left: .1rem;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+            <!-- 热门问答 -->
+            <div class="rmwd-wrapper">
+                <div class="tztui-list-title jr-title pad15">
+                    <div class="btm-line">
+                        <span class="title">热门问答</span>
+                        <span class="more"><i class="right-arrow"></i></span>
+                    </div>
+                </div>
+                <div class="swiper-container-rmwd tougu-group rmwd">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="skeleton skeleton-animated" style="height: 1.8rem;width: 2.5rem;"></div>
+                            <div class="skeleton skeleton-animated" style="height: 1.8rem;width: 2.5rem;;margin-left: .1rem;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 热门观点 -->
+            <div class="rmgd-wrapper">
+                <div class="tztui-list-title jr-title pad15">
+                    <div class="btm-line">
+                        <span class="title">热门观点</span>
+                        <span class="more"><i class="right-arrow"></i></span>
+                    </div>
+                </div>
+                <div class="tougu-group rmgd">
+                    <div class="tougu-list">
+                        <div class="tougu-head">
+                        <span class="head-img">
+                            <img src="" alt="">
+                        </span>
+                            <span class="head-name"></span>
+                            <span class="head-desc"></span>
+                        </div>
+                        <div class="tougu-title">
+                            <span class="title-desc"></span>
+                            <span class="title-icon"></span>
+                        </div>
+                        <div class="tougu-content"></div>
+                        <div class="tougu-footer">
+                            <span class="footer-read"></span>
+                            <span class="footer-time"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./js/getSvgIcon.js"></script>
+<script src="/common/js/crab-utils.min.js"></script>
+<script>
+    // 精彩直播
+    getJCZB();
+    // 获取直播活动状态 0：新建，1：预告，2：即将开始，3：直播中，4：直播结束，5：已撤销
+    var activityStateName = {
+        '0': '新建',
+        '1': '预告中',
+        '2': '即将开始',
+        '3': '直播中',
+        '4': '回放',
+        '5': '已撤销'
+    }
+    // 获取投顾标签
+    var investLabelName = {
+        '1': '金牌投顾',
+        '2': '明星投顾',
+        '3': '投资顾问'
+    }
+    function getJCZB() {
+        $.getData({
+            oSendData:{
+                action:'49245',
+                method:'post',
+                dataType: "json",
+                funcNo: '11065001',
+                ReqlinkType:"2",
+                curPage: 1,
+                numPerPage: 3,
+                activity_state: '1,2,3,4',
+                exam_state: 2,
+                order_by_rule: 7
+            },
+            isload:false,
+            fnSuccess:function(data){
+                if(data && data.DATA){
+                    $('.jczb-wrapper').show();
+                    var oData = $.parseJSON($.parseJSON(data.DATA))[0].data;
+                    // console.log(oData);
+                    var itemHtml = '';
+                    var innerItemHtml = '';
+                    for(var i = 0; i < oData.length; i++) {
+                        var activityState = oData[i].activity_state, //直播活动状态
+                            onlineCount = oData[i].online_count, //在线人数
+                            appointment_count = oData[i].appointment_count, //在线人数
+                            totalPersonTime = oData[i].total_person_time, //围观人次
+                            investLabel = oData[i].invest_label, //投顾固定标签
+                            zb_user_name = oData[i].zb_user_name, //直播用户姓名
+                            zb_user_img = oData[i].zb_user_img ? oVal.tgJumpId + oData[i].zb_user_img : './images/defaultHeadIcon.png', //直播用户头像
+                            activity_id = oData[i].activity_id, //直播活动编号
+                            activity_name = oData[i].activity_name; //直播活动名称
+                        //1：预告，2：即将开始，3：直播中，4：直播结束
+                        if(activityState == '1') {
+                            var personNumInfo = (appointment_count ? appointment_count : 0) + '人预约';
+                            var statusClassName = 'status-yellow';
+                            var statusIconClassName = 'status-yg';
+                        }else if(activityState == '2') {
+                            var personNumInfo = (appointment_count ? appointment_count : 0) + '人预约';
+                            var statusClassName = 'status-blue';
+                            var statusIconClassName = 'status-jjks';
+                        } else if(activityState == '3') {
+                            var personNumInfo = (onlineCount ? onlineCount : 0) + '人正在观看';
+                            var statusClassName = 'status-red';
+                            var statusIconClassName = 'status-zbz';
+                        } else if(activityState == '4') {
+                            var personNumInfo = (totalPersonTime ? totalPersonTime : 0)  + '人围观过';
+                            var statusClassName = 'status-blue';
+                            var statusIconClassName = 'status-hf';
+                        } else {
+                            var statusClassName = '';
+                            var statusIconClassName = '';
+                        }
+
+                        if(investLabel == '1') {
+                            var gradeClassName = 'grade-yellow';
+                        } else if(investLabel == '2') {
+                            var gradeClassName = 'grade-blue';
+                        } else {
+                            var gradeClassName = '';
+                        }
+
+                        if(i === 0) {
+                            itemHtml += '<div class="tougu-card-left jczb-item border-1px" data-index="'+i+'" data-desc="'+ activity_name +'" data-id="'+activity_id+'" data-activityState="'+activityState+'">'+
+                                    '<div class="tougu-card-person-status">'+
+                                        '<span class="person-num">'+personNumInfo+'</span>'+
+                                        '<span class="status '+statusClassName+'"><i class="'+statusIconClassName+'"></i><em class="statusName">'+activityStateName[activityState]+'</em></span>'+
+                                    '</div>'+
+                                    '<div class="tougu-card-invest-info">'+
+                                        '<img src="'+zb_user_img+'" alt="">'+
+                                        '<div class="invest-grade">'+
+                                            '<div>'+zb_user_name+'</div>'+
+                                            '<div class="'+gradeClassName+'">'+getTGLabelSvgIcon(investLabel)+'<em>'+investLabelName[investLabel]+'</em></div>'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<div class="tougu-card-desc">'+activity_name+'</div>'+
+                                '</div>'
+                        } else {
+                            innerItemHtml += '<div class="tougu-card-simple jczb-item" data-index="' + i +'" data-desc="' + activity_name +'" data-id="'+activity_id+'" data-activityState="'+activityState+'">'+
+                                    '<div class="tougu-card-person-status">'+
+                                        '<span class="person-num">'+personNumInfo+'</span>'+
+                                        '<span class="status '+statusClassName+'"><i class="'+statusIconClassName+'"></i><em class="statusName">'+activityStateName[activityState]+'</em></span>'+
+                                    '</div>'+
+                                    '<div class="tougu-card-invest-info">'+
+                                        '<img src="'+zb_user_img+'" alt="">'+
+                                        '<div class="invest-grade">'+
+                                            '<div>'+zb_user_name+'</div>'+
+                                            '<div class="'+gradeClassName+'">'+getTGLabelSvgIcon(investLabel)+'<em>'+investLabelName[investLabel]+'</em></div>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'
+                        }    
+                    }
+                    $('.jczb').html(itemHtml+'<div class="tougu-card-right">'+innerItemHtml+'</div>');
+                    JCZBEvent();
+                } else {
+                    $('.jczb-wrapper').hide();
+                }
+                getJCZH();
+            },
+            oConfig:function(error){
+                $('.jczb-wrapper').hide();
+                getJCZH();
+            }
+        })
+    }
+    function JCZBEvent(){
+        // 精彩直播详情
+        $('.jczb-item').off().on('click',  function() {
+            var id = $(this).attr('data-id');
+            var desc = $(this).attr('data-desc');
+            var activityState = $(this).attr('data-activityState');
+            if(activityState == '1' || activityState == '2') {
+                var url = oVal.configData.TGLINK + '/m/app/#/liveSubscribePage?activity_id='+id+'&source_id=hzzz&&fullscreen=1';
+            } else {
+                var url = oVal.configData.TGLINK + '/m/app/#/liveRoom?activity_id='+id+'&source_id=hzzz&&fullscreen=1';
+            }
+            var index = $(this).attr('data-index')
+            // 首页栏位点击-股票组合
+            pageSensors.reportClick('mainPageColumnClick', {
+                column_type: '精彩直播',
+                column_name: desc,
+                column_no: index
+            })
+            
+            tgFunc(url);
+        });
+        // 精彩直播更多
+        $('.jczb-wrapper .more').off().on('click',  function() {
+            pageSensors.reportClick('mainPageColumnClick', {
+                column_type: '精彩直播',
+                column_name: '精彩直播-更多',
+                column_no: ''
+            })
+            T.fn.action10061({url:oVal.configData.TGLIVEMORE,'tzthiddentitle':'1','tztadjustnever':'1'});
+        })
+    }
+
+    // 精彩组合
+    function getJCZH() {
+        $.getData({
+            oSendData:{
+                action:'49245',
+                method:'post',
+                dataType: "json",
+                funcNo: '1106331',
+                ReqlinkType:"2",
+                orderType: 43,
+                sortOrder: 'desc',
+                curPage: 1,
+                numPerPage: 5,
+                is_recommend: 1
+            },
+            isload:false,
+            fnSuccess:function(data){
+                if(data && data.DATA){
+                    $('.jczh-wrapper').show();
+                    var oData = $.parseJSON($.parseJSON(data.DATA))[0].data;
+                    // console.log(oData)
+                    var itemHtml = '';
+                    for(var i = 0; i < oData.length; i++) {
+                        var portfolioName = oData[i].portfolio_name, //组合名
+                            portfolioId = oData[i].portfolio_id, //组合id
+                            recentYearYield = oData[i].recent_year_yield, //近一年收益率
+                            yearSuccessRate = oData[i].year_success_rate, //近一年选股胜率
+                            priceValue = oData[i].price_value, //金额
+                            chargeType = oData[i].charge_type, //收费类型 0前端 1后端
+                            buyNum = oData[i].buy_num; //订阅数
+                            if(Number(recentYearYield) > 0) {
+                                colorClassName = 'jczh-income-rate-red';
+                            } else {
+                                colorClassName = 'jczh-income-rate-green';
+                            }
+                            var colorClassNames = "",textName = "0元",textNames = "近1年选股胜率",yieldValue = yearSuccessRate,rateHtml = "免费订阅";
+                            if(chargeType == "0"){
+                                colorClassNames = "charge_state_yellow";
+                                textName = "收费";
+                                textNames = "近1年收益率";
+                                yieldValue = recentYearYield;
+                                rateHtml = priceValue+'</em>元/月';
+                            }else if(chargeType == "1"){
+                                colorClassNames = "charge_state_blue";
+                                textName = "0元";
+                                textNames = "近1年选股胜率";
+                                yieldValue = yearSuccessRate;
+                                rateHtml = "免费订阅</em>"
+                            }
+                            itemHtml += '<div class="swiper-slide" style="width:1.5rem">'+
+                                            '<div class="jczh-item border-1px" data-id="'+portfolioId+'" data-location="' + portfolioName +'">'+
+                                                '<span class="jczh-collection  '+colorClassNames+'">'+textName+'</span>'+
+                                                '<div class="jczh-name">'+portfolioName+'</div>'+
+                                                '<div class="jczh-income-rate-value '+colorClassName+'">'+(Number(yieldValue)*100).toFixed(2)+'%</div>'+
+                                                '<div class="jczh-income-rate-range">'+textNames+'</div>'+
+                                                '<div class="jczh-subscribe-pay">'+
+                                                    '<span class="pay"><em class="pay-value">'+rateHtml+'</span>'+
+                                                    '<span class="subscribe"><em class="subscribe-value">'+buyNum+'</em>人订阅</span>'+
+                                                '</div>'+
+                                            '</div>'+
+                                        '</div>'
+                    }
+                    $('.swiper-container-jczh .swiper-wrapper').html(itemHtml);
+                    oVal.swiperJCZH = new Swiper('.swiper-container-jczh', {
+                            //autoplay: 3000,//可选选项，自动滑动
+                            autoplayDisableOnInteraction : false,//用户操作swiper之后，是否禁止autoplay。默认为true：停止。
+                            observer:true,//图片加载失败会删除元素，需要更新swiper
+                            observerParents:true,
+                            slidesPerView: 'auto',
+                            spaceBetween: 10,
+                            slidesOffsetAfter : 5,
+                    });
+                    JCZHEvent();
+                } else {
+                    $('.jczh-wrapper').hide();
+                }
+                getJPTG();
+            },
+            oConfig:function(error){
+                $('.jczh-wrapper').hide();
+                getJPTG();
+            }
+        })
+    }
+    function JCZHEvent(){
+        // 精彩组合详情
+        $('.jczh-item').off().on('click',  function() {
+            var id = $(this).attr('data-id');
+            var url = oVal.configData.TGLINK + '/m/app/#/combineDetail?portfolio_id='+id+'&showAgreementFlag=false&source_id=hzzz&&fullscreen=1';
+            var location = $(this).attr('data-location')
+            // 首页栏位点击-股票组合
+            pageSensors.reportClick('mainPageColumnClick', {
+                column_type: '股票组合',
+                column_name: location,
+                column_no: $(this).index()
+            })
+            tgFunc(url);
+        })
+        // 精彩组合更多
+        $('.jczh-wrapper .more').off().on('click',  function() {
+            pageSensors.reportClick('mainPageColumnClick', {
+                column_type: '股票组合',
+                column_name: '股票组合-更多',
+                column_no: ''
+            })
+            T.fn.action10061({url:oVal.configData.TGCOMBINEMORE,'tzthiddentitle':'1','tztadjustnever':'1'});
+        })
+    }
+
+    // 金牌投顾
+    function getJPTG() {
+        $.getData({
+            oSendData:{
+                action:'49245',
+                method:'post',
+                dataType: "json",
+                funcNo: '1200382',
+                ReqlinkType:"2",
+                curPage: 1,
+                numPerPage: 3,
+            },
+            isload:false,
+            fnSuccess:function(data){
+                if(data && data.DATA){
+                    $('.jptg-wrapper').show();
+                    var oData = $.parseJSON($.parseJSON(data.DATA));
+                    // console.log(oData)
+                    var itemHtml = '';
+                    for(var i = 0; i < oData.length; i++) {
+                        var moduleId = oData[i].module_id, //模块ID
+                            moduleName = oData[i].module_name, //模块名称
+                            moduleState = oData[i].module_state, //模块状态
+                            investList = oData[i].invest && $.parseJSON(oData[i].invest); //投顾信息列表
+                            // console.log(investList)
+                            if(moduleName == '投顾人气榜') {
+                                var tipText = '';
+                            } else if(moduleName == '组合收益率榜') {
+                                var tipText = '近1年收益率';
+                            } else if(moduleName == '问答榜') {
+                                var tipText = '最火投顾';
+                            } else if(moduleName == '观点包热度榜') {
+                                var tipText = '累计阅读数';
+                            }
+                            var innerHtml = '';
+                            for(var j = 0; j < investList.length; j++) {
+                                var face_image_small = investList[j].face_image_small ? oVal.tgJumpId + investList[j].face_image_small : './images/defaultHeadIcon.png', //头像
+                                    user_name = investList[j].user_name; //姓名
+
+                                if(moduleName == '投顾人气榜') {
+                                    var className = '';
+                                    var infoValue = investList[j].popular_reason ? investList[j].popular_reason : '订阅数' + crabUtils.formatCurrency(Number(investList[j].buy_num),0); //订阅数
+                                    var id = investList[j].invest_id;
+                                } else if(moduleName == '组合收益率榜') {
+                                    var className = 'jptg-red';
+                                    var infoValue = Number(investList[j].recent_year_yield * 100).toFixed(2) + '%'; //收益率
+                                    var id = investList[j].invest_id;
+                                } else if(moduleName == '问答榜') {
+                                    var className = 'jptg-red';
+                                    var infoValue = crabUtils.formatCurrency(Number(investList[j].num),0) + '个'; //回答数
+                                    var id = investList[j].user_id;
+                                } else if(moduleName == '观点包热度榜') {
+                                    var className = 'jptg-red';
+                                    var infoValue = crabUtils.formatCurrency(Number(investList[j].read_num),0) + '次'; //阅读数
+                                    var id = investList[j].invest_id;
+                                }
+                                
+                                innerHtml += '<div class="info-item" data-id="'+id+'">'+
+                                                '<img src="'+ face_image_small +'" alt="">'+
+                                                '<div class="info-name">'+
+                                                    '<div class="name">'+user_name+'</div>'+
+                                                    '<div class="value '+className+'">'+infoValue+'</div>'+
+                                                '</div>'+
+                                            '</div>'
+                            }
+                            itemHtml += '<div class="swiper-slide" style="width:1.5rem">'+
+                                            '<div class="jptg-item border-1px">'+
+                                                '<div class="jptg-item-name" data-id="'+moduleId+'">'+moduleName+'</div>'+
+                                                '<div class="jptg-item-tip">'+tipText+'</div>'+
+                                                '<div class="jptg-person-info">'+
+                                                    innerHtml+
+                                                '</div>'+
+                                            '</div>'+
+                                        '</div>'
+                    }
+                    $('.swiper-container-jptg .swiper-wrapper').html(itemHtml);
+                    oVal.swiperJPTG = new Swiper('.swiper-container-jptg', {
+                        autoplayDisableOnInteraction : false,//用户操作swiper之后，是否禁止autoplay。默认为true：停止。
+                        observer:true,//图片加载失败会删除元素，需要更新swiper
+                        observerParents:true,
+                        slidesPerView: 'auto',
+                        spaceBetween: 10,
+                        slidesOffsetAfter : 5,
+                        // autoplay: true,
+                        // speed: 5000,
+                    });
+                    JPTGEvent();
+                } else {
+                    $('.jptg-wrapper').hide();
+                }
+                getRMWD();
+            },
+            oConfig:function(error){
+                $('.jptg-wrapper').hide();
+                getRMWD();
+            }
+        })
+    }
+    function JPTGEvent(){
+        // 金牌投顾详情页
+        $('.jptg-wrapper .info-item').off().on('click',  function() {
+            var id = $(this).attr('data-id');
+            var url = oVal.configData.TGLINK + '/m/app/#/discover/advisorDetail?invest_id='+id+'&source_id=hzzz&&fullscreen=1';
+            pageSensors.reportClick('mainPageColumnClick', {
+                column_type: '金牌投顾',
+                column_name: $(this).parents('.jptg-person-info').siblings('.jptg-item-name').text() + '点击',
+                column_no: $(this).index()
+            })
+            tgFunc(url);
+        })
+        // 金牌投顾观点包详情
+        $('.jptg-wrapper .jptg-item-name').off().on('click',  function() {
+            var id = $(this).attr('data-id');
+            var url = oVal.configData.TGLINK + '/m/app/#/discover/viewPackageDetail?viewpage_id='+id+'&source_id=hzzz&&fullscreen=1';
+            tgFunc(url);
+        })
+        // 金牌投顾更多
+        $('.jptg-wrapper .more').off().on('click',  function() {
+            pageSensors.reportClick('mainPageColumnClick', {
+                column_type: '金牌投顾',
+                column_name: '金牌投顾-更多',
+                column_no: ''
+            })
+            T.fn.action10061({url:oVal.configData.TGADVISORMORE,'tzthiddentitle':'1','tztadjustnever':'1'});
+        })
+    }
+
+    // 热门问答
+    function getRMWD() {
+        $.getData({
+            oSendData:{
+                action:'49245',
+                method:'post',
+                dataType: "json",
+                funcNo: '1106503',
+                ReqlinkType:"2",
+                cur_page: 1,
+                num_perPage: 3
+            },
+            isload:false,
+            fnSuccess:function(data){
+                if(data && data.DATA){
+                    $('.rmwd-wrapper').show();
+                    var oData = $.parseJSON($.parseJSON(data.DATA))[0].data;
+                    // console.log(oData)
+                    var itemHtml = '';
+                    for(var i = 0; i < oData.length; i++) {
+                        var quesContent = oData[i].ques_content, //问题内容
+                            askerId = oData[i].asker_id, //提问者ID
+                            askerName = oData[i].asker_name, //提问者姓名
+                            askerImage = oData[i].asker_image ? oVal.tgJumpId + oData[i].asker_image : './images/defaultHeadIcon.png', //提问者图像
+                            answererName = oData[i].answerer_name, //回答者姓名
+                            answererImage = oData[i].answerer_image ? oVal.tgJumpId + oData[i].answerer_image : './images/defaultHeadIcon.png', //回答者图片
+                            answererType = oData[i].answerer_type, //回答者类型（投顾、民间高手
+                            investLabel = oData[i].invest_label, //投顾固定标签
+                            ansContent = oData[i].ans_content, //回答内容
+                            answererId = oData[i].answerer_id, //回答者ID
+                            quesId = oData[i].ques_id; //回答id
+
+                        if(investLabel == '1') {
+                            var gradeClassName = 'grade-yellow';
+                        } else if(investLabel == '2') {
+                            var gradeClassName = 'grade-blue';
+                        } else {
+                            var gradeClassName = '';
+                        }
+                            
+                            itemHtml += '<div class="swiper-slide" style="width:2.5rem">'+
+                                            '<div class="rmwd-item border-1px" data-index="' + i + '" data-aid="'+answererId+'" data-qid="'+quesId+'">'+
+                                                '<div class="rmwd-questioner">'+
+                                                    '<img src="'+askerImage+'" alt="">'+
+                                                    '<div class="rmwd-item-content questioner">'+
+                                                        '<div>'+
+                                                            '<span class="questioner-name">'+askerName+'</span>'+
+                                                            '<span class="questioner-role">提问</span>'+
+                                                        '</div>'+
+                                                        '<div class="rmwd-content questioner-content"><p>'+quesContent+'</p></div>'+
+                                                    '</div>'+
+                                                '</div>'+
+                                                '<div class="rmwd-answerer">'+
+                                                    '<div class="rmwd-item-content answerer">'+
+                                                        '<div class="answerer-info">'+
+                                                            '<span class="answerer-name">'+answererName+'</span>'+
+                                                            '<span class="answerer-role">'+getTGLabelSvgIcon(investLabel)+'<em class="'+gradeClassName+'">'+investLabelName[investLabel]+'</em></span>'+
+                                                        '</div>'+
+                                                        '<div class="rmwd-content answerer-content"><p>该回答仅对提问者可见，详情请通过【投顾社区-我的-我的提问】查看。投资顾问回复仅供参考，投资有风险，需谨慎决策</p></div>'+
+                                                    '</div>'+
+                                                    '<img src="'+answererImage+'" alt="">'+
+                                                '</div>'+
+                                            '</div>'+
+                                        '</div>'
+                    }
+                    $('.swiper-container-rmwd .swiper-wrapper').html(itemHtml);
+                    oVal.swiperJPTG = new Swiper('.swiper-container-rmwd', {
+                        autoplayDisableOnInteraction : false,//用户操作swiper之后，是否禁止autoplay。默认为true：停止。
+                        observer:true,//图片加载失败会删除元素，需要更新swiper
+                        observerParents:true,
+                        slidesPerView: 'auto',
+                        spaceBetween: 10,
+                        slidesOffsetAfter : 5,
+                        // autoplay: true,
+                        // speed: 5000,
+                    });
+                    RMWDEvent();
+                } else {
+                    $('.rmwd-wrapper').hide();
+                }
+                getTGGD();
+            },
+            oConfig:function(error){
+                $('.rmwd-wrapper').hide();
+                getTGGD();
+            }
+        })
+    }
+    function RMWDEvent(){
+        // 热门问答详情
+        $('.rmwd-wrapper .rmwd-item').off().on('click',  function() {
+            var qid = $(this).attr('data-qid');
+            var aid = $(this).attr('data-aid');
+            var index = $(this).data('index');
+            var url = oVal.configData.TGLINK + '/m/app/#/questionDetail?ansId='+aid+'&quesId='+qid+'&source_id=hzzz&&fullscreen=1';
+
+            pageSensors.reportClick('mainPageColumnClick', {
+                column_type: '热门问答',
+                column_name: '热门问答点击',
+                column_no: index
+            })
+
+            tgFunc(url);
+        })
+        // 热门问答更多
+        $('.rmwd-wrapper .more').off().on('click',  function() {
+            pageSensors.reportClick('mainPageColumnClick', {
+                column_type: '热门问答',
+                column_name: '热门问答-更多',
+                column_no: ''
+            });
+             T.fn.action10061({url:oVal.configData.TGQUESTIONMORE,'tzthiddentitle':'1','tztadjustnever':'1'});
+        })
+    }
+
+    // 热门观点
+    oVal.tgPageNum = 1;
+    function getTGGD() {
+        $.getData({
+            oSendData:{
+                action:'49245',
+                ReqlinkType:"2",
+                funcNo: '1106403',
+                cur_page: oVal.tgPageNum,
+                num_per_page: "5",
+                dataType: "json",
+                method:'post',
+                order_type: 2
+            },
+            isload:false,
+            fnSuccess:function(data){
+                if(data) {
+                    if(data.DATA){
+                        $('.rmgd-wrapper').show();
+                        var oData = $.parseJSON($.parseJSON(data.DATA));
+                        oData = oData[0].data;
+                        // console.log(oData);
+                        var itemHtml = '';
+                        for(var i = 0; i < oData.length; i++) {
+                            var face_image_small = oData[i].face_image_small ? oVal.tgJumpId + oData[i].face_image_small : './images/defaultHeadIcon.png',
+                                invest_id = oData[i].invest_id,
+                                view_id = oData[i].view_id,
+                                introdution = oData[i].introdution,
+                                read_num = oData[i].read_num,
+                                title = oData[i].title,
+                                view_type = oData[i].view_type,
+                                invest_label = oData[i].invest_label,//1=金牌投顾，2=明星投顾，3=投资顾问
+                                create_time = oData[i].create_time,
+                                is_pay = oData[i].is_pay,//是否付费
+                                comment_num = oData[i].comment_num,//评论
+                                praise_num = oData[i].praise_num,//点赞数
+                                invest_name = oData[i].invest_name;
+                            create_time = dateStrTG(create_time);
+                            var className = "";
+                            if(invest_label == "1"){
+                                invest_label = "金牌投顾";
+                                className = "tougu-jp"
+                            }else if(invest_label == "2"){
+                                invest_label = "明星投顾";
+                                className = "tougu-mx"
+                            }else if(invest_label == "3"){
+                                invest_label = "投资顾问";
+                            }else{
+                                invest_label = "";
+                            }
+                            var payHtml = "";
+                            if(is_pay == "1"){
+                                payHtml = "<em>付费</em>";
+                            }
+                            itemHtml += '<div class="tougu-list" data-index="'+i+'" data-id="'+ view_id +'">\n' +
+                                '                <div class="tougu-head">\n' +
+                                '                <span class="head-img">\n' +
+                                '                    <img src="'+ face_image_small +'" alt="">\n' +
+                                '                </span>\n' +
+                                '                    <span class="head-name">'+ invest_name +'</span>\n' +
+                                '                    <span class="head-desc '+ className +'"><em>'+ invest_label +'</em></span>\n' +
+                                '                </div>\n' +
+                                '                <div class="tougu-title">\n' +
+                                '                    <span class="title-desc">'+ title + payHtml +'</span>\n' +
+                                '                    <span class="title-icon"></span>\n' +
+                                '                </div>\n' +
+                                '                <div class="tougu-content"><p>'+ introdution +'</p></div>\n' +
+                                '                <div class="tougu-footer">\n' +
+                                                    '<div>'+
+                                    '                    <span class="footer-read">'+ read_num +'人阅读</span>\n' +
+                                    '                    <span class="footer-time">'+ create_time +'</span>\n' +
+                                                    '</div>\n' +
+                                                    '<div class="footer-chat-praise">'+
+                                    '                    <span class="footer-chat"><i class="chat-icon"></i>'+ comment_num +'</span>\n' +
+                                    '                    <span class="footer-praise"><i class="praise-icon"></i>'+ praise_num +'</span>\n' +
+                                                    '</div>\n' +
+                                '                </div>\n' +
+                                '            </div>'
+                        }
+
+                        if(oVal.tgPageNum == 1){
+                            $(".rmgd").html(itemHtml);
+                        }else{
+                            $(".rmgd").append(itemHtml);
+                        }
+                        oVal.loadTGFlag = true;
+                        TGGDEvent();
+                    }else{
+                        if(oVal.tgPageNum == 1){
+                            $('.rmgd-wrapper').hide();
+                        }
+                    }
+                }else{
+                    if(oVal.tgPageNum == 1){
+                        $('.rmgd-wrapper').hide();
+                    }
+                }
+            },oConfig:function(error){
+                if(oVal.tgPageNum == 1){
+                    $('.rmgd-wrapper').hide();
+                }
+            }});
+    }
+    function TGGDEvent(){
+        //热门观点详情
+        $('.rmgd .tougu-list').off().on('click',  function() {
+            var id = $(this).attr('data-id');
+            var url = oVal.configData.TGLINK + '/m/app/#/viewDetail?view_id=' + id+'&source_id=hzzz&&fullscreen=1';
+            var index = $(this).data('index');
+
+            pageSensors.reportClick('mainPageColumnClick', {
+                column_type: '热门观点',
+                column_name: '热门观点点击',
+                column_no: index
+            })
+            tgFunc(url);
+        })
+        //热门观点更多
+        $('.rmgd-wrapper .more').off().on('click',  function() {
+            pageSensors.reportClick('mainPageColumnClick', {
+                column_type: '热门观点',
+                column_name: '热门观点-更多',
+                column_no: ''
+            })
+            T.fn.action10061({url:oVal.configData.TGVIEWPOINTMORE,'tzthiddentitle':'1','tztadjustnever':'1'});
+        })
+    }
+    function tgFunc(url){
+        T.readLocalMesg(['jyloginflag','logintype=1','MOBILECODE','usercode'],function(oLocal){
+            var MOBILECODE=oLocal.MOBILECODE;
+            var USERCODE=oLocal.USERCODE;
+            if(MOBILECODE=='' || !MOBILECODE||MOBILECODE=='null'){
+                //console.log(url);
+                T.fn.action10061({url:url,'tzthiddentitle':'1','tztadjustnever':'1'});
+            }else{
+                if(oLocal.JYLOGINFLAG <=1){ //未登录
+                    var oSend = {
+                        action:'5',
+                        needToken:'0'
+                    }
+                    $.getData({oSendData:oSend,isToken:false ,fnSuccess:function(oTime){
+                            var serverTime = oTime.TIME;
+                            var oSend = {
+                                action:'46200',
+                                ReqlinkType:2,
+                            };
+                            $.getData({oSendData:oSend, fnSuccess:function(oData){
+                                    var PUBLICK_KEY = oData.TG,MD5_KEY = oData.HSSTRING;
+                                    var str = JSON.stringify({mobile:MOBILECODE,from:'sidi',time:serverTime});
+                                    //处理rsa和md5key
+                                    var senddata = encryptRsaTg(PUBLICK_KEY,MD5_KEY,str);
+                                    var oUrl = url+ '&data='+ encodeURIComponent(senddata.data);
+                                    if (T.appversion.andriod()) {
+                                        T.fn.action10061({url:url+'&data=' +encodeURIComponent(encodeURIComponent(senddata.data)),'tzthiddentitle':'1','tztadjustnever':'1'});
+                                    } else {
+                                        T.fn.action10061({url:oUrl,'tzthiddentitle':'1','tztadjustnever':'1'});
+                                    }
+                                }});
+                        }});
+                }else{
+                    var oSend = {
+                        action:'5',
+                        needToken:'0'
+                    }
+                    $.getData({oSendData:oSend,isToken:false ,fnSuccess:function(oTime){
+                            var serverTime = oTime.TIME;
+                            if(oLocal.JYLOGINFLAG <=1){ //未登录
+                                T.fn.action10061({url:url,'tzthiddentitle':'1','tztadjustnever':'1'});
+                            }else{
+                            var oSendData = {
+                                action:6771,
+                                ReqlinkType:'1'
+                            }
+                            $.getData({oSendData:oSendData, fnSuccess:function(reg){
+                                    var SERVTICKET_ID = reg.SERVTICKET_ID;
+                                    var oSend = {
+                                        action:'46200',
+                                        ReqlinkType:2,
+                                    };
+                                    $.getData({oSendData:oSend, fnSuccess:function(oData){
+                                            var PUBLICK_KEY = oData.TG,MD5_KEY = oData.HSSTRING;
+                                            var str = JSON.stringify({token:SERVTICKET_ID,mobile:MOBILECODE,client_id:USERCODE,from:'sidi',time:serverTime});
+                                            //处理rsa和md5key
+                                            var senddata = encryptRsaTg(PUBLICK_KEY,MD5_KEY,str);
+                                            var oUrl = url+ '&data='+ senddata.data;
+                                            if (T.appversion.andriod()) {
+                                                T.fn.action10061({url:url+'&data=' +encodeURIComponent(encodeURIComponent(senddata.data)),'tzthiddentitle':'1','tztadjustnever':'1'});
+                                            } else {
+                                                T.fn.action10061({url:oUrl,'tzthiddentitle':'1','tztadjustnever':'1'});
+                                            }
+                                        }});
+                                }});
+                            }
+                        }});
+                }
+            }
+        });
+    }
+    oVal.loadTGFlag = true;
+
+    function formatDate(timestamp) {
+        var date = new Date(timestamp*1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+        var Y = date.getFullYear(),
+            M = (date.getMonth()+1 < 10 ? (date.getMonth()+1) : date.getMonth()+1),
+            D = date.getDate(),
+            h = date.getHours(),
+            m = date.getMinutes(),
+            s = date.getSeconds();
+        M = M < 10 ? "0"+ M : M;
+        D = D < 10 ? "0"+ D : D;
+        h = h < 10 ? "0"+ h : h;
+        m = m < 10 ? "0"+ m : m;
+        s = s < 10 ? "0"+ s : s;
+        return Y+"-"+M+"-"+D+" "+h+":"+m+":"+s;
+    }
+    
+    function isToday(str){
+        return (new Date().toDateString() === new Date(str.replace(/-/g,'/')).toDateString());  //ios中时间转换new Date()不兼容横杆'-'问题，转为斜杠‘/’
+    }
+    Date.prototype.format = function(fmt) {
+        var o = {
+            "M+" : this.getMonth()+1,                 //月份
+            "d+" : this.getDate(),                    //日
+            "h+" : this.getHours(),                   //小时
+            "m+" : this.getMinutes(),                 //分
+            "s+" : this.getSeconds(),                 //秒
+            "q+" : Math.floor((this.getMonth()+3)/3), //季度
+            "S"  : this.getMilliseconds()             //毫秒
+        };
+        if(/(y+)/.test(fmt)) {
+            fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+        }
+        for(var k in o) {
+            if(new RegExp("("+ k +")").test(fmt)){
+                fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+            }
+        }
+        return fmt;
+    }
+    function dateStrTG(date){
+        var nowDate = new Date();
+        var time=nowDate.getTime();
+        var nowyear = nowDate.getFullYear();
+        var year = date.substr(0,4);
+        var month = Number(date.substr(5,2));
+        var day = Number(date.substr(8,2));
+        var hour = Number(date.substr(11,2));
+        var minute = Number(date.substr(14,2));
+        var second = Number(date.substr(17,2));
+        var newDate = new Date(year,month-1,day,hour,minute,second).getTime();
+        time=parseInt((time-newDate)/1000);
+        var s;
+        if(time<60*5){//五分钟内
+            return '刚刚';
+        }else if((time<60*60)&&(time>=60*5)){//超过十分钟少于1小时
+            s = Math.floor(time/60);
+            return  s+"分钟前";
+        }else if((time<60*60*24)&&(time>=60*60)){ //超过1小时少于24小时
+            s = Math.floor(time/60/60);
+            return  s+"小时前";
+        }else if((time<60*60*24*3)&&(time>=60*60*24)){ //超过1天少于3天内
+            s = Math.floor(time/60/60/24);
+            return s+"天前";
+        }else{ //超过3天
+            return date
+            /*if (year == nowyear) {
+                return date.substr(5,5);
+            }else{
+                return date.split(" ")[0];
+            }*/
+        }
+    }
+
+    $(".page-wrapper").off("scroll").scroll(function(){
+        //控制首页顶部显示，与客户端交互
+        reqrolloffset();
+
+        var scrollTop = $(".page-wrapper").scrollTop();
+        var headerHeight = $(".header").height();
+        var scrollHeight = $(".more-page").height() + headerHeight;//总高度
+        var screenHeight = $("body").height();//屏幕高度
+        // console.log("推荐页--",scrollHeight,(scrollTop + screenHeight*2));
+        var appHeight = $(".app-header").height();
+        if (commonFunction.compareVersion(oVal.currVersion, oVal.limitedVersion)) {
+            appHeight = 0;
+        }
+        if(scrollTop >= (headerHeight - appHeight)){
+            $(".nav-group").addClass("nav-group-fixed");
+            if(appHeight != "0"){
+                $(".nav-group").css("top",appHeight + "px")
+                $('.title-bar').css({'display':'block','position': 'fixed','height':appHeight + "px",'width':'100%',"top":"0px",'z-index':'2'})
+            }
+        }else{
+            $(".nav-group").removeClass("nav-group-fixed");
+            if(appHeight != "0"){
+                $(".nav-group").css("top","inherit")
+                $('.title-bar').css({'display':'none','position': 'relative','height':"0px"})
+            }
+        }
+        if(scrollTop + screenHeight*2 >= scrollHeight){
+            if(oVal.loadYWFlag && oVal.ywNextPage){
+                console.log("加载数据");
+                console.log("oVal.configData.THS_MZ_KEY",oVal.configData.THS_MZ_KEY);
+
+            }
+        }
+    });
+</script>
+</html>

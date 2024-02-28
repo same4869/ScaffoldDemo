@@ -9,7 +9,7 @@ import { BaseWebComponent } from '../components/web/BaseWebComponent'
 export struct HomePage {
   build() {
     Stack() {
-      BaseWebComponent({ src: $rawfile('JSBridgeUnitTest.html') })
+      BaseWebComponent({ src: $rawfile('home_new/explore_home_index.html') })
     }.height("100%").width("100%")
   }
 }

@@ -11,6 +11,8 @@ export default struct UpdownsBarWidget {
     this.upCount = 40
     this.flatCount = 50
     this.downCount = 50
+
+    this.context.restore()
   }
 
   build() {
@@ -234,6 +236,8 @@ export default struct UpdownsBarWidget {
 
     // 平盘家数水平条左上角小圆弧的中心点
     flatPath.arc(flatStartX, layerRadius * 0.5, layerRadius * 0.5, 180, 3 * 90, false)
+    flatPath.closePath()
+
     this.context.beginPath()
     this.context.fillStyle = '#999999'
     this.context.fill(flatPath)
@@ -251,6 +255,8 @@ export default struct UpdownsBarWidget {
     downPath.lineTo(downStartX - layerRadius, layerHeight - layerRadius * 0.5)
     // 下跌家数水平条左上角小圆弧的中心点
     downPath.arc(downStartX, layerRadius * 0.5, layerRadius * 0.5, 180, 3 * 90, false)
+    downPath.closePath()
+
     this.context.beginPath()
     this.context.fillStyle = '#10A361'
     this.context.fill(downPath)

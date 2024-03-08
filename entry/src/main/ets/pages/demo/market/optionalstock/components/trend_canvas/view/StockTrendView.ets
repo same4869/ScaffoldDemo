@@ -11,8 +11,8 @@ export struct StockTrendView {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private path2Db: Path2D = new Path2D()
-  @Prop canvasWidth: number = 6 // 画布的宽度
-  @Prop canvasHeight: number = 4 // 画布的高度
+  @Prop canvasWidth: number = 75 // 画布的宽度
+  @Prop canvasHeight: number = 60 // 画布的高度
   private yWidth = 0 // y轴的文字宽度
   private xHeight = 0 // X轴的文字高度
   private points: Point[] = [] // 原始数量大小
@@ -141,16 +141,14 @@ export struct StockTrendView {
           .onAreaChange((oldValue: Area, newValue: Area) => {
             this.canvasWidth = newValue.width as number
             this.canvasHeight = newValue.height as number
-
+          })
+          .onReady(() => {
             this.context.clearRect(0, 0, this.canvasWidth, this.canvasWidth)
             this.computePointsData()
             this.drawGrid()
             this.drawLine()
 
             this.drawArea()
-          })
-          .onReady(() => {
-            // this.context.clearRect(0, 0, this.canvasWidth, this.canvasWidth)
           })
           .onTouch((e: TouchEvent) => {
 

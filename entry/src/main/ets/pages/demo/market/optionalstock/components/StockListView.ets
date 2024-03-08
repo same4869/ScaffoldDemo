@@ -16,7 +16,6 @@ const listData: StockCellModelItem[] = createListRange()
 export default struct StockListView {
   private leftScroller: Scroller = new Scroller()
   private rightScroller: Scroller = new Scroller()
-  private flag = true
 
   aboutToAppear() {
 
@@ -36,11 +35,8 @@ export default struct StockListView {
           }
         })
       }
-      .onTouch(() => this.flag = true)
       .onScrollFrameBegin((offset: number) => {
-        if (this.flag) {
           this.rightScroller.scrollBy(0, offset)
-        }
         return { offsetRemain: offset };
       })
       .scrollBar(BarState.Off)
@@ -66,11 +62,9 @@ export default struct StockListView {
             }
           })
         }
-        .onTouch(() => this.flag = false)
         .onScrollFrameBegin((offset: number) => {
-          if (!this.flag) {
             this.leftScroller.scrollBy(0, offset)
-          }
+
           return { offsetRemain: offset };
         })
         .width(525)

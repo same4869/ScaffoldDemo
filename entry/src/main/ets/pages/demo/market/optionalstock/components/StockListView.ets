@@ -10,79 +10,73 @@ let vm: OptionalStockViewModel = new OptionalStockViewModel()
 
 @Component
 export default struct StockListView {
-  private scrollList: Array<Scroller> = []
-  @State scrollIndex: number = -1
+  private leftScroller: Scroller = new Scroller()
+  private rightScroller: Scroller = new Scroller()
+  private flag = true
 
-  async aboutToAppear() {
-    vm.opTestDataList.forEach((item) => {
-      this.scrollList.push(new Scroller())
-    })
-    MLog.debug(`>>>>>>>>${this.scrollList.length}`)
+  aboutToAppear() {
+
   }
 
   build() {
-    Column() {
-      List() {
-        ForEach(vm.opTestDataList, (item: OpListDataBean, index) => {
+    Row() {
+      List({scroller: this.leftScroller}) {
+        ForEach(vm.opTestDataList, (item: OpListDataBean) => {
           ListItem() {
-            Row() {
-              Column() {
-                Text(item.stockName).width(80).textAlign(TextAlign.Center)
-                Text(item.stockCode).width(80).textAlign(TextAlign.Center).fontColor(Color.Gray)
-              }
-
-              Scroll(this.scrollList[index]) {
-                Row() {
-                  Text(item.newPrice).width(75).textAlign(TextAlign.Center).fontColor(Color.Red)
-                  Text(item.priceRange).width(75).textAlign(TextAlign.Center).fontColor(Color.Red)
-                  Text(`第三列`).width(75).textAlign(TextAlign.Center).fontColor(Color.Green)
-                  Text(`第四列`).width(75).textAlign(TextAlign.Center)
-                  Text(`第五列`).width(75).textAlign(TextAlign.Center).fontColor(Color.Green)
-                  Text(`第六列`).width(75).textAlign(TextAlign.Center)
-                  Text(`第七列`).width(75).textAlign(TextAlign.Center)
-                }
-                .height(60)
-              }
-              .scrollBar(BarState.Off)
-              .flexShrink(1)
-              .flexGrow(1)
-              // .scrollable((this.scrollIndex == -1 || this.scrollIndex == index) ? ScrollDirection.Horizontal : ScrollDirection.None)
-              .scrollable(ScrollDirection.Horizontal)
-              .onScrollStart(() => {
-                // if (this.scrollIndex != -1) {
-                //   LogUtils.debug(`滚动的条目${this.scrollIndex}>>>>>>${index}`)
-                //   return
-                // }
-                this.scrollIndex = index
-              })
-              .onScrollStop(() => {
-                MLog.debug(`停止滚动的条目${this.scrollIndex}>>>>>>${index}`)
-                if (this.scrollIndex == index) {
-                  this.scrollIndex = -1
-                }
-              })
-              .onScroll((xOffset, yOffset) => {
-                MLog.debug(`滚动的条目${this.scrollIndex} index：${index} scrollIndex:${this.scrollIndex}`)
-                if (index == this.scrollIndex) {
-                  this.scrollList.forEach((scroller, Index) => {
-                    if (index != Index) {
-                      scroller.scrollBy(xOffset, 0)
-                    }
-                    MLog.debug(`>>>>>>>>${xOffset}`)
-                  })
-                }
-              })
+            Column() {
+              Text(item.stockName).width('100%')
+              Text(item.stockCode).width('100%').fontColor(Color.Gray)
             }
-            .width("100%")
             .height(60)
+            .justifyContent(FlexAlign.SpaceEvenly)
           }
         })
       }
+      .onTouch(() => this.flag = true)
+      .onScrollFrameBegin((offset: number) => {
+        if (this.flag) {
+          this.rightScroller.scrollBy(0, offset)
+        }
+        return { offsetRemain: offset };
+      })
       .scrollBar(BarState.Off)
-      .width('100%')
-      .height("100%")
-      .cachedCount(100)
-      .flexGrow(1)
+      .edgeEffect(EdgeEffect.None)
+      .width(130)
+      .height('100%')
+
+      Scroll() {
+        List({scroller: this.rightScroller}) {
+          ForEach(vm.opTestDataList, (item: OpListDataBean) => {
+            ListItem() {
+              Row() {
+                Text(item.newPrice).width(75).textAlign(TextAlign.Center).fontColor(Color.Red)
+                Text(item.priceRange).width(75).textAlign(TextAlign.Center).fontColor(Color.Red)
+                Text(`第三列`).width(75).textAlign(TextAlign.Center).fontColor(Color.Green)
+                Text(`第四列`).width(75).textAlign(TextAlign.Center)
+                Text(`第五列`).width(75).textAlign(TextAlign.Center).fontColor(Color.Green)
+                Text(`第六列`).width(75).textAlign(TextAlign.Center)
+                Text(`第七列`).width(75).textAlign(TextAlign.Center)
+              }
+              .height(60)
+            }
+          })
+        }
+        .onTouch(() => this.flag = false)
+        .onScrollFrameBegin((offset: number) => {
+          if (!this.flag) {
+            this.leftScroller.scrollBy(0, offset)
+          }
+          return { offsetRemain: offset };
+        })
+        .width(525)
+        .height('100%')
+        .scrollBar(BarState.Off)
+        .edgeEffect(EdgeEffect.None)
+      }
+      .scrollBar(BarState.Off)
+      .layoutWeight(1)
+      .scrollable(ScrollDirection.Horizontal)
+      .height('100%')
     }
     .width("100%")
     .height("100%")

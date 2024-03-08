@@ -8,6 +8,7 @@ import { OpListDataBean, OptionalStockViewModel } from '../viewmodel/OptionalSto
 import { StockTrendView } from './trend_canvas/view/StockTrendView'
 import { createListRange } from './trend_canvas/viewmodel/ListDataSource'
 import { stocksInitialList, StockDataItem, StockCellModelItem } from './trend_canvas/viewmodel/InitialData'
+import OptionalListLeftItem from './OptionalListLeftItem'
 
 let vm: OptionalStockViewModel = new OptionalStockViewModel()
 const listData: StockCellModelItem[] = createListRange()
@@ -26,12 +27,9 @@ export default struct StockListView {
       List({scroller: this.leftScroller}) {
         ForEach(listData, (item: StockCellModelItem) => {
           ListItem() {
-            Column() {
-              Text(item.quoteData.stockName).width('100%')
-              Text(item.quoteData.stockCode).width('100%').fontColor(Color.Gray)
-            }
-            .height(60)
-            .justifyContent(FlexAlign.SpaceEvenly)
+            OptionalListLeftItem({item: item})
+              .width('100%')
+              .height(60)
           }
         })
       }

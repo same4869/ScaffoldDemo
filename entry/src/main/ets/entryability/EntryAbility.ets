@@ -4,10 +4,21 @@ import hilog from '@ohos.hilog';
 import window from '@ohos.window';
 import util from '@ohos.util';
 import { ListResponse } from '../pages/demo/market/optionalstock/components/trend_canvas/model/ResponseModel';
+import ShareTrendUtil from '../pages/demo/market/optionalstock/components/trend_canvas/model/ShareTrendUtil';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+
+    // 分时数据测试
+    let files = this.context.resourceManager.getRawFileListSync("") // 返回rawfile资源列表
+    let trendDataArr: Uint8Array = this.context.resourceManager.getRawFileContentSync("trend_data.json")
+
+    let textDecoder = util.TextDecoder.create("utf-8",{ignoreBOM: true});
+    let retStr = textDecoder.decodeWithStream(trendDataArr, {stream: false});
+
+    let jsonModel: ListResponse = JSON.parse(retStr)
+    ShareTrendUtil.getInstance().ayContents = jsonModel.ayContents
   }
 
   onDestroy() {
@@ -25,15 +36,6 @@ export default class EntryAbility extends UIAbility {
       }
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
     });
-    let files = this.context.resourceManager.getRawFileListSync("") // 返回rawfile资源列表
-    let trendDataArr: Uint8Array = this.context.resourceManager.getRawFileContentSync("trend_data.json")
-
-    let textDecoder = util.TextDecoder.create("utf-8",{ignoreBOM: true});
-    let retStr = textDecoder.decodeWithStream(trendDataArr, {stream: false});
-
-    let rawJson: Record<string, Object> = JSON.parse(retStr)
-    let jsonModel: ListResponse = JSON.parse(retStr)
-    globalThis.trendListItemModel = jsonModel.ayContents
   }
 
   onWindowStageDestroy() {

@@ -1,13 +1,13 @@
 import { stocksInitialList, StockDataItem, StockCellModelItem } from './InitialData';
 
 import {ListItem, TrendPriceItemList} from '../model/ResponseModel';
+import ShareTrendUtil from '../model/ShareTrendUtil';
 
 /**
  * create a List range
  */
 export const createListRange = (): StockCellModelItem[] => {
-  console.log(globalThis.trendListItemModel.length.toString())
-  let primitiveArr: ListItem[] = globalThis.trendListItemModel
+  let primitiveArr: ListItem[] = ShareTrendUtil.getInstance().ayContents!
 
   let result: StockCellModelItem[] = primitiveArr.map((item) => {
     let trendList:TrendPriceItemList = TrendPriceItemList.parseTrendPriceBytes(

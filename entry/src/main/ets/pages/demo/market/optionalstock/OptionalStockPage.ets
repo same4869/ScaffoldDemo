@@ -28,6 +28,7 @@ export struct OptionalStockPage {
         .margin({ top: 10 })
         .backgroundColor(0xFFFFFF)
         .borderRadius(10)
+        .layoutWeight(1)
     }
     .width('100%')
     .height('100%')

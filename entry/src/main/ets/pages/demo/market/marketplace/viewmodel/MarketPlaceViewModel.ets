@@ -4,35 +4,35 @@ export class MarketPlaceViewModel {
    */
   marketTabList: MarketTabBean[] = [
     {
-      name: "沪深京",
+      name: "tab标题1",
       value: 10
     },
     {
-      name: "板块",
+      name: "tab标题2",
       value: 20
     },
     {
-      name: "科创板",
+      name: "tab标题3",
       value: 30
     },
     {
-      name: "创业板",
+      name: "tab标题4",
       value: 40
     },
     {
-      name: "新三板",
+      name: "tab标题5",
       value: 50
     },
     {
-      name: "港股",
+      name: "tab标题6",
       value: 60
     },
     {
-      name: "全球",
+      name: "tab标题7",
       value: 70
     },
     {
-      name: "更多",
+      name: "tab标题8",
       value: 80
     }
   ]

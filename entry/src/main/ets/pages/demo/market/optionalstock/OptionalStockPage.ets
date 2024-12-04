@@ -1,8 +1,4 @@
-/**
- @author: XWANG
- @date: 2024/2/2
- @description: 自选股首页
- */
+
 import StockListView from './components/StockListView'
 import StockIndexInfo from './stocklist/StockIndexInfo'
 import StockIndexTop from './stocklist/StockIndexTop'

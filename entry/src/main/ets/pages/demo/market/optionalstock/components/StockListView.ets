@@ -5,13 +5,9 @@ import { MLog } from '@app/commlib'
  @description: 自选股首页，联动滑动的列表
  */
 import { OpListDataBean, OptionalStockViewModel } from '../viewmodel/OptionalStockViewModel'
-import { StockTrendView } from './trend_canvas/view/StockTrendView'
-import { createListRange } from './trend_canvas/viewmodel/ListDataSource'
-import { stocksInitialList, StockDataItem, StockCellModelItem } from './trend_canvas/viewmodel/InitialData'
 import OptionalListLeftItem from './OptionalListLeftItem'
 
 let vm: OptionalStockViewModel = new OptionalStockViewModel()
-const listData: StockCellModelItem[] = createListRange()
 
 @Component
 export default struct StockListView {
@@ -25,9 +21,9 @@ export default struct StockListView {
   build() {
     Row() {
       List({scroller: this.leftScroller}) {
-        ForEach(listData, (item: StockCellModelItem) => {
+        ForEach(new OptionalStockViewModel().opTestDataList, (item: OpListDataBean) => {
           ListItem() {
-            OptionalListLeftItem({item: item})
+            OptionalListLeftItem()
               .width('100%')
               .height(60)
           }
@@ -44,12 +40,11 @@ export default struct StockListView {
 
       Scroll() {
         List({scroller: this.rightScroller}) {
-          ForEach(listData, (item: StockCellModelItem) => {
+          ForEach(new OptionalStockViewModel().opTestDataList, (item: OpListDataBean) => {
             ListItem() {
               Row() {
-                StockTrendView({ data:item.trendListModel }).width(75)
-                Text(item.quoteData.price).width(75).textAlign(TextAlign.Center).fontColor(Color.Red)
-                Text(item.quoteData.range).width(75).textAlign(TextAlign.Center).fontColor(Color.Red)
+                Text(item.newPrice).width(75).textAlign(TextAlign.Center).fontColor(Color.Red)
+                Text(item.priceRange).width(75).textAlign(TextAlign.Center).fontColor(Color.Red)
                 Text(`第三列`).width(75).textAlign(TextAlign.Center).fontColor(Color.Green)
                 Text(`第四列`).width(75).textAlign(TextAlign.Center)
                 Text(`第五列`).width(75).textAlign(TextAlign.Center).fontColor(Color.Green)

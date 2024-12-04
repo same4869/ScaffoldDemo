@@ -1,14 +1,9 @@
-/**
- @author: XWANG
- @date: 2024/2/3
- @description: 市场-创业板
- */
 
 @Component
 export struct MarketGemPage {
   build() {
     Column(){
-      Text("创业板").fontSize(15)
+      Text("标题棕色").fontSize(15)
         .height(50)
         .fontWeight(500)
         .textAlign(TextAlign.Center)

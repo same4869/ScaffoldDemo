@@ -1,8 +1,4 @@
-/**
- @author: XWANG
- @date: 2024/1/11
- @description: 市场-沪深京首页
- */
+
 import { MarketChartComp } from './components/MarketChartComp'
 import { TopIndexCardComp } from './components/TopIndexCardComp'
 
@@ -10,10 +6,6 @@ import { TopIndexCardComp } from './components/TopIndexCardComp'
 export struct MarketHuShenJingPage {
   build() {
     Column() {
-      //   Text("沪深京").fontSize(15)
-      //     .height(50)
-      //     .fontWeight(500)
-      //     .textAlign(TextAlign.Center)
       Scroll() {
         Row({ space: 10 }) {
           TopIndexCardComp()

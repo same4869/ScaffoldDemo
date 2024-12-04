@@ -4,11 +4,11 @@ import UpdownsBarWidget from '../painter/UpdownsBarWidget'
 export default struct StockHandicap {
   build() {
     Column({space: 8}) {
-      this.StockHandicapItem('成交额', '2905.97亿')
-      this.StockHandicapItem('成交量', '2.75亿')
-      this.StockHandicapItem('涨家数', '1517', '#EC3529')
-      this.StockHandicapItem('跌家数', '686', '#10A361')
-      this.StockHandicapItem('平家数', '62', '#999999')
+      this.StockHandicapItem('标题111', '2905.97')
+      this.StockHandicapItem('标题112', '2.75')
+      this.StockHandicapItem('标题113', '1517', '#EC3529')
+      this.StockHandicapItem('标题114', '686', '#10A361')
+      this.StockHandicapItem('标题115', '162', '#999999')
 
       UpdownsBarWidget()
         .width('100%')

@@ -5,23 +5,23 @@ import StockIndexItem from './StockIndexItem'
 export default struct StockIndexTop {
   @State stockIndexArr: StockIndexData[] = [
     {
-      lastPrice: '2954.97',
-      indexName: '上证',
+      lastPrice: '23333',
+      indexName: '标题1',
       precent: +0.14
     },
     {
-      lastPrice: '8970.49',
-      indexName: '深成',
+      lastPrice: '34566',
+      indexName: '标题2',
       precent: -0.06
     },
     {
-      lastPrice: '1744.66',
-      indexName: '创业',
+      lastPrice: '15634',
+      indexName: '标题3',
       precent: -0.45
     },
     {
-      lastPrice: '1744.66',
-      indexName: '创业',
+      lastPrice: '123123',
+      indexName: '标题4',
       precent: -0.45
     },
   ]
@@ -66,8 +66,8 @@ export default struct StockIndexTop {
       .layoutWeight(1)
 
       Row() {
-        this.RightButtonBuilder($r('app.media.hq_msg_icon'), '资讯')
-        this.RightButtonBuilder($r('app.media.hq_warning_icon'), '盯盘')
+        this.RightButtonBuilder($r('app.media.main_tab_bottom_home_selected'), '标题1')
+        this.RightButtonBuilder($r('app.media.main_tab_bottom_trade_selected'), '标题2')
       }
       .width(88)
       .height('100%')

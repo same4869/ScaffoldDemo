@@ -3,8 +3,6 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
 import util from '@ohos.util';
-import { ListResponse } from '../pages/demo/market/optionalstock/components/trend_canvas/model/ResponseModel';
-import ShareTrendUtil from '../pages/demo/market/optionalstock/components/trend_canvas/model/ShareTrendUtil';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
@@ -16,9 +14,6 @@ export default class EntryAbility extends UIAbility {
 
     let textDecoder = util.TextDecoder.create("utf-8",{ignoreBOM: true});
     let retStr = textDecoder.decodeWithStream(trendDataArr, {stream: false});
-
-    let jsonModel: ListResponse = JSON.parse(retStr)
-    ShareTrendUtil.getInstance().ayContents = jsonModel.ayContents
   }
 
   onDestroy() {

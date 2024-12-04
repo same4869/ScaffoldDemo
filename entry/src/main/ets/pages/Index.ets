@@ -1,6 +1,6 @@
 import { MLog, MPreferencesUtil, MToast } from '@app/commlib'
 import { MLoadingDialog, MCommDialog } from '@app/uilib'
-import { getHomeList, getHomeListAxios } from '../http/apiService'
+import { getHomeList } from '../http/apiService'
 import emitter from '@ohos.events.emitter'
 import { loadingEvent } from '@app/commlib/src/main/ets/event/EventKey'
 import router from '@ohos.router'
@@ -103,12 +103,12 @@ struct Index {
             })
           })
           Button("http2").fontSize('16vp').onClick(() => {
-            getHomeListAxios().then((res) => {
-              MLog.debug("HomeTag->" + res)
-              MLog.debug("HomeTag->" + res.nextPageUrl)
-            }).catch((err: Error) => {
-              MLog.error(err)
-            })
+            // getHomeListAxios().then((res) => {
+            //   MLog.debug("HomeTag->" + res)
+            //   MLog.debug("HomeTag->" + res.nextPageUrl)
+            // }).catch((err: Error) => {
+            //   MLog.error(err)
+            // })
           })
         }
 
